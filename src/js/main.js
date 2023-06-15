@@ -1,8 +1,12 @@
 import { DisplayMode, Engine } from "excalibur"
-import { ResourceLoader } from "./loader";
+import { ResourceLoader } from "./loader.js";
+import { MainController } from "./controller.js";
 
 
 export class Game extends Engine {
+
+    mainController;
+
     constructor() {
         // The width and height will be in a 16:9 format, this is suvject to change
         // maxFps and displaymode are for performance and sizing requirements
@@ -21,5 +25,10 @@ export class Game extends Engine {
 
     startGame() {
         // TODO: Scene manager
+        console.log('yes')
+        this.mainController = new MainController()
+        this.add(this.mainController)
     }
 }
+
+new Game()
