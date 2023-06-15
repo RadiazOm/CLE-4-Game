@@ -1,12 +1,12 @@
 import { ImageSource, Sound, Resource, Loader , Color} from "excalibur";
-import fishImage from "../images/fish.png";
+import dinoImage from "../images/dino.jpg";
 
 
 const Resources = {
-  Fish: new ImageSource(fishImage),
+  Dino: new ImageSource(dinoImage),
 };
 const ResourceLoader = new Loader([
-  Resources.Fish,
+  Resources.Dino,
 ]);
 
 // ResourceLoader.logo = titleImage
