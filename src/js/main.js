@@ -28,6 +28,8 @@ export class Game extends Engine {
         console.log('yes')
         this.mainController = new MainController()
         this.add(this.mainController)
+
+        
     }
 }
 
