@@ -16,21 +16,18 @@ export class MainController extends Actor{
     constructor() {
         super()
         this.arcade = new Arcade(this, true, true);
+        console.log(this.arcade)
 
-        this.joystickListener = (e) => this.createControllers(e);
+        this.joystickListener = (e) => this.createController(e);
         document.addEventListener('joystickcreated', this.joystickListener)
     }
 
-    createControllers() {
+    createController() {
         console.log('createControllers')
         if (this.controllers.length > 3) {
             return;
         }
-        let controllerIndex = this.controllers.length;
-        if (controllerIndex === undefined) {
-            controllerIndex = 1
-        }
-        console.log(controllerIndex)
+        let controllerIndex = this.controllers.length + 1;
 
         let player = new PlayerController(controllerIndex)
         this.controllers.push(player)
