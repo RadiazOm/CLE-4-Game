@@ -1,6 +1,7 @@
 import { Actor, DisplayMode, Engine, Vector } from "excalibur"
 import { ResourceLoader, Resources } from "./loader.js";
 import { MainController } from "./controller.js";
+import { HertenSleper } from "./HertenSleper/hertensleper.js";
 
 
 export class Game extends Engine {
@@ -21,7 +22,7 @@ export class Game extends Engine {
         // Antialiasing set to false otherwise pixelart will look blurry
         this.setAntialiasing(false)
         // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
-        this.showDebug(false)
+        this.showDebug(true)
         this.start(ResourceLoader).then(() => this.startGame());
     }
 
@@ -30,6 +31,16 @@ export class Game extends Engine {
         console.log('yes')
         this.mainController = new MainController()
         this.add(this.mainController)
+
+        this.addScene('hertensleper', new HertenSleper())
+    }
+
+    onPreUpdate() {
+        if (typeof this.mainController.player1 === "object") {
+            this.goToScene('hertensleper')
+        }
+        
+        this.mainController.update()
     }
 }
 
