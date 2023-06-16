@@ -4,11 +4,19 @@ import { Resources } from "../loader";
 export class Cursor extends Actor {
 
     player;
+    deer;
     engine;
+    holdingDeer = false;
+    holdedDeer;
 
-    constructor(player) {
-        super()
+    constructor(player, deer) {
+        super({
+            width: Resources.Cursor.width,
+            height: Resources.Cursor.height
+        })
         this.player = player;
+        this.deer = deer;
+        console.log(this.deer)
     }
 
     onInitialize(engine) {
@@ -38,6 +46,25 @@ export class Cursor extends Actor {
         this.pos.x = clamp(this.pos.x, 0 + Resources.Cursor.width / 2, this.engine.screen.drawWidth - Resources.Cursor.width / 2)
         this.pos.y = clamp(this.pos.y, 0 + Resources.Cursor.width / 2, this.engine.screen.drawHeight - Resources.Cursor.width / 2)
 
+    }
 
+    grab() {
+        if (this.holdingDeer === true) {
+            this.holdedDeer.release();
+            this.holdingDeer = false;
+            this.holdedDeer.grabbable = true
+            this.holdedDeer = null
+            console.log(this.holdingDeer)
+        } else {
+            for (const deer of this.deer) {
+                if (this.contains(deer.pos.x, deer.pos.y) && this.holdingDeer === false && deer.grabbable === true) {
+                    deer.grabbable = false
+                    this.holdingDeer = true
+                    this.holdedDeer = deer
+                    deer.grab(this)
+                    console.log(this.holdingDeer)
+                }  
+            }
+        }
     }
 }
