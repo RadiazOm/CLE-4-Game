@@ -61,11 +61,12 @@ export class PlayerController{
     }
 
     getXAxis() {
-        return this.Axis.x
+        return navigator.getGamepads()[this.playerIndex - 1].axes[0].toFixed(1)
+
     }
 
     getYAxis() {
-        return this.Axis.y
+        return navigator.getGamepads()[this.playerIndex - 1].axes[1].toFixed(1)
     }
 
     IsHeld(button) {
