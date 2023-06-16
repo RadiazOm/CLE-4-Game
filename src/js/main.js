@@ -1,5 +1,5 @@
-import { DisplayMode, Engine } from "excalibur"
-import { ResourceLoader } from "./loader.js";
+import { Actor, DisplayMode, Engine, Vector } from "excalibur"
+import { ResourceLoader, Resources } from "./loader.js";
 import { MainController } from "./controller.js";
 
 
@@ -7,12 +7,14 @@ export class Game extends Engine {
 
     mainController;
 
+    testActor;
+
     constructor() {
         // The width and height will be in a 16:9 format, this is suvject to change
         // maxFps and displaymode are for performance and sizing requirements
         super({
-            width: 1600,
-            height: 900,
+            width: 360,
+            height: 180,
             maxFps: 144,
             displayMode: DisplayMode.FitScreen
         });
@@ -28,6 +30,24 @@ export class Game extends Engine {
         console.log('yes')
         this.mainController = new MainController()
         this.add(this.mainController)
+
+        this.testActor = new Actor({
+            pos: new Vector(this.screen.drawWidth / 2, this.screen.drawHeight / 2)
+        })
+        this.testActor.graphics.use(Resources.Snowboard.toSprite())
+        this.add(this.testActor)
+    }
+
+    onPostUpdate() {
+        if (this.mainController.player1 != null) {
+            this.testActor.vel.x = this.mainController.player1.Axis.x * 100
+            this.testActor.vel.y = this.mainController.player1.Axis.y * 100
+
+        }
+    }
+
+    Button5(player) {
+        console.log('button5 ' + player)
     }
 }
 

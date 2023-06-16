@@ -29,7 +29,8 @@ export class MainController extends Actor{
         }
         let controllerIndex = this.controllers.length + 1;
 
-        let player = new PlayerController(controllerIndex)
+        let player = new PlayerController(controllerIndex, this.arcade.Joysticks[controllerIndex -1])
+        this.addChild(player)
         this.controllers.push(player)
         switch (controllerIndex) {
             case 1:
