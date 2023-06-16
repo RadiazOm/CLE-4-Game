@@ -2,11 +2,15 @@ import { Actor, Physics, Scene, Vector } from "excalibur";
 import { Resources } from "../loader";
 import { Cursor } from "./cursor";
 import { Deer } from "./deer";
+import { Cage } from "./cage";
+import { CageZone } from "./cageZone";
+import { ScoreTracker } from "./scoreTracker";
 
 export class HertenSleper extends Scene {
 
     cursors = [];
     deer = [];
+    scoreTrackers = [];
     engine;
 
     constructor(){
@@ -22,6 +26,21 @@ export class HertenSleper extends Scene {
         background.graphics.use(Resources.hertMap.toSprite())
         this.add(background)
 
+        for (let x = 0; x < 370; x+= 360 - Resources.Cage.width * 1.2) {
+            for (let y = 0; y < 190; y+= 180 - Resources.Cage.height * 1.2) {
+                let cage = new Cage()
+                cage.pos.x = x
+                cage.pos.y = y
+                this.add(cage)
+                console.log(cage.pos.x + ' ' + cage.pos.y)
+            }
+        }
+
+        for (let i = 0; i < 4; i++) {
+            let cageZone = new CageZone(i)
+            this.add(cageZone)
+        }
+
         for (let i = 0; i < 10; i++) {
             let deer = new Deer()
             this.add(deer)
@@ -33,13 +52,24 @@ export class HertenSleper extends Scene {
             this.add(cursor)
             this.cursors.push(cursor)
         }
+
+        for(let i = 0; i < 4; i++) {
+            let scoreTracker = new ScoreTracker(i + 1)
+            this.add(scoreTracker)
+            this.scoreTrackers.push(scoreTracker)
+        }
     }
 
     Button0(player) {
-        switch (player) {
-            case 1:
-                this.cursors[0].grab()
-                break;
-        }
+
+        this.cursors[player - 1].grab()
+        // switch (player) {
+        //     case 1:
+        //         this.cursors[0].grab()
+        //         break;
+        //     case 1:
+        //         this.cursors[1].grab()
+        //         break;
+        // }
     }
 }

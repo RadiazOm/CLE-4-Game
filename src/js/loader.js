@@ -4,6 +4,7 @@ import skiImage from "../images/Snowboarder.png"
 import hertMapImage from "../images/hertenslepermap.png"
 import cursorImage from "../images/cursor.png"
 import deerImage from "../images/deer.png"
+import cageImage from "../images/cage.png"
 
 
 const Resources = {
@@ -11,14 +12,16 @@ const Resources = {
   Snowboard: new ImageSource(skiImage),
   hertMap: new ImageSource(hertMapImage),
   Cursor: new ImageSource(cursorImage),
-  Deer: new ImageSource(deerImage)
+  Deer: new ImageSource(deerImage),
+  Cage: new ImageSource(cageImage)
 };
 const ResourceLoader = new Loader([
   Resources.Dino,
   Resources.Snowboard,
   Resources.hertMap,
   Resources.Cursor,
-  Resources.Deer
+  Resources.Deer,
+  Resources.Cage
 ]);
 
 // ResourceLoader.logo = titleImage
@@ -26,6 +29,6 @@ const ResourceLoader = new Loader([
 // ResourceLoader.logoHeight = 256
 // ResourceLoader.backgroundColor = Color.fromHex('#eef8fe')
 // ResourceLoader.loadingBarColor = Color.Black
-// ResourceLoader.suppressPlayButton = true
+ResourceLoader.suppressPlayButton = true
 
 export { Resources, ResourceLoader };
