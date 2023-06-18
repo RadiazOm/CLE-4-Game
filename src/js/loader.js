@@ -1,16 +1,20 @@
 import { ImageSource, Sound, Resource, Loader , Color} from "excalibur";
 import dinoImage from "../images/dino.jpg";
-import gooseFurkanImage from "../images/goose_Furkan.png";
+import cursorFurkanImage from "../images/Cursor_Furkan.png";
+import backgroundCatcherImage from "../images/background.png";
 
 
 const Resources = {
   Dino: new ImageSource(dinoImage),
-  GooseFurkan: new ImageSource(gooseFurkanImage),
+  CursorFurkan: new ImageSource(cursorFurkanImage),
+  BackgroundCatcher: new ImageSource(backgroundCatcherImage),
+
  
 };
 const ResourceLoader = new Loader([
   Resources.Dino,
-  Resources.GooseFurkan,
+  Resources.CursorFurkan,
+  Resources.BackgroundCatcher,
 ]);
 
 // ResourceLoader.logo = titleImage

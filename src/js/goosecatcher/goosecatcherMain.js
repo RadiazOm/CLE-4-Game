@@ -1,6 +1,7 @@
 import {DisplayMode, Engine} from "excalibur"
 import { ResourceLoader, Resources } from "../loader.js";
-import { GooseFurkan } from "./goose.js";
+import { CursorFurkan } from "./cursor.js";
+import { BackgroundCatcher } from "./background.js";
 
 export class Game extends Engine {
 
@@ -21,15 +22,18 @@ export class Game extends Engine {
     }
 
     startGame() {
-    let goose1 = new GooseFurkan(30, 20);
-    let goose2 = new GooseFurkan(60, 40);
-    let goose3 = new GooseFurkan(90, 60);
-    let goose4 = new GooseFurkan(120, 80);
+    let cursor1 = new CursorFurkan(30, 20);
+    let cursor2 = new CursorFurkan(60, 40);
+    let cursor3 = new CursorFurkan(90, 60);
+    let cursor4 = new CursorFurkan(120, 80);
 
-    this.add(goose1);
-    this.add(goose2);
-    this.add(goose3);
-    this.add(goose4);
+    this.add(cursor1);
+    this.add(cursor2);
+    this.add(cursor3);
+    this.add(cursor4);
+
+    let backgroundCatcher = new BackgroundCatcher();
+    this.add(backgroundCatcher);
     }
 
 }

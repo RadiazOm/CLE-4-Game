@@ -1,14 +1,14 @@
 import { Actor, Input, Vector } from "excalibur";
 import { Resources } from "../loader";
 
-export class GooseFurkan extends Actor{
+export class CursorFurkan extends Actor{
     constructor(x,y){
         super({
-            width: Resources.GooseFurkan.width,
-            height: Resources.GooseFurkan.height
+            width: Resources.CursorFurkan.width,
+            height: Resources.CursorFurkan.height
         })
 
-        this.graphics.use(Resources.GooseFurkan.toSprite())
+        this.graphics.use(Resources.CursorFurkan.toSprite())
         this.pos = new Vector(x,y)
     }
 
