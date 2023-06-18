@@ -8,6 +8,7 @@ export class ScoreTracker extends UI {
     player;
     engine;
     score;
+    scoreNumber = 0;
 
     constructor(player){
         super({
@@ -46,5 +47,6 @@ export class ScoreTracker extends UI {
 
     updateScore(score) {
         this.score.text = `P${this.player}:${score.toString()}`
+        this.scoreNumber = score
     }
 }

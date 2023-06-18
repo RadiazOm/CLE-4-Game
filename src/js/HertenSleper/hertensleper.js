@@ -1,4 +1,4 @@
-import { Actor, Physics, Repeat, Scene, Timer, Vector } from "excalibur";
+import { Actor, Label, Physics, Repeat, Scene, Timer, Vector } from "excalibur";
 import { Resources } from "../loader";
 import { Cursor } from "./cursor";
 import { Deer } from "./deer";
@@ -6,6 +6,7 @@ import { Cage } from "./cage";
 import { CageZone } from "./cageZone";
 import { ScoreTracker } from "./scoreTracker";
 import { GameTimer } from "./timer";
+import { UI } from "./UI";
 
 export class HertenSleper extends Scene {
 
@@ -13,7 +14,7 @@ export class HertenSleper extends Scene {
     deer = [];
     scoreTrackers = [];
     timer;
-    time = 25;
+    time = 10;
     engine;
     gameOver = false;
 
@@ -106,5 +107,25 @@ export class HertenSleper extends Scene {
         for (const cursor of this.cursors) {
             cursor.vel = new Vector(0,0)
         }
+        let highestScore = 0
+        let playerwon = null
+        for (const scoretracker of this.scoreTrackers) {
+            if (highestScore < scoretracker.scoreNumber) {
+                highestScore = scoretracker.scoreNumber
+                playerwon = scoretracker.player
+            }
+        }
+        const ui = new UI()
+        let label = new Label({
+            pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2),
+            font: ui.spriteFont
+            })
+            label.anchor = new Vector(0.5,0.5)
+        if (playerwon == null) {
+            label.text = 'no one won boo'
+        } else {
+            label.text = `player${playerwon} won!`
+        }
+        this.add(label)
     }
 }
