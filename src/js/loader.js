@@ -5,6 +5,7 @@ import hertMapImage from "../images/hertenslepermap.png"
 import cursorImage from "../images/cursor.png"
 import deerImage from "../images/deer.png"
 import cageImage from "../images/cage.png"
+import fontMap from "../images/tilemap_packed_font.png"
 
 
 const Resources = {
@@ -13,7 +14,8 @@ const Resources = {
   hertMap: new ImageSource(hertMapImage),
   Cursor: new ImageSource(cursorImage),
   Deer: new ImageSource(deerImage),
-  Cage: new ImageSource(cageImage)
+  Cage: new ImageSource(cageImage),
+  Fontmap: new ImageSource(fontMap),
 };
 const ResourceLoader = new Loader([
   Resources.Dino,
@@ -21,7 +23,8 @@ const ResourceLoader = new Loader([
   Resources.hertMap,
   Resources.Cursor,
   Resources.Deer,
-  Resources.Cage
+  Resources.Cage,
+  Resources.Fontmap
 ]);
 
 // ResourceLoader.logo = titleImage

@@ -45,7 +45,7 @@ export class Deer extends Actor {
     }
 
     wander() {
-        if (this.grabbable === true) {
+        if (this.grabbable === true && this.engine.currentScene.gameOver === false) {
             this.vel = new Vector(Math.random() * 10 - 5, Math.random() * 10 - 5)
         }
     }

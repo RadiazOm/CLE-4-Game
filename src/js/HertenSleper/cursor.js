@@ -41,6 +41,9 @@ export class Cursor extends Actor {
     }
 
     onPreUpdate() {
+        if (this.engine.currentScene.gameOver === true) {
+            return;
+        }
         if (this.player === 1) {
             this.vel.x = this.engine.mainController.player1.getXAxis() * 100
             this.vel.y = this.engine.mainController.player1.getYAxis() * 100
@@ -64,6 +67,9 @@ export class Cursor extends Actor {
     }
 
     grab() {
+        if (this.engine.currentScene.gameOver === true) {
+            return;
+        }
         if (this.holdingDeer === true) {
             this.holdedDeer.release();
             this.holdingDeer = false;

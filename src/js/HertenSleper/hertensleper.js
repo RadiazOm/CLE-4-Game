@@ -1,17 +1,21 @@
-import { Actor, Physics, Scene, Vector } from "excalibur";
+import { Actor, Physics, Repeat, Scene, Timer, Vector } from "excalibur";
 import { Resources } from "../loader";
 import { Cursor } from "./cursor";
 import { Deer } from "./deer";
 import { Cage } from "./cage";
 import { CageZone } from "./cageZone";
 import { ScoreTracker } from "./scoreTracker";
+import { GameTimer } from "./timer";
 
 export class HertenSleper extends Scene {
 
     cursors = [];
     deer = [];
     scoreTrackers = [];
+    timer;
+    time = 25;
     engine;
+    gameOver = false;
 
     constructor(){
         super()
@@ -58,10 +62,31 @@ export class HertenSleper extends Scene {
             this.add(scoreTracker)
             this.scoreTrackers.push(scoreTracker)
         }
+
+        this.timer = new GameTimer(this.time)
+        this.add(this.timer)
+
+
+        const timer = new Timer({
+            fcn: () => {
+                if (this.time <= 0) {
+                    this.gameover()
+                    timer.cancel()
+                } else {
+                    this.time -= 1
+                    this.timer.updateTime(this.time)
+                }
+            },
+            repeats: true,
+            interval: 1000
+        })
+        this.add(timer)
+        timer.start()
     }
 
-    Button0(player) {
 
+
+    Button0(player) {
         this.cursors[player - 1].grab()
         // switch (player) {
         //     case 1:
@@ -71,5 +96,15 @@ export class HertenSleper extends Scene {
         //         this.cursors[1].grab()
         //         break;
         // }
+    }
+
+    gameover() {
+        this.gameOver = true
+        for (const deer of this.deer) {
+            deer.vel = new Vector(0,0)
+        }
+        for (const cursor of this.cursors) {
+            cursor.vel = new Vector(0,0)
+        }
     }
 }

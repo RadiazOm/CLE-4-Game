@@ -1,14 +1,14 @@
-import { Actor, DisplayMode, Engine, Vector } from "excalibur"
+import { Actor, DisplayMode, Engine, Label, Vector, Timer } from "excalibur"
 import { ResourceLoader, Resources } from "./loader.js";
 import { MainController } from "./controller.js";
 import { HertenSleper } from "./HertenSleper/hertensleper.js";
+import { UI } from "./HertenSleper/UI.js"
 
 
 export class Game extends Engine {
 
     mainController;
-
-    testActor;
+    begin = false;
 
     constructor() {
         // The width and height will be in a 16:9 format, this is suvject to change
@@ -33,14 +33,54 @@ export class Game extends Engine {
         this.add(this.mainController)
 
         this.addScene('hertensleper', new HertenSleper())
+
+        const ui = new UI()
+
+        const label = new Label({
+            text: `connect your
+controllers now!`,
+            pos: new Vector(this.screen.drawWidth / 2, this.screen.drawHeight / 2),
+            font: ui.spriteFont
+        })
+        label.anchor = new Vector(0.5,0.5)
+        this.add(label)
     }
 
     onPreUpdate() {
-        if (typeof this.mainController.player1 === "object") {
-            this.goToScene('hertensleper')
+        if (typeof this.mainController.player1 === "object" && typeof this.mainController.player2 === "object" && typeof this.mainController.player3 === "object" && typeof this.mainController.player4 === "object" && this.begin == false) {
+            this.begin = true
+            this.countdown()
         }
         
         this.mainController.update()
+    }
+
+    countdown() {
+        let time = 3
+
+        const ui = new UI()
+
+        let label = new Label({
+            text: time.toString(),
+            pos: new Vector(this.screen.drawWidth / 2, this.screen.drawHeight / 2 + 16),
+            font: ui.spriteFont
+        })
+        this.add(label)
+        const timer = new Timer({
+            fcn: () => {
+                if (time <= 0) {
+                    this.goToScene('hertensleper')
+                    timer.cancel()
+                } else {
+                    time -= 1
+                    label.text = time.toString()
+                }
+            },
+            repeats: true,
+            interval: 1000
+        })
+        this.add(timer)
+        timer.start()
     }
 }
 

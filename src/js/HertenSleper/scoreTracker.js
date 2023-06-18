@@ -1,8 +1,9 @@
-import { Label, ScreenElement, Vector } from "excalibur";
+import { Font, Label, ScreenElement, Vector } from "excalibur";
 import { Resources } from "../loader";
+import { UI } from "./UI";
 
 
-export class ScoreTracker extends ScreenElement {
+export class ScoreTracker extends UI {
 
     player;
     engine;
@@ -19,21 +20,22 @@ export class ScoreTracker extends ScreenElement {
         this.engine = engine
         switch (this.player) {
             case 1:
-                this.pos = new Vector(Resources.Cage.width * 1.2, 8)
+                this.pos = new Vector(Resources.Cage.width * 1.2, 0)
                 break;
             case 2:
-                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 - 10, 8)
+                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2, 0)
                 break;
             case 3:
-                this.pos = new Vector(Resources.Cage.width * 1.2, this.engine.screen.drawHeight - 6)
+                this.pos = new Vector(Resources.Cage.width * 1.2, this.engine.screen.drawHeight - 16)
                 break;
             case 4:
-                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 - 10, this.engine.screen.drawHeight - 6)
+                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2, this.engine.screen.drawHeight - 16)
                 break;
         }
         this.score = new Label({
-            text: `P${this.player}: 0`,
-            pos: new Vector(0,0)
+            text: `P${this.player}:0`,
+            pos: new Vector(0,0),
+            font: this.spriteFont
         })
         if (this.player == 2 || this.player == 4) {
             this.score.anchor = new Vector(1, 0)
@@ -43,6 +45,6 @@ export class ScoreTracker extends ScreenElement {
     }
 
     updateScore(score) {
-        this.score.text = `P${this.player}: ${score.toString()}`
+        this.score.text = `P${this.player}:${score.toString()}`
     }
 }
