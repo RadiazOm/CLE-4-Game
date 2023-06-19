@@ -62,7 +62,6 @@ export class PlayerController{
 
     getXAxis() {
         return navigator.getGamepads()[this.playerIndex - 1].axes[0].toFixed(1)
-
     }
 
     getYAxis() {
