@@ -9,6 +9,7 @@ export class Game extends Engine {
 
     mainController;
     begin = false;
+    pressed = false;
 
     constructor() {
         // The width and height will be in a 16:9 format, this is suvject to change
@@ -24,11 +25,15 @@ export class Game extends Engine {
         // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
         this.showDebug(false)
         this.start(ResourceLoader).then(() => this.startGame());
+
+        document.addEventListener('keydown', (e) => {if (e.key === ' ') {
+                this.pressed = true
+            }
+        })
     }
 
     startGame() {
         // TODO: Scene manager
-        console.log('yes')
         this.mainController = new MainController(this)
         this.add(this.mainController)
 
@@ -46,8 +51,10 @@ controllers now!`,
         this.add(label)
     }
 
+
+
     onPreUpdate() {
-        if (typeof this.mainController.player1 === "object" && typeof this.mainController.player2 === "object" && typeof this.mainController.player3 === "object" && typeof this.mainController.player4 === "object" && this.begin == false) {
+        if (typeof this.mainController.player1 === "object" && typeof this.mainController.player2 === "object" && typeof this.mainController.player3 === "object" && typeof this.mainController.player4 === "object" && this.begin == false && this.pressed == true) {
             this.begin = true
             this.countdown()
         }
