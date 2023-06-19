@@ -43,7 +43,7 @@ export class Game extends Engine {
     let floatingGoose = new GooseFloating();
     this.add(floatingGoose);
 
-    for( let i = 0; i<20; i++ ){
+    for( let i = 0; i<30; i++ ){
 
         console.log("ganzen gespawned")
         let goose = new GooseFloating();

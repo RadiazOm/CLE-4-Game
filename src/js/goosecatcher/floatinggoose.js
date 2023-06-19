@@ -1,4 +1,4 @@
-import { Actor, Vector, clamp } from "excalibur";
+import { Actor, CollisionType, Vector, clamp } from "excalibur";
 import { Resources } from "../loader";
 
 export class GooseFloating extends Actor {
@@ -16,7 +16,8 @@ export class GooseFloating extends Actor {
     onInitialize(engine) {
         this.engine = engine
         this.graphics.use(Resources.GooseFloating.toSprite());
-        this.sprite = Resources.GooseFloating.toSprite()
+        this.sprite = Resources.GooseFloating.toSprite();
+        this.body.collisionType = CollisionType.Active;
 
     
         this.pos.x = Math.random()* this.engine.screen.drawWidth
@@ -26,7 +27,20 @@ export class GooseFloating extends Actor {
             this.pos.y = (Math.random()*15) + (this.engine.screen.drawHeight - 5 ) / 2
         } 
 
-        this.vel = new Vector(Math.random() * 10 - 5, Math.random() * 10 - 5)
+        this.vel = new Vector(Math.random() * 20 - 5, Math.random() * 5 - 5)
+
+        this.enableCapture = true;
+        this.pointer.useGraphicsBounds = true;
+
+        this.on("pointerup",(event) => {
+            this.kill();
+        })
+
+        this.on("collisionstart",(event) =>{
+            if(event.other instanceof GooseFloating){
+                this.pos = new Vector (Math.random()*320, Math.random()*180)  
+            }
+        });
 
     }
 
@@ -34,10 +48,11 @@ export class GooseFloating extends Actor {
         this.pos.x = clamp(this.pos.x, 0 + Resources.GooseFloating.width / 2, this.engine.screen.drawWidth - Resources.GooseFloating.width / 2)
         this.pos.y = clamp(this.pos.y, 0 + Resources.GooseFloating.height / 2, this.engine.screen.drawHeight - Resources.GooseFloating.height / 2)
 
+        
+
         // wanneer de vel van de ganz posis is dan willen we de flipper zantel*acceser in de sprite() die willen we op fals hebbe
         //Als het negatief is dan op true
 
-        console.log(this.graphics)
 
         if (this.vel.x > 0){
             this.sprite.flipHorizontal = false

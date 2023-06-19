@@ -1,4 +1,4 @@
-import { Actor, Input, Vector } from "excalibur";
+import { Actor, CollisionType, Input, Vector, clamp } from "excalibur";
 import { Resources } from "../loader";
 
 export class CursorFurkan extends Actor{
@@ -9,7 +9,8 @@ export class CursorFurkan extends Actor{
         })
 
         this.graphics.use(Resources.CursorFurkan.toSprite())
-        this.pos = new Vector(x,y)
+        this.pos = new Vector(x,y);
+        
     }
 
     
