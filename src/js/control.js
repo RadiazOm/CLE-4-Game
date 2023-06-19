@@ -1,4 +1,10 @@
-class GansWit extends Actor {
+import { Actor, Vector, Input } from "excalibur"
+
+export class GansWit extends Actor {
+
+    constructor(){
+        super()
+    }
 
     onPreUpdate(engine) {
 

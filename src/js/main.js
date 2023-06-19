@@ -11,8 +11,8 @@ export class Game extends Engine {
         // The width and height will be in a 16:9 format, this is suvject to change
         // maxFps and displaymode are for performance and sizing requirements
         super({
-            width: 1600,
-            height: 900,
+            width: 360,
+            height: 180,
             maxFps: 144,
             displayMode: DisplayMode.FitScreen
         });

@@ -34,15 +34,24 @@ if array = 3
 
 */
 import '../css/style.css'
-import { Actor, Engine, Vector, Label, FontUnit, Font} from "excalibur"
+import { Actor, Engine, Vector, Label, FontUnit, Font, DisplayMode} from "excalibur"
 import { Resources, ResourceLoader } from './loader.js'
 import { GansWit } from './control'
 
 export class Game extends Engine {
 
     constructor() {
-        super({ width: 800, height: 600 })
-        this.start(ResourceLoader).then(() => this.startGame())
+        super({
+            width: 360,
+            height: 180,
+            maxFps: 144,
+            displayMode: DisplayMode.FitScreen
+        });
+        // Antialiasing set to false otherwise pixelart will look blurry
+        this.setAntialiasing(false)
+        // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
+        this.showDebug(false)
+        this.start(ResourceLoader).then(() => this.startGame());
     }
 
     startGame() {
