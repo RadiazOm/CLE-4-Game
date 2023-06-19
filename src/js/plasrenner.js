@@ -36,6 +36,7 @@ if array = 3
 import '../css/style.css'
 import { Actor, Engine, Vector, Label, FontUnit, Font} from "excalibur"
 import { Resources, ResourceLoader } from './loader.js'
+import { GansWit } from './control'
 
 export class Game extends Engine {
 
@@ -48,10 +49,12 @@ export class Game extends Engine {
         console.log("start de game!")
         const dino = new Actor()
         //const plasrennerBackground = new Actor()
-        const gansWit = new Actor()
+        const gansWit = new GansWit()
         dino.graphics.use(Resources.Dino.toSprite())
         //plasrennerBackground.graphics.use(Resources.plasrennerBackground.toSprite())
-        gansWit.graphics.use(Resources.gansWit.toSprite())
+        gansWit.graphics.use(Resources.GansWit.toSprite())
+
+
         dino.pos = new Vector(400, 300)
         //plasrennerBackground.pos = new Vector (400, 300)
         gansWit.pos = new Vector (100, 100)
@@ -65,7 +68,7 @@ export class Game extends Engine {
             console.log("Het is gebeurd")
           }*/
         //this.add(plasrennerBackground)
-        this.add(dino)
+        //this.add(dino)
         this.add(gansWit)
 
 

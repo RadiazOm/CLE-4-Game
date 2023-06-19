@@ -13,7 +13,7 @@ const Resources = {
 const ResourceLoader = new Loader([
   Resources.Dino,
   Resources.PlasrennerBackground,
-  Resource.GansWit
+  Resources.GansWit
 ]);
 
 // ResourceLoader.logo = titleImage
