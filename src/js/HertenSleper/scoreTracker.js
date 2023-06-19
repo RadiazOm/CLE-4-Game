@@ -1,6 +1,6 @@
 import { Font, Label, ScreenElement, Vector } from "excalibur";
 import { Resources } from "../loader";
-import { UI } from "./UI";
+import { UI } from "../UI";
 
 
 export class ScoreTracker extends UI {

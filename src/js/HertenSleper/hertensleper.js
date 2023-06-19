@@ -6,7 +6,7 @@ import { Cage } from "./cage";
 import { CageZone } from "./cageZone";
 import { ScoreTracker } from "./scoreTracker";
 import { GameTimer } from "./timer";
-import { UI } from "./UI";
+import { UI } from "../UI";
 
 export class HertenSleper extends Scene {
 

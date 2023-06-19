@@ -1,5 +1,5 @@
 import { Label, Vector } from "excalibur";
-import { UI } from "./UI";
+import { UI } from "../UI";
 
 export class GameTimer extends UI {
 

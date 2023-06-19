@@ -1,5 +1,5 @@
 import { Actor, Engine, Vector, Label, Color, Font, FontUnit, TileMap, DisplayMode, FrameStats, SpriteSheet, SpriteFont, ScreenElement } from "excalibur";
-import { Resources, ResourceLoader } from "../loader.js";
+import { Resources, ResourceLoader } from "./loader.js";
 
 
 export class UI extends ScreenElement { 

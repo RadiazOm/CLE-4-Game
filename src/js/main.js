@@ -2,7 +2,8 @@ import { Actor, DisplayMode, Engine, Label, Vector, Timer } from "excalibur"
 import { ResourceLoader, Resources } from "./loader.js";
 import { MainController } from "./controller.js";
 import { HertenSleper } from "./HertenSleper/hertensleper.js";
-import { UI } from "./HertenSleper/UI.js"
+import { UI } from "./UI.js"
+import { characterSelection } from "./characterSelection.js";
 
 
 export class Game extends Engine {
@@ -38,26 +39,28 @@ export class Game extends Engine {
         this.add(this.mainController)
 
         this.addScene('hertensleper', new HertenSleper())
+        this.addScene('characterselection', new characterSelection())
+        this.goToScene('characterselection')
 
-        const ui = new UI()
+//         const ui = new UI()
 
-        const label = new Label({
-            text: `connect your
-controllers now!`,
-            pos: new Vector(this.screen.drawWidth / 2, this.screen.drawHeight / 2),
-            font: ui.spriteFont
-        })
-        label.anchor = new Vector(0.5,0.5)
-        this.add(label)
+//         const label = new Label({
+//             text: `connect your
+// controllers now!`,
+//             pos: new Vector(this.screen.drawWidth / 2, this.screen.drawHeight / 2),
+//             font: ui.spriteFont
+//         })
+//         label.anchor = new Vector(0.5,0.5)
+//         this.add(label)
     }
 
 
 
     onPreUpdate() {
-        if (typeof this.mainController.player1 === "object" && typeof this.mainController.player2 === "object" && typeof this.mainController.player3 === "object" && typeof this.mainController.player4 === "object" && this.begin == false && this.pressed == true) {
-            this.begin = true
-            this.countdown()
-        }
+        // if (typeof this.mainController.player1 === "object" && typeof this.mainController.player2 === "object" && typeof this.mainController.player3 === "object" && typeof this.mainController.player4 === "object" && this.begin == false && this.pressed == true) {
+        //     this.begin = true
+        //     this.countdown()
+        // }
         
         this.mainController.update()
     }

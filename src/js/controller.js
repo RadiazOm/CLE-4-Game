@@ -1,7 +1,7 @@
 import { Actor, Label, Vector } from "excalibur";
 import { PlayerController } from "./playerController.js"
 import { Arcade } from "arcade-game"
-import { UI } from "./HertenSleper/UI.js"
+import { UI } from "./UI.js"
 
 
 export class MainController{
@@ -21,15 +21,17 @@ export class MainController{
         console.log(this.arcade)
 
         this.joystickListener = (e) => this.createController(e);
-        document.addEventListener('joystickcreated', this.joystickListener)
+        window.addEventListener('gamepadconnected', this.joystickListener)
+        window.addEventListener('gamepaddisconnected', (e) => {this.disconnect(e)})
     }
 
-    createController() {
-        console.log('createControllers')
+    createController(e) {
+        const gp = navigator.getGamepads()[e.gamepad.index]
+        console.log(e)
         if (this.controllers.length > 3) {
             return;
         }
-        let controllerIndex = this.controllers.length + 1;
+        let controllerIndex = e.gamepad.index + 1
 
         let player = new PlayerController(controllerIndex, this.arcade.Joysticks[controllerIndex -1], this.game)
         this.controllers.push(player)
@@ -106,7 +108,13 @@ export class MainController{
         }
     }
 
-    disconnect() {
-        document.removeEventListener("joystickcreated", this.joystickListener)
+    disconnect(e) {
+        let ui = new UI()
+        let label = new Label({
+            text: `dont do that please`,
+            pos: new Vector(0, 80),
+            font: ui.spriteFont
+        })
+        this.game.add(label)
     }
 }
