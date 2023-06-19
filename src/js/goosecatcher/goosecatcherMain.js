@@ -1,6 +1,6 @@
 import {Color, DisplayMode, Engine} from "excalibur"
 import { ResourceLoader, Resources } from "../loader.js";
-// import { CursorFurkan } from "./cursor.js";
+import { CursorFurkan } from "./cursor.js";
 import { BackgroundCatcher } from "./background.js";
 import { GooseFloating } from "./floatinggoose.js";
 
