@@ -6,20 +6,23 @@ import { GooseFloating } from "./floatinggoose.js";
 
 export class Game extends Engine {
 
+    
     constructor() {
         // The width and height will be in a 16:9 format, this is suvject to change
         // maxFps and displaymode are for performance and sizing requirements
         super({
-            width: 320,
+            width: 360,
             height: 180,
             maxFps: 144,
             displayMode: DisplayMode.FitScreen
+            
         });
         // Antialiasing set to false otherwise pixelart will look blurry
         this.setAntialiasing(false)
         // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
         this.showDebug(false)
         this.start(ResourceLoader).then(() => this.startGame());
+        
     }
 
     startGame() {
@@ -40,10 +43,15 @@ export class Game extends Engine {
     let floatingGoose = new GooseFloating();
     this.add(floatingGoose);
 
-    
+    for( let i = 0; i<20; i++ ){
 
+        console.log("ganzen gespawned")
+        let goose = new GooseFloating();
+        this.add(goose);
+            
     }
 
+    }
 }
 
 new Game()
