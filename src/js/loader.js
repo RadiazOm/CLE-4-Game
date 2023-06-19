@@ -2,12 +2,14 @@ import { ImageSource, Sound, Resource, Loader , Color} from "excalibur";
 import dinoImage from "../images/dino.jpg";
 import cursorFurkanImage from "../images/Cursor_Furkan.png";
 import backgroundCatcherImage from "../images/background.png";
+import floatingGooseImage from "../images/gansWitDrijven.png";
 
 
 const Resources = {
   Dino: new ImageSource(dinoImage),
   CursorFurkan: new ImageSource(cursorFurkanImage),
   BackgroundCatcher: new ImageSource(backgroundCatcherImage),
+  GooseFloating: new ImageSource(floatingGooseImage),
 
  
 };
@@ -15,6 +17,7 @@ const ResourceLoader = new Loader([
   Resources.Dino,
   Resources.CursorFurkan,
   Resources.BackgroundCatcher,
+  Resources.GooseFloating,
 ]);
 
 // ResourceLoader.logo = titleImage

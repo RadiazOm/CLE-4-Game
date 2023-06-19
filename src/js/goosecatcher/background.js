@@ -3,6 +3,7 @@ import { Resources } from "../loader";
 
 export class BackgroundCatcher extends Actor{
     offset
+
    onInitialize(engine){
     const backgroundTile = Resources.BackgroundCatcher.toSprite()
     this.offset = backgroundTile.height
@@ -27,8 +28,8 @@ export class BackgroundCatcher extends Actor{
 
    }   
 
-   onPostUpdate(engine, delta) {
-    if (this.pos.y >= engine.drawHeight) {
+   onPostUpdate(engine) {
+    if (this.pos.y >= 0) {
         this.pos = new Vector(0, -this.offset);
     }
 }
