@@ -3,6 +3,8 @@ import { Resources } from "../loader";
 
 export class GooseFloating extends Actor {
 
+    sprite;
+
 
     constructor() {
         super({
@@ -14,6 +16,7 @@ export class GooseFloating extends Actor {
     onInitialize(engine) {
         this.engine = engine
         this.graphics.use(Resources.GooseFloating.toSprite());
+        this.sprite = Resources.GooseFloating.toSprite()
 
     
         this.pos.x = Math.random()* this.engine.screen.drawWidth
@@ -34,10 +37,14 @@ export class GooseFloating extends Actor {
         // wanneer de vel van de ganz posis is dan willen we de flipper zantel*acceser in de sprite() die willen we op fals hebbe
         //Als het negatief is dan op true
 
+        console.log(this.graphics)
+
         if (this.vel.x > 0){
-            this.graphics.flipHorizantal = false
+            this.sprite.flipHorizontal = false
+            this.graphics.use(this.sprite)
         } else {
-            this.graphics.flipHorizantal = true
+            this.sprite.flipHorizontal = true
+            this.graphics.use(this.sprite)
         }
     }
 }
