@@ -5,6 +5,7 @@ import backgroundCatcherImage from "../images/background.png";
 import floatingGooseImage from "../images/gansWitDrijven.png";
 
 
+
 const Resources = {
   Dino: new ImageSource(dinoImage),
   CursorFurkan: new ImageSource(cursorFurkanImage),

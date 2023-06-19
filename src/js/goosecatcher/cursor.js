@@ -1,4 +1,4 @@
-import { Actor, CollisionType, Input, Vector, clamp } from "excalibur";
+import { Actor, CollisionType, Color, Input, Vector, clamp } from "excalibur";
 import { Resources } from "../loader";
 
 export class CursorFurkan extends Actor{
