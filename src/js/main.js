@@ -1,6 +1,7 @@
 import { Actor, DisplayMode, Engine, Vector } from "excalibur"
 import { ResourceLoader, Resources } from "./loader.js";
 import { MainController } from "./controller.js";
+import { Afvalverwijderaar } from "./afvalverwijderaar/afvalverwijderaar.js";
 
 
 export class Game extends Engine {
@@ -30,6 +31,9 @@ export class Game extends Engine {
         console.log('yes')
         this.mainController = new MainController()
         this.add(this.mainController)
+
+        this.addScene('afvalverwijderen', new Afvalverwijderaar())
+        this.goToScene('afvalverwijderen')
     }
 }
 
