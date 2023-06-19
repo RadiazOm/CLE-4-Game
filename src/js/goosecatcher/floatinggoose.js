@@ -23,18 +23,22 @@ export class GooseFloating extends Actor {
             this.pos.y = (Math.random()*15) + (this.engine.screen.drawHeight - 5 ) / 2
         } 
 
-        // this.vel.x = Math.random()* this.engine.screen.drawWidth
-        // if(this.vel.x < 10 && this.vel.x > 20 ){
-        //     this.vel.y = Math.random()* this.engine.drawHeight
-        // } else {
-        //     this.vel.y = (Math.random()* 15) + (this.engine.screen.drawHeight - 5)/2
-        // }
-        
+        this.vel = new Vector(Math.random() * 10 - 5, Math.random() * 10 - 5)
+
     }
 
     onPostUpdate(){
         this.pos.x = clamp(this.pos.x, 0 + Resources.GooseFloating.width / 2, this.engine.screen.drawWidth - Resources.GooseFloating.width / 2)
         this.pos.y = clamp(this.pos.y, 0 + Resources.GooseFloating.height / 2, this.engine.screen.drawHeight - Resources.GooseFloating.height / 2)
+
+        // wanneer de vel van de ganz posis is dan willen we de flipper zantel*acceser in de sprite() die willen we op fals hebbe
+        //Als het negatief is dan op true
+
+        if (this.vel.x > 0){
+            this.graphics.flipHorizantal = false
+        } else {
+            this.graphics.flipHorizantal = true
+        }
     }
 }
 
