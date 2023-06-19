@@ -11,8 +11,8 @@ export class Cursor extends Actor {
 
     constructor(player, deer) {
         super({
-            width: Resources.Cursor.width,
-            height: Resources.Cursor.height
+            width: Resources.Cursor1.width,
+            height: Resources.Cursor1.height
         })
         this.player = player;
         this.deer = deer;
@@ -21,21 +21,25 @@ export class Cursor extends Actor {
 
     onInitialize(engine) {
         this.engine = engine
-        this.graphics.use(Resources.Cursor.toSprite())
+        console.log(this.graphics)
         this.pos = new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2)
 
         switch (this.player) {
             case 1:
                 this.pos = new Vector(Resources.Cage.width * 1.2 / 2, Resources.Cage.height * 1.2 / 2)
+                this.graphics.use(Resources.Cursor1.toSprite())
                 break;
             case 2:
                 this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 / 2, Resources.Cage.height * 1.2 / 2)
+                this.graphics.use(Resources.Cursor2.toSprite())
                 break;
             case 3:
                 this.pos = new Vector(Resources.Cage.width * 1.2 / 2, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
+                this.graphics.use(Resources.Cursor3.toSprite())
                 break;
             case 4:
                 this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 / 2, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
+                this.graphics.use(Resources.Cursor4.toSprite())
                 break;
         }
     }
@@ -61,8 +65,8 @@ export class Cursor extends Actor {
             this.vel.y = this.engine.mainController.player4.getYAxis() * 100
         }
 
-        this.pos.x = clamp(this.pos.x, 0 + Resources.Cursor.width / 2, this.engine.screen.drawWidth - Resources.Cursor.width / 2)
-        this.pos.y = clamp(this.pos.y, 0 + Resources.Cursor.width / 2, this.engine.screen.drawHeight - Resources.Cursor.width / 2)
+        this.pos.x = clamp(this.pos.x, 0 + Resources.Cursor1.width / 2, this.engine.screen.drawWidth - Resources.Cursor1.width / 2)
+        this.pos.y = clamp(this.pos.y, 0 + Resources.Cursor1.width / 2, this.engine.screen.drawHeight - Resources.Cursor1.width / 2)
 
     }
 
