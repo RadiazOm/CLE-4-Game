@@ -1,7 +1,7 @@
 import { Actor, Label, Vector } from "excalibur";
 import { PlayerController } from "./playerController.js"
 import { Arcade } from "arcade-game"
-import { UI } from "./afvalverwijderaar/UI.js"
+import { UI } from "../js/afvalverwijderaar/UI.js"
 
 
 export class MainController{
@@ -21,15 +21,17 @@ export class MainController{
         console.log(this.arcade)
 
         this.joystickListener = (e) => this.createController(e);
-        document.addEventListener('joystickcreated', this.joystickListener)
+        window.addEventListener('gamepadconnected', this.joystickListener)
+        window.addEventListener('gamepaddisconnected', (e) => {this.disconnect(e)})
     }
 
-    createController() {
-        console.log('createControllers')
+    createController(e) {
+        const gp = navigator.getGamepads()[e.gamepad.index]
+        console.log(e)
         if (this.controllers.length > 3) {
             return;
         }
-        let controllerIndex = this.controllers.length + 1;
+        let controllerIndex = e.gamepad.index + 1
 
         let player = new PlayerController(controllerIndex, this.arcade.Joysticks[controllerIndex -1], this.game)
         this.controllers.push(player)
@@ -44,45 +46,21 @@ export class MainController{
                 this.player1 = player
                 console.log('player1 connected')
                 this.player1.shake(200)
-
-                label = new Label({
-                    text: `player1 connected`,
-                    pos: new Vector(0, 0),
-                    font: ui.spriteFont
-                })
-                this.game.add(label)
                 break;
             case 2:
                 this.player2 = player
                 console.log('player2 connected')
                 this.player2.shake(200)
-                label = new Label({
-                    text: `player2 connected`,
-                    pos: new Vector(0, 16),
-                    font: ui.spriteFont
-                })
-                this.game.add(label)
                 break;
             case 3:
                 this.player3 = player
                 console.log('player3 connected')
                 this.player3.shake(200)
-                label = new Label({
-                    text: `player3 connected`,
-                    pos: new Vector(0, 32),
-                    font: ui.spriteFont
-                })
-                this.game.add(label)
                 break;
             case 4:
                 this.player4 = player
                 console.log('player4 connected')
                 this.player4.shake(200)
-                label = new Label({
-                    text: `player4 connected`,
-                    pos: new Vector(0, 48),
-                    font: ui.spriteFont
-                })
                 this.game.add(label)
                 break;
         }
@@ -106,7 +84,13 @@ export class MainController{
         }
     }
 
-    disconnect() {
-        document.removeEventListener("joystickcreated", this.joystickListener)
+    disconnect(e) {
+        let ui = new UI()
+        let label = new Label({
+            text: `dont do that please`,
+            pos: new Vector(0, 80),
+            font: ui.spriteFont
+        })
+        this.game.add(label)
     }
 }
