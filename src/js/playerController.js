@@ -1,22 +1,18 @@
 import { Actor, Vector } from "excalibur"
 import { Arcade } from "arcade-game"
 
-export class PlayerController extends Actor{
+export class PlayerController{
 
+    engine;
     gamepad;
     playerIndex;
     Axis = new Vector(0, 0);
-    engine;
 
-    constructor(playerIndex, gamepad) {
-        super()
+    constructor(playerIndex, gamepad, engine) {
+        this.engine = engine
         this.playerIndex = playerIndex
         this.gamepad = gamepad
         this.createListeners()
-    }
-
-    onInitialize(engine) {
-        this.engine = engine
     }
 
     createListeners() {
@@ -65,11 +61,12 @@ export class PlayerController extends Actor{
     }
 
     getXAxis() {
-        return this.Axis.x
+        return navigator.getGamepads()[this.playerIndex - 1].axes[0].toFixed(1)
+
     }
 
     getYAxis() {
-        return this.Axis.Y
+        return navigator.getGamepads()[this.playerIndex - 1].axes[1].toFixed(1)
     }
 
     IsHeld(button) {
@@ -77,10 +74,16 @@ export class PlayerController extends Actor{
     }
 
     shake(duration) {
-        this.gamepad.Gamepad.vibrationActuator.playEffect("dual-rumble", {duration: duration, startdelay: 0, strongMagnitude: 1, weakMagnitude: 0})
-    }
+        let gp = navigator.getGamepads()[this.playerIndex - 1]
 
-    onPreUpdate() {        
+        gp.vibrationActuator.playEffect("dual-rumble", {
+            startDelay: 0,
+            duration: duration,
+            weakMagnitude: 1.0,
+            strongMagnitude: 1.0,
+          });    }
+
+    update() {        
         this.Axis = new Vector(this.gamepad.X, this.gamepad.Y)
     }
 }

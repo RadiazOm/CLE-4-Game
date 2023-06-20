@@ -29,7 +29,7 @@ export class Game extends Engine {
     startGame() {
         // TODO: Scene manager
         console.log('yes')
-        this.mainController = new MainController()
+        this.mainController = new MainController(this)
         this.add(this.mainController)
 
         this.addScene('afvalverwijderen', new Afvalverwijderaar())
