@@ -21,9 +21,11 @@ export class GooseFloating extends Actor {
         this.graphics.use(Resources.GooseFloating.toSprite());
         this.sprite = Resources.GooseFloating.toSprite();
         this.body.collisionType = CollisionType.Active;
+        this.collider.useCircleCollider(Resources.GooseFloating.width/2);
+        this.body.bounciness = 1
 
         this.pos = new Vector(Math.random()*this.engine.screen.drawWidth, Math.random()*this.engine.screen.drawHeight)
-        this.vel = new Vector(Math.random() * 50 , Math.random() * 50 )
+        this.vel = new Vector(Math.random() * 50 - 25, Math.random() * 50 -25 )
        
         
         
@@ -35,6 +37,13 @@ export class GooseFloating extends Actor {
             this.kill();
         })
 
+        // this.on("collisionstart",(event)=>{
+        //     if(event.other instanceof GooseFloating){
+        //         this.vel = new Vector(-this.vel.x, -this.vel.y)
+        //     }
+        // })
+
+        
     }
 
     onPostUpdate(){
@@ -62,6 +71,8 @@ export class GooseFloating extends Actor {
 
 
         
+
+        
         // wanneer de vel van de ganz posis is dan willen we de flipper zantel*acceser in de sprite() die willen we op fals hebbe
         //Als het negatief is dan op true
 
@@ -71,7 +82,11 @@ export class GooseFloating extends Actor {
         } else {
             this.sprite.flipHorizontal = true
             this.graphics.use(this.sprite)
+
         }
+
+        this.rotation = 0
+        
 
         
 

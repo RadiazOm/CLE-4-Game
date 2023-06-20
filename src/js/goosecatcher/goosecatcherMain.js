@@ -1,4 +1,4 @@
-import {Color, DisplayMode, Engine} from "excalibur"
+import {Color, DisplayMode, Engine, Physics} from "excalibur"
 import { ResourceLoader, Resources } from "../loader.js";
 import { CursorFurkan } from "./cursor.js";
 import { BackgroundCatcher } from "./background.js";
@@ -28,6 +28,8 @@ export class Game extends Engine {
 
     startGame() {
 
+    Physics.useRealisticPhysics()
+    
     let cursor1 = new CursorFurkan(10, 10);
     let cursor2 = new CursorFurkan(350, 10);
     let cursor3 = new CursorFurkan(10, 170);
@@ -40,7 +42,7 @@ export class Game extends Engine {
     let floatingGoose = new GooseFloating();
     this.add(floatingGoose);
 
-    for( let i = 0; i<30; i++ ){
+    for( let i = 0; i<35; i++ ){
 
         console.log("ganzen gespawned")
         let goose = new GooseFloating();
