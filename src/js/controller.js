@@ -1,10 +1,12 @@
-import { Actor } from "excalibur";
+import { Actor, Label, Vector } from "excalibur";
 import { PlayerController } from "./playerController.js"
 import { Arcade } from "arcade-game"
+import { UI } from "./afvalverwijderaar/UI.js"
 
 
-export class MainController extends Actor{
+export class MainController{
 
+    game;
     arcade;
     player1;
     player2;
@@ -13,8 +15,8 @@ export class MainController extends Actor{
     controllers = [];
     joystickListener;
 
-    constructor() {
-        super()
+    constructor(game) {
+        this.game = game
         this.arcade = new Arcade(this, true, true);
         console.log(this.arcade)
 
@@ -29,28 +31,78 @@ export class MainController extends Actor{
         }
         let controllerIndex = this.controllers.length + 1;
 
-        let player = new PlayerController(controllerIndex, this.arcade.Joysticks[controllerIndex -1])
-        this.addChild(player)
+        let player = new PlayerController(controllerIndex, this.arcade.Joysticks[controllerIndex -1], this.game)
         this.controllers.push(player)
+        console.log(controllerIndex)
+
+        const ui = new UI()
+
+        let label
+
         switch (controllerIndex) {
             case 1:
                 this.player1 = player
+                console.log('player1 connected')
+                this.player1.shake(200)
+
+                label = new Label({
+                    text: `player1 connected`,
+                    pos: new Vector(0, 0),
+                    font: ui.spriteFont
+                })
+                this.game.add(label)
                 break;
             case 2:
                 this.player2 = player
+                console.log('player2 connected')
+                this.player2.shake(200)
+                label = new Label({
+                    text: `player2 connected`,
+                    pos: new Vector(0, 16),
+                    font: ui.spriteFont
+                })
+                this.game.add(label)
                 break;
             case 3:
                 this.player3 = player
+                console.log('player3 connected')
+                this.player3.shake(200)
+                label = new Label({
+                    text: `player3 connected`,
+                    pos: new Vector(0, 32),
+                    font: ui.spriteFont
+                })
+                this.game.add(label)
                 break;
             case 4:
                 this.player4 = player
+                console.log('player4 connected')
+                this.player4.shake(200)
+                label = new Label({
+                    text: `player4 connected`,
+                    pos: new Vector(0, 48),
+                    font: ui.spriteFont
+                })
+                this.game.add(label)
                 break;
         }
     }
 
-    onPreUpdate() {
+    update() {
         for (let joystick of this.arcade.Joysticks) {
             joystick.update();
+        }
+        if (typeof this.player1 !== "undefined") {
+            this.player1.update()
+        }
+        if (typeof this.player2 !== "undefined") {
+            this.player2.update()
+        }
+        if (typeof this.player3 !== "undefined") {
+            this.player3.update()
+        }
+        if (typeof this.player4 !== "undefined") {
+            this.player4.update()
         }
     }
 
