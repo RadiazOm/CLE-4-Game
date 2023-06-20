@@ -1,14 +1,17 @@
-import { Actor, DisplayMode, Engine, Vector } from "excalibur"
+import { Actor, DisplayMode, Engine, Label, Vector, Timer } from "excalibur"
 import { ResourceLoader, Resources } from "./loader.js";
 import { MainController } from "./controller.js";
 import { Afvalverwijderaar } from "./afvalverwijderaar/afvalverwijderaar.js";
+import { HertenSleper } from "./HertenSleper/hertensleper.js";
+import { UI } from "./UI.js"
+import { characterSelection } from "./characterSelection.js";
 
 
 export class Game extends Engine {
 
     mainController;
-
-    testActor;
+    begin = false;
+    pressed = false;
 
     constructor() {
         // The width and height will be in a 16:9 format, this is suvject to change
@@ -24,6 +27,11 @@ export class Game extends Engine {
         // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
         this.showDebug(false)
         this.start(ResourceLoader).then(() => this.startGame());
+
+        document.addEventListener('keydown', (e) => {if (e.key === ' ') {
+                this.pressed = true
+            }
+        })
     }
 
     startGame() {

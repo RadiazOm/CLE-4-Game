@@ -1,7 +1,7 @@
 import { Actor, Label, Vector } from "excalibur";
 import { PlayerController } from "./playerController.js"
 import { Arcade } from "arcade-game"
-import { UI } from "../js/afvalverwijderaar/UI.js"
+import { UI } from "./UI.js"
 
 
 export class MainController{

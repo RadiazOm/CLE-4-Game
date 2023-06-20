@@ -4,6 +4,15 @@ import skiImage from "../images/Snowboarder.png"
 import afvalImage from "../images/backgrounds/backgroundAfval.png"
 import banaanImage from "../images/sprites/banaan.png"
 import fontmapImage from "../images/tilemap_packed_font.png"
+import hertMapImage from "../images/hertenslepermap.png"
+import cursor1Image from "../images/cursor.png"
+import cursor2Image from "../images/cursor2.png"
+import cursor3Image from "../images/cursor3.png"
+import cursor4Image from "../images/cursor4.png"
+import deerImage from "../images/deer.png"
+import cageImage from "../images/cage.png"
+import fontMap from "../images/tilemap_packed_font.png"
+import characterImage from "../images/characterCanvas.png"
 
 
 const Resources = {
@@ -12,6 +21,15 @@ const Resources = {
   BackgroundAfval: new ImageSource(afvalImage),
   Banaan: new ImageSource(banaanImage),
   Fontmap: new ImageSource(fontmapImage),
+  hertMap: new ImageSource(hertMapImage),
+  Cursor1: new ImageSource(cursor1Image),
+  Cursor2: new ImageSource(cursor2Image),
+  Cursor3: new ImageSource(cursor3Image),
+  Cursor4: new ImageSource(cursor4Image),
+  Deer: new ImageSource(deerImage),
+  Cage: new ImageSource(cageImage),
+  Fontmap: new ImageSource(fontMap),
+  CharacterCanvas: new ImageSource(characterImage)
 };
 const ResourceLoader = new Loader([
   Resources.Dino,
@@ -19,6 +37,15 @@ const ResourceLoader = new Loader([
   Resources.BackgroundAfval,
   Resources.Banaan,
   Resources.Fontmap,
+  Resources.hertMap,
+  Resources.Cursor1,
+  Resources.Cursor2,
+  Resources.Cursor3,
+  Resources.Cursor4,
+  Resources.Deer,
+  Resources.Cage,
+  Resources.Fontmap,
+  Resources.CharacterCanvas
 ]);
 
 // ResourceLoader.logo = titleImage
@@ -26,6 +53,6 @@ const ResourceLoader = new Loader([
 // ResourceLoader.logoHeight = 256
 // ResourceLoader.backgroundColor = Color.fromHex('#eef8fe')
 // ResourceLoader.loadingBarColor = Color.Black
-// ResourceLoader.suppressPlayButton = true
+ResourceLoader.suppressPlayButton = true
 
 export { Resources, ResourceLoader };
