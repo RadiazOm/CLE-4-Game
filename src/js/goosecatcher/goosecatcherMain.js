@@ -1,61 +1,54 @@
-import {Color, DisplayMode, Engine, Physics} from "excalibur"
+import {Color, DisplayMode, Engine, Physics, Scene} from "excalibur"
 import { ResourceLoader, Resources } from "../loader.js";
-import { CursorFurkan } from "./cursor.js";
+import { Cursor} from "./cursor.js";
 import { BackgroundCatcher } from "./background.js";
 import { GooseFloating } from "./floatinggoose.js";
+import { ScoreTracker } from "./UIgoosecatcher.js";
 
-export class Game extends Engine {
+export class GooseCatcher extends Scene {
 
+    cursors = [];
+    scoreTracker = [];
+    goose = [];
     
     constructor() {
-        // The width and height will be in a 16:9 format, this is suvject to change
-        // maxFps and displaymode are for performance and sizing requirements
-        super({
-            width: 360,
-            height: 180,
-            maxFps: 144,
-            displayMode: DisplayMode.FitScreen
-            
-        });
-        // Antialiasing set to false otherwise pixelart will look blurry
-        this.setAntialiasing(false)
-        // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
-        this.showDebug(false)
-        this.debug.transform.showAll = false
-        this.start(ResourceLoader).then(() => this.startGame());
-        
+        super();
     }
 
-    startGame() {
+    onInitialize() {
 
     Physics.useRealisticPhysics()
-    
-    let cursor1 = new CursorFurkan(10, 10);
-    let cursor2 = new CursorFurkan(350, 10);
-    let cursor3 = new CursorFurkan(10, 170);
-    let cursor4 = new CursorFurkan(350, 170);
+
+  
 
     let backgroundCatcher = new BackgroundCatcher();
     this.add(backgroundCatcher);
 
-
-    let floatingGoose = new GooseFloating();
-    this.add(floatingGoose);
 
     for( let i = 0; i<35; i++ ){
 
         console.log("ganzen gespawned")
         let goose = new GooseFloating();
         this.add(goose);
+        this.goose.push(goose)
             
     }
+    for(let i = 1; i < 5; i++) {
+        let cursor = new Cursor(i)
+        this.add(cursor)
+        this.cursors.push(cursor)
+      }
 
-    this.add(cursor1);
-    this.add(cursor2);
-    this.add(cursor3);
-    this.add(cursor4);
+    for( let i = 0; i < 4; i++){
+        const scoreTracker = new ScoreTracker(i+1)
+        this.add(scoreTracker)
+        this.scoreTracker.push(scoreTracker) 
+    }
     
+    }
+
+    Button0(player){
+        this.cursors[player - 1].press()
     }
 }
 
-new Game()

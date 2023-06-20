@@ -1,42 +1,77 @@
-import { Actor, CollisionType, Color, Input, Vector, clamp } from "excalibur";
+import { Actor, Vector, clamp } from "excalibur";
 import { Resources } from "../loader";
 
-export class CursorFurkan extends Actor{
-    constructor(x,y){
-        super({
-            width: Resources.CursorFurkan.width,
-            height: Resources.CursorFurkan.height
-        })
+export class Cursor extends Actor {
 
-        this.graphics.use(Resources.CursorFurkan.toSprite())
-        this.pos = new Vector(x,y);
-        
-    }
-
+    player;
+    deer;
+    engine;
     
 
-    onPostUpdate(engine) {
+    constructor(player) {
+        super({
+            width: Resources.Cursor1.width,
+            height: Resources.Cursor1.height
+        })
+        this.player = player;
+    }
 
-        let xspeed = 0;
-        let yspeed = 0;
-        let kb = engine.input.keyboard;
+    onInitialize(engine) {
+        this.engine = engine
+        console.log(this.graphics)
+        this.pos = new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2)
 
-        
-        if(kb.isHeld(Input.Keys.W)|| kb.isHeld(Input.Keys.Up)){
-            yspeed = -60
-            console.log("go up")
+        switch (this.player) {
+            case 1:
+                this.pos = new Vector(0, 0)
+                this.graphics.use(Resources.Cursor1.toSprite())
+                break;
+            case 2:
+                this.pos = new Vector(this.engine.screen.drawWidth, 0)
+                this.graphics.use(Resources.Cursor2.toSprite())
+                break;
+            case 3:
+                this.pos = new Vector(0, this.engine.screen.drawHeight)
+                this.graphics.use(Resources.Cursor3.toSprite())
+                break;
+            case 4:
+                this.pos = new Vector(this.engine.screen.drawWidth, this.engine.screen.drawHeight)
+                this.graphics.use(Resources.Cursor4.toSprite())
+                break;
         }
-        if (kb.isHeld(Input.Keys.S)|| kb.isHeld(Input.Keys.Down)){
-            yspeed = 60
+    }
+
+    onPreUpdate() {
+        if (this.engine.currentScene.gameOver === true) {
+            return;
         }
-        if (kb.isHeld(Input.Keys.A)|| kb.isHeld(Input.Keys.Left)){
-            xspeed = -60
+        if (this.player === 1 && typeof this.engine.mainController.player1 !== 'undefined') {
+            this.vel.x = this.engine.mainController.player1.getXAxis() * 100
+            this.vel.y = this.engine.mainController.player1.getYAxis() * 100
         }
-        if (kb.isHeld(Input.Keys.D)|| kb.isHeld(Input.Keys.Right)){
-            xspeed = 60
+        if (this.player === 2 && typeof this.engine.mainController.player2 !== 'undefined') {
+            this.vel.x = this.engine.mainController.player2.getXAxis() * 100
+            this.vel.y = this.engine.mainController.player2.getYAxis() * 100
+        }
+        if (this.player === 3 && typeof this.engine.mainController.player3 !== 'undefined') {
+            this.vel.x = this.engine.mainController.player3.getXAxis() * 100
+            this.vel.y = this.engine.mainController.player3.getYAxis() * 100
+        }
+        if (this.player === 4 && typeof this.engine.mainController.player4 !== 'undefined') {
+            this.vel.x = this.engine.mainController.player4.getXAxis() * 100
+            this.vel.y = this.engine.mainController.player4.getYAxis() * 100
         }
 
-        this.vel = new Vector(xspeed, yspeed)
+        this.pos.x = clamp(this.pos.x, 0 + Resources.Cursor1.width / 2, this.engine.screen.drawWidth - Resources.Cursor1.width / 2)
+        this.pos.y = clamp(this.pos.y, 0 + Resources.Cursor1.width / 2, this.engine.screen.drawHeight - Resources.Cursor1.width / 2)
 
+    }
+
+    press() {
+        for(const goose of this.engine.currentScene.goose){
+            if(this.contains(goose.pos.x,goose.pos.y)){
+                goose.gooseKill(this.player)
+            }
+        }
     }
 }

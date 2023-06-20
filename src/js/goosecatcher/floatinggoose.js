@@ -4,16 +4,12 @@ import { Resources } from "../loader";
 export class GooseFloating extends Actor {
 
     sprite;
-    
-    
-
 
     constructor() {
         super({
             width: Resources.GooseFloating.width,
             height: Resources.GooseFloating.height,
         });
-        
     }
 
     onInitialize(engine) {
@@ -87,15 +83,14 @@ export class GooseFloating extends Actor {
 
         this.rotation = 0
         
+    }
 
+    gooseKill(player){
+        this.kill()
+        let index = this.engine.currentScene.goose.indexOf(this)
+        this.engine.currentScene.goose.splice(index, 1)
+        this.engine.currentScene.scoreTracker[player -1].updateScore(1)
         
-
-        
-
-
-      
-
-
     }
 }
 

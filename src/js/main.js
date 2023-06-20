@@ -3,6 +3,7 @@ import { ResourceLoader, Resources } from "./loader.js";
 import { MainController } from "./controller.js";
 import { HertenSleper } from "./HertenSleper/hertensleper.js";
 import { UI } from "./HertenSleper/UI.js"
+import { GooseCatcher } from "./goosecatcher/goosecatcherMain.js";
 
 
 export class Game extends Engine {
@@ -37,7 +38,7 @@ export class Game extends Engine {
         this.mainController = new MainController(this)
         this.add(this.mainController)
 
-        this.addScene('hertensleper', new HertenSleper())
+        this.addScene('goosecatcher', new GooseCatcher())
 
         const ui = new UI()
 
@@ -54,7 +55,7 @@ controllers now!`,
 
 
     onPreUpdate() {
-        if (typeof this.mainController.player1 === "object" && typeof this.mainController.player2 === "object" && typeof this.mainController.player3 === "object" && typeof this.mainController.player4 === "object" && this.begin == false && this.pressed == true) {
+        if (typeof this.mainController.player1 === "object" && this.begin == false && this.pressed == true) {
             this.begin = true
             this.countdown()
         }
@@ -76,7 +77,7 @@ controllers now!`,
         const timer = new Timer({
             fcn: () => {
                 if (time <= 0) {
-                    this.goToScene('hertensleper')
+                    this.goToScene('goosecatcher')
                     timer.cancel()
                 } else {
                     time -= 1
