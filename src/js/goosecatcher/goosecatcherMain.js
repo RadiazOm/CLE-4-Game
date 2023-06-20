@@ -21,6 +21,7 @@ export class Game extends Engine {
         this.setAntialiasing(false)
         // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
         this.showDebug(false)
+        this.debug.transform.showAll = false
         this.start(ResourceLoader).then(() => this.startGame());
         
     }
@@ -35,10 +36,6 @@ export class Game extends Engine {
     let backgroundCatcher = new BackgroundCatcher();
     this.add(backgroundCatcher);
 
-    this.add(cursor1);
-    this.add(cursor2);
-    this.add(cursor3);
-    this.add(cursor4);
 
     let floatingGoose = new GooseFloating();
     this.add(floatingGoose);
@@ -51,6 +48,10 @@ export class Game extends Engine {
             
     }
 
+    this.add(cursor1);
+    this.add(cursor2);
+    this.add(cursor3);
+    this.add(cursor4);
     
     }
 }

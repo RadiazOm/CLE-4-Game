@@ -42,7 +42,7 @@ const ResourceLoader = new Loader([
   Resources.Cursor4,
   Resources.Deer,
   Resources.Cage,
-  Resources.Fontmap
+  Resources.Fontmap,
   Resources.CursorFurkan,
   Resources.BackgroundCatcher,
   Resources.GooseFloating,
