@@ -1,4 +1,4 @@
-import { Actor, Vector} from "excalibur";
+import { Actor, Vector, CollisionType} from "excalibur";
 import { Resources } from "../loader.js";
 
 export class Banaan extends Actor {
@@ -16,8 +16,8 @@ export class Banaan extends Actor {
 
   onInitialize(engine) {
     this.graphics.use(Resources.Banaan.toSprite());
-    this.pos = new Vector(Math.random() * 320, Math.random() * 180);
-
+    this.pos = new Vector(Math.random() * 320, Math.random() * 140);
+    this.body.collisionType = CollisionType.Active;
 
     this.enableCapturePointer = true;
     this.pointer.useGraphicsBounds = true;
@@ -32,7 +32,7 @@ export class Banaan extends Actor {
       // console.log(event.other);
 
       if (event.other instanceof Banaan) {
-        this.pos = new Vector(Math.random() * 320, Math.random() * 180);
+        this.pos = new Vector(Math.random() * 320, Math.random() * 140);
       }
 
     });
