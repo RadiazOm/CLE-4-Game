@@ -35,8 +35,9 @@ export class Banaan extends Actor {
 
     pickUp(player) {
       this.kill();
-      this.engine.currentScene.score++;
-      this.engine.currentScene.scoreTracker[player - 1].updateScore(this.engine.currentScene.score);
+      let index = this.engine.currentScene.bananen.indexOf(this);
+      this.engine.currentScene.bananen.splice(index, 1);
+      this.engine.currentScene.scoreTracker[player - 1].updateScore(1);
     }
 
 }

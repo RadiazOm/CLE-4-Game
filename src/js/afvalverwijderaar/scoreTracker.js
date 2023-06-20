@@ -46,7 +46,8 @@ export class ScoreTracker extends UI {
     }
 
     updateScore(score) {
-        this.score.text = `P${this.player}:${score.toString()}`
-        this.scoreNumber = score
+        this.scoreNumber += score
+        this.score.text = `P${this.player}:${this.scoreNumber.toString()}`
+
     }
 }
