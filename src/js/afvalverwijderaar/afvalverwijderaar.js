@@ -2,8 +2,7 @@ import { DisplayMode, Scene } from "excalibur"
 import { Background } from './background'
 import { Banaan } from "./banaan"
 import { ScoreTracker } from "./scoreTracker"
-
-
+import { Cursor } from "./cursor"
 
 
 export class Afvalverwijderaar extends Scene {
@@ -12,6 +11,8 @@ export class Afvalverwijderaar extends Scene {
   engine
   score = 0;
   scoreTracker = []
+  cursors = [];
+  bananen = [];
 
 
   constructor() {
@@ -35,6 +36,7 @@ export class Afvalverwijderaar extends Scene {
     for (let i = 0; i < 15; i++) {
       const banaan = new Banaan();
       this.add(banaan);
+      this.bananen.push(banaan)
   }
   
    for (let i = 0; i < 4; i++) {
@@ -43,10 +45,24 @@ export class Afvalverwijderaar extends Scene {
       this.scoreTracker.push(scoreTracker)
   }
 
-
-
+    for(let i = 1; i < 5; i++) {
+      let cursor = new Cursor(i)
+      this.add(cursor)
+      this.cursors.push(cursor)
+    }
 }
 
+Button0(player) {
+  this.cursors[player - 1].press()
+  // switch (player) {
+  //     case 1:
+  //         this.cursors[0].grab()
+  //         break;
+  //     case 1:
+  //         this.cursors[1].grab()
+  //         break;
+  // }
+}
 
 
 }

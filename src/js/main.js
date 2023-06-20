@@ -10,8 +10,6 @@ import { characterSelection } from "./characterSelection.js";
 export class Game extends Engine {
 
     mainController;
-    begin = false;
-    pressed = false;
 
     constructor() {
         // The width and height will be in a 16:9 format, this is suvject to change
@@ -27,21 +25,19 @@ export class Game extends Engine {
         // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
         this.showDebug(false)
         this.start(ResourceLoader).then(() => this.startGame());
-
-        document.addEventListener('keydown', (e) => {if (e.key === ' ') {
-                this.pressed = true
-            }
-        })
     }
 
     startGame() {
         // TODO: Scene manager
         console.log('yes')
         this.mainController = new MainController(this)
-        this.add(this.mainController)
 
         this.addScene('afvalverwijderen', new Afvalverwijderaar())
         this.goToScene('afvalverwijderen')
+    }
+
+    onPreUpdate() {
+        this.mainController.update()
     }
 }
 
