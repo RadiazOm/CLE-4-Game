@@ -1,6 +1,7 @@
 import { Actor, Scene, Vector } from "excalibur";
 import { newText } from "./text";
 import { Resources } from "./loader";
+import { CharacterCanvas } from "./characterCanvas";
 
 export class characterSelection extends Scene {
 
@@ -9,6 +10,9 @@ export class characterSelection extends Scene {
     player2connected = false;
     player3connected = false;
     player4connected = false;
+    goosePortraitsSprites = []
+    goosePortraits = []
+    
 
     constructor() {
         super()
@@ -25,6 +29,10 @@ export class characterSelection extends Scene {
 
             }
         }
+        this.goosePortraitsSprites.push(Resources.BluePortrait.toSprite())
+        this.goosePortraitsSprites.push(Resources.RedPortrait.toSprite())
+        this.goosePortraitsSprites.push(Resources.GreenPortrait.toSprite())
+        this.goosePortraitsSprites.push(Resources.YellowPortrait.toSprite())
     }
 
     onPreUpdate() {
@@ -47,15 +55,11 @@ export class characterSelection extends Scene {
     }
 
     connectplayer(player) {
-        let background = new Actor({
-            pos: new Vector(0 + ((player === 2 || player === 4) * 189), 0 + ((player === 3 || player === 4) * 97))
-        })
-        background.anchor = new Vector(0,0)
-        background.graphics.use(Resources.CharacterCanvas.toSprite())
-        this.add(background)
-        let text = new newText(`player${player} connected`, new Vector(70 + ((player === 2 || player === 4) * 190), 10 + ((player === 3 || player === 4) * 100)))
-        this.add(text)
+        let characterCanvas = new CharacterCanvas(player)
+        this.add(characterCanvas)
         this.engine.goToScene('hertensleper')
     }
+
+    
 
 }

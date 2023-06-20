@@ -10,7 +10,10 @@ import deerImage from "../images/deer.png"
 import cageImage from "../images/cage.png"
 import fontMap from "../images/tilemap_packed_font.png"
 import characterImage from "../images/characterCanvas.png"
-
+import portraitRedImage from "../images/goosePortraitRed.png"
+import portraitBlueImage from "../images/goosePortrait.png"
+import portraitGreenImage from "../images/goosePortraitgreen.png"
+import portraitYellowImage from "../images/goosePortraityellow.png"
 
 const Resources = {
   Dino: new ImageSource(dinoImage),
@@ -23,7 +26,12 @@ const Resources = {
   Deer: new ImageSource(deerImage),
   Cage: new ImageSource(cageImage),
   Fontmap: new ImageSource(fontMap),
-  CharacterCanvas: new ImageSource(characterImage)
+  CharacterCanvas: new ImageSource(characterImage),
+  RedPortrait: new ImageSource(portraitRedImage),
+  BluePortrait: new ImageSource(portraitBlueImage),
+  GreenPortrait: new ImageSource(portraitGreenImage),
+  YellowPortrait: new ImageSource(portraitYellowImage),
+
 };
 const ResourceLoader = new Loader([
   Resources.Dino,
@@ -36,7 +44,12 @@ const ResourceLoader = new Loader([
   Resources.Deer,
   Resources.Cage,
   Resources.Fontmap,
-  Resources.CharacterCanvas
+  Resources.CharacterCanvas,
+  Resources.RedPortrait,
+  Resources.BluePortrait,
+  Resources.GreenPortrait,
+  Resources.YellowPortrait,
+
 ]);
 
 // ResourceLoader.logo = titleImage
