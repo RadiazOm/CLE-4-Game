@@ -57,7 +57,7 @@ export class characterSelection extends Scene {
     connectplayer(player) {
         let characterCanvas = new CharacterCanvas(player)
         this.add(characterCanvas)
-        this.engine.goToScene('hertensleper')
+        // this.engine.goToScene('hertensleper')
     }
 
     

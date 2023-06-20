@@ -10,6 +10,7 @@ export class CharacterCanvas extends UI {
     portraitSprites;
     portrait;
     currentSpriteIndex;
+    cooldown = 0;
 
 
     constructor(player) {
@@ -52,6 +53,12 @@ export class CharacterCanvas extends UI {
     }
 
     onPreUpdate() {
-        this.changePortrait(Math.round(this.engine.mainController.player1.getXAxis()))
+        if (this.cooldown <= 0 && Math.round(this.engine.mainController.player1.getXAxis())) {
+            console.log(Math.round(this.engine.mainController.player1.getXAxis()))
+            this.changePortrait(Math.round(this.engine.mainController.player1.getXAxis()))
+            this.cooldown = 30
+        } else {
+            this.cooldown--
+        }
     }
 }
