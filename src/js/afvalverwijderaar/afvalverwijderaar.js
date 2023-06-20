@@ -1,6 +1,7 @@
-import { Actor, Color, CollisionType, DisplayMode, Engine, Physics, Scene, Tile, Vector, vec, Label, } from "excalibur"
+import { DisplayMode, Scene } from "excalibur"
 import { Background } from './background'
 import { Banaan } from "./banaan"
+import { ScoreTracker } from "./scoreTracker"
 
 
 
@@ -10,7 +11,7 @@ export class Afvalverwijderaar extends Scene {
   game
   engine
   score = 0;
-  scoreLabel
+  scoreTracker = []
 
 
   constructor() {
@@ -35,15 +36,11 @@ export class Afvalverwijderaar extends Scene {
       const banaan = new Banaan();
       this.add(banaan);
   }
-    this.scoreLabel = new Label({
-      text: "Player 1: " + this.score,
-      pos: new Vector(5, 10),
-      color: Color.Black,
-      fontFamily: "Open Sans",
-      fontSize: 20,
-    })
-    this.add(this.scoreLabel)
-
+  
+   for (let i = 0; i < 4; i++) {
+      const scoreTracker = new ScoreTracker(i + 1)
+      this.add(scoreTracker)
+      this.scoreTracker.push(scoreTracker)
   }
 
 
@@ -52,4 +49,4 @@ export class Afvalverwijderaar extends Scene {
 
 
 
-
+}

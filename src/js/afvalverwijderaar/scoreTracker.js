@@ -21,16 +21,16 @@ export class ScoreTracker extends UI {
         this.engine = engine
         switch (this.player) {
             case 1:
-                this.pos = new Vector(Resources.Cage.width * 1.2, 0)
+                this.pos = new Vector(0, 0)
                 break;
             case 2:
-                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2, 0)
+                this.pos = new Vector(this.engine.screen.drawWidth - 1, 0 )
                 break;
             case 3:
-                this.pos = new Vector(Resources.Cage.width * 1.2, this.engine.screen.drawHeight - 16)
+                this.pos = new Vector(0, this.engine.screen.drawHeight - 16)
                 break;
             case 4:
-                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2, this.engine.screen.drawHeight - 16)
+                this.pos = new Vector(this.engine.screen.drawWidth - 1, this.engine.screen.drawHeight - 16)
                 break;
         }
         this.score = new Label({

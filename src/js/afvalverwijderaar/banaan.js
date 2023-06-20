@@ -25,7 +25,7 @@ export class Banaan extends Actor {
     this.on("pointerup", (event) => {
       this.kill();
       engine.currentScene.score++;
-      engine.currentScene.scoreLabel.text = "Player 1: " + engine.currentScene.score;
+      engine.currentScene.scoreTracker[0].updateScore(engine.currentScene.score);
     });
      
     this.on("collisionstart", (event) => {
