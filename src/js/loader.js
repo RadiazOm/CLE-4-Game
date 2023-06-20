@@ -9,6 +9,7 @@ import cursor4Image from "../images/cursor4.png"
 import deerImage from "../images/deer.png"
 import cageImage from "../images/cage.png"
 import fontMap from "../images/tilemap_packed_font.png"
+import characterImage from "../images/characterCanvas.png"
 
 
 const Resources = {
@@ -22,6 +23,7 @@ const Resources = {
   Deer: new ImageSource(deerImage),
   Cage: new ImageSource(cageImage),
   Fontmap: new ImageSource(fontMap),
+  CharacterCanvas: new ImageSource(characterImage)
 };
 const ResourceLoader = new Loader([
   Resources.Dino,
@@ -33,7 +35,8 @@ const ResourceLoader = new Loader([
   Resources.Cursor4,
   Resources.Deer,
   Resources.Cage,
-  Resources.Fontmap
+  Resources.Fontmap,
+  Resources.CharacterCanvas
 ]);
 
 // ResourceLoader.logo = titleImage

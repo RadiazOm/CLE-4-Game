@@ -1,5 +1,6 @@
-import { Scene, Vector } from "excalibur";
+import { Actor, Scene, Vector } from "excalibur";
 import { newText } from "./text";
+import { Resources } from "./loader";
 
 export class characterSelection extends Scene {
 
@@ -46,10 +47,15 @@ export class characterSelection extends Scene {
     }
 
     connectplayer(player) {
-        let text = new newText(`player${player} connected`)
+        let background = new Actor({
+            pos: new Vector(0 + ((player === 2 || player === 4) * 189), 0 + ((player === 3 || player === 4) * 97))
+        })
+        background.anchor = new Vector(0,0)
+        background.graphics.use(Resources.CharacterCanvas.toSprite())
+        this.add(background)
+        let text = new newText(`player${player} connected`, new Vector(70 + ((player === 2 || player === 4) * 190), 10 + ((player === 3 || player === 4) * 100)))
         this.add(text)
-        // this.engine.goToScene('hertensleper')
-
+        this.engine.goToScene('hertensleper')
     }
 
 }

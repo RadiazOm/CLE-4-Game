@@ -79,7 +79,7 @@ export class PlayerController{
             startDelay: 0,
             duration: duration,
             weakMagnitude: 1.0,
-            strongMagnitude: 1.0,
+            strongMagnitude: 0.0,
           });    }
 
     update() {        
