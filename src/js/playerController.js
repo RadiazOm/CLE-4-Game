@@ -1,24 +1,21 @@
-import { Vector } from "excalibur"
+import { Actor, Vector } from "excalibur"
 import { Arcade } from "arcade-game"
 
-export class PlayerController {
+export class PlayerController{
 
-    playerIndex
-    xAxis = new Vector(0, 0)
-    yAxis = new Vector(0, 0)
+    engine;
+    gamepad;
+    playerIndex;
+    Axis = new Vector(0, 0);
 
-    constructor(playerIndex) {
+    constructor(playerIndex, gamepad, engine) {
+        this.engine = engine
         this.playerIndex = playerIndex
+        this.gamepad = gamepad
         this.createListeners()
     }
 
     createListeners() {
-        document.addEventListener(`joystick${this.playerIndex - 1}up`,(e) => {this.joystickUp(e)})
-        document.addEventListener(`joystick${this.playerIndex - 1}down`,(e) => {this.joystickDown(e)})
-        document.addEventListener(`joystick${this.playerIndex - 1}left`,(e) => {this.joystickLeft(e)})
-        document.addEventListener(`joystick${this.playerIndex - 1}right`,(e) => { this.joystickRight(e)})
-        document.addEventListener(`joystick${this.playerIndex - 1}neutral`,(e) => { this.joystickNeutral(e)})
-
         document.addEventListener(`joystick${this.playerIndex - 1}button0`,(e) => { this.joystickButton0(e)})
         document.addEventListener(`joystick${this.playerIndex - 1}button1`,(e) => { this.joystickButton1(e)})
         document.addEventListener(`joystick${this.playerIndex - 1}button2`,(e) => { this.joystickButton2(e)})
@@ -27,47 +24,66 @@ export class PlayerController {
         document.addEventListener(`joystick${this.playerIndex - 1}button5`,(e) => { this.joystickButton5(e)})
     }
 
-    joystickUp(e) {
-        console.log(`player${this.playerIndex} up`)
-    }
-
-    joystickDown(e) {
-        console.log(`player${this.playerIndex} down`)
-    }
-
-    joystickLeft(e) {
-        console.log(`player${this.playerIndex} left`)
-    }
-
-    joystickRight(e) {
-        console.log(`player${this.playerIndex} right`)
-    }
-
-    joystickNeutral(e) {
-        console.log(`player${this.playerIndex} neutral`)
-    }
-
     joystickButton0(e) {
-        console.log(`player${this.playerIndex} button0`)
+        if (typeof this.engine.currentScene.Button0 === "function") {
+            this.engine.currentScene.Button0(this.playerIndex)
+        }
     }
 
     joystickButton1(e) {
-        console.log(`player${this.playerIndex} button1`)
+        if (typeof this.engine.currentScene.Button1 === "function") {
+            this.engine.currentScene.Button1(this.playerIndex)
+        }
     }
 
     joystickButton2(e) {
-        console.log(`player${this.playerIndex} button2`)
+        if (typeof this.engine.currentScene.Button2 === "function") {
+            this.engine.currentScene.Button2(this.playerIndex)
+        }
     }
 
     joystickButton3(e) {
-        console.log(`player${this.playerIndex} button3`)
+        if (typeof this.engine.currentScene.Button3 === "function") {
+            this.engine.currentScene.Button3(this.playerIndex)
+        }
     }
 
     joystickButton4(e) {
-        console.log(`player${this.playerIndex} button4`)
+        if (typeof this.engine.currentScene.Button4 === "function") {
+            this.engine.currentScene.Button4(this.playerIndex)
+        }
     }
 
     joystickButton5(e) {
-        console.log(`player${this.playerIndex} button5`)
+        if (typeof this.engine.currentScene.Button5 === "function") {
+            this.engine.currentScene.Button5(this.playerIndex)
+        }
+    }
+
+    getXAxis() {
+        return navigator.getGamepads()[this.playerIndex - 1].axes[0].toFixed(1)
+
+    }
+
+    getYAxis() {
+        return navigator.getGamepads()[this.playerIndex - 1].axes[1].toFixed(1)
+    }
+
+    IsHeld(button) {
+        return navigator.getGamepads()[this.playerIndex - 1].buttons[button].pressed
+    }
+
+    shake(duration) {
+        let gp = navigator.getGamepads()[this.playerIndex - 1]
+
+        gp.vibrationActuator.playEffect("dual-rumble", {
+            startDelay: 0,
+            duration: duration,
+            weakMagnitude: 1.0,
+            strongMagnitude: 1.0,
+          });    }
+
+    update() {        
+        this.Axis = new Vector(this.gamepad.X, this.gamepad.Y)
     }
 }
