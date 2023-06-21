@@ -23,4 +23,8 @@ export class newText extends UI {
         this.label.anchor = new Vector(0.5,0.5)
         this.addChild(this.label)
     }
+
+    changeText(text) {
+        this.label.text = text
+    }
 }

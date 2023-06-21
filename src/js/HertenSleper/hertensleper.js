@@ -14,7 +14,7 @@ export class HertenSleper extends Scene {
     deer = [];
     scoreTrackers = [];
     timer;
-    time = 25;
+    time = 5;
     engine;
     gameOver = false;
 
@@ -127,5 +127,6 @@ export class HertenSleper extends Scene {
             label.text = `player${playerwon} won!`
         }
         this.add(label)
+        this.engine.endGame(playerwon)
     }
 }

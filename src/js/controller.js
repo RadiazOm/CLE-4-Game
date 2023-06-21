@@ -17,7 +17,7 @@ export class MainController{
 
     constructor(game) {
         this.game = game
-        this.arcade = new Arcade(this, true, true);
+        this.arcade = new Arcade(this, true, false);
         console.log(this.arcade)
 
         this.joystickListener = (e) => this.createController(e);
