@@ -97,8 +97,12 @@ export class characterSelection extends Scene {
             repeats: true,
             interval: 1000
         })
-        this.add(timer)
-        timer.start()
+        background.anchor = new Vector(0,0)
+        background.graphics.use(Resources.CharacterCanvas.toSprite())
+        this.add(background)
+        let text = new newText(`player${player} connected`, new Vector(70 + ((player === 2 || player === 4) * 190), 10 + ((player === 3 || player === 4) * 100)))
+        this.add(text)
+        this.engine.goToScene('hertensleper')
     }
 
     

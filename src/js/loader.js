@@ -1,6 +1,9 @@
 import { ImageSource, Sound, Resource, Loader , Color} from "excalibur";
 import dinoImage from "../images/dino.jpg";
 import skiImage from "../images/Snowboarder.png"
+import afvalImage from "../images/backgrounds/backgroundAfval.png"
+import banaanImage from "../images/sprites/banaan.png"
+import fontmapImage from "../images/tilemap_packed_font.png"
 import hertMapImage from "../images/hertenslepermap.png"
 import cursor1Image from "../images/cursor.png"
 import cursor2Image from "../images/cursor2.png"
@@ -22,6 +25,9 @@ import portraitYellowImage from "../images/goosePortraityellow.png"
 const Resources = {
   Dino: new ImageSource(dinoImage),
   Snowboard: new ImageSource(skiImage),
+  BackgroundAfval: new ImageSource(afvalImage),
+  Banaan: new ImageSource(banaanImage),
+  Fontmap: new ImageSource(fontmapImage),
   hertMap: new ImageSource(hertMapImage),
   Cursor1: new ImageSource(cursor1Image),
   Cursor2: new ImageSource(cursor2Image),
@@ -45,6 +51,9 @@ const Resources = {
 const ResourceLoader = new Loader([
   Resources.Dino,
   Resources.Snowboard,
+  Resources.BackgroundAfval,
+  Resources.Banaan,
+  Resources.Fontmap,
   Resources.hertMap,
   Resources.Cursor1,
   Resources.Cursor2,

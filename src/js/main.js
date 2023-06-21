@@ -1,6 +1,7 @@
 import { Actor, DisplayMode, Engine, Label, Vector, Timer } from "excalibur"
 import { ResourceLoader, Resources } from "./loader.js";
 import { MainController } from "./controller.js";
+import { Afvalverwijderaar } from "./afvalverwijderaar/afvalverwijderaar.js";
 import { HertenSleper } from "./HertenSleper/hertensleper.js";
 import { UI } from "./UI.js"
 import { characterSelection } from "./characterSelection.js";
@@ -34,8 +35,8 @@ export class Game extends Engine {
 
     startGame() {
         // TODO: Scene manager
+        console.log('yes')
         this.mainController = new MainController(this)
-        this.add(this.mainController)
 
         this.addScene('hertensleper', new HertenSleper())
         this.addScene('goosecatcher', new GooseCatcher())
@@ -62,14 +63,7 @@ export class Game extends Engine {
 //         this.add(label)
     }
 
-
-
     onPreUpdate() {
-        // if (typeof this.mainController.player1 === "object" && typeof this.mainController.player2 === "object" && typeof this.mainController.player3 === "object" && typeof this.mainController.player4 === "object" && this.begin == false && this.pressed == true) {
-        //     this.begin = true
-        //     this.countdown()
-        // }
-        
         this.mainController.update()
     }
 
