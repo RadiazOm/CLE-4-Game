@@ -1,6 +1,7 @@
 import { DisplayMode, Engine } from "excalibur"
 import { ResourceLoader } from "./loader.js";
 import { MainController } from "./controller.js";
+import { PlasRenner } from "./plasrenner.js";
 
 
 export class Game extends Engine {
@@ -26,10 +27,18 @@ export class Game extends Engine {
     startGame() {
         // TODO: Scene manager
         console.log('yes')
-        this.mainController = new MainController()
+        this.mainController = new MainController(this)
         this.add(this.mainController)
 
+        this.addScene('plasrenner', new PlasRenner())
+
+        this.goToScene('plasrenner')
+
         
+    }
+
+    onPreUpdate() {
+        this.mainController.update()
     }
 }
 

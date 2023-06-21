@@ -34,43 +34,43 @@ if array = 3
 
 */
 import '../css/style.css'
-import { Actor, Engine, Vector, Label, FontUnit, Font, DisplayMode} from "excalibur"
+import { Actor, Engine, Vector, Label, FontUnit, Font, DisplayMode, Scene} from "excalibur"
 import { Resources, ResourceLoader } from './loader.js'
 import { GansWit } from './control'
 
-export class Game extends Engine {
+export class PlasRenner extends Scene {
+
+    engine;
+    ganzen= [];
 
     constructor() {
-        super({
-            width: 360,
-            height: 180,
-            maxFps: 144,
-            displayMode: DisplayMode.FitScreen
-        });
-        // Antialiasing set to false otherwise pixelart will look blurry
-        this.setAntialiasing(false)
-        // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
-        this.showDebug(false)
-        this.start(ResourceLoader).then(() => this.startGame());
+        super()
     }
 
-    startGame() {
+    onInitialize(engine) {
         console.log("start de game!")
+        this.engine = engine
 
-        const gansWit = new GansWit()
-        gansWit.graphics.use(Resources.GansWit.toSprite())
-        gansWit.pos = new Vector (100, 100)
-        this.add(gansWit)
-
-        const plasrennerBackground = new plasrennerBackground()
+        const plasrennerBackground = new Actor()
         plasrennerBackground.graphics.use(Resources.PlasrennerBackground.toSprite())
-        plasrennerBackground = new Vector (100, 100)
+        plasrennerBackground.pos = new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2)
         this.add(plasrennerBackground)
 
+        for (let i = 0; i < 4; i++) {
+            const gansWit = new GansWit()
+            gansWit.graphics.use(Resources.GansWit.toSprite())
+            gansWit.pos = new Vector (32, 30 + (39 * i))
+            this.ganzen.push(gansWit)
+            this.add(gansWit)
+        }
+    }
+
+    Button0(player) {
+        console.log('kjdfgkj')
+        this.ganzen[player - 1].press()
     }
 }
 
-new Game()
 
         // const label = new Label({
         //     text: 'FINISH!',
