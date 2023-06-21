@@ -1,8 +1,9 @@
-import { DisplayMode, Scene } from "excalibur"
+import { DisplayMode, Scene, Timer} from "excalibur"
 import { Background } from './background'
 import { Banaan } from "./banaan"
 import { ScoreTracker } from "./scoreTracker"
 import { Cursor } from "./cursor"
+// import { Timer } from "./timer"
 
 
 export class Afvalverwijderaar extends Scene {
@@ -13,6 +14,8 @@ export class Afvalverwijderaar extends Scene {
   scoreTracker = []
   cursors = [];
   bananen = [];
+  time = 25;
+
 
 
   constructor() {
@@ -50,19 +53,29 @@ export class Afvalverwijderaar extends Scene {
       this.add(cursor)
       this.cursors.push(cursor)
     }
-}
+
+    const timer = new Timer({
+      fcn: () => {
+          if (this.time <= 0) {
+              this.gameover()
+              timer.cancel()
+          } else {
+              this.time -= 1
+              console.log(this.time);
+          }
+      },
+      repeats: true,
+      interval: 1000
+   })
+  this.add(timer)
+  timer.start()
+  this.engine.endGame()
+  }
+
+
 
 Button0(player) {
   this.cursors[player - 1].press()
-  // switch (player) {
-  //     case 1:
-  //         this.cursors[0].grab()
-  //         break;
-  //     case 1:
-  //         this.cursors[1].grab()
-  //         break;
-  // }
 }
-
-
+  
 }
