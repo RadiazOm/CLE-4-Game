@@ -34,63 +34,52 @@ if array = 3
 
 */
 import '../css/style.css'
-import { Actor, Engine, Vector, Label, FontUnit, Font} from "excalibur"
+import { Actor, Engine, Vector, Label, FontUnit, Font, DisplayMode, Scene} from "excalibur"
 import { Resources, ResourceLoader } from './loader.js'
+import { GansWit } from './control'
 
-export class Game extends Engine {
+export class PlasRenner extends Scene {
+
+    engine;
+    ganzen= [];
 
     constructor() {
-        super({ width: 800, height: 600 })
-        this.start(ResourceLoader).then(() => this.startGame())
+        super()
     }
 
-    startGame() {
+    onInitialize(engine) {
         console.log("start de game!")
-        const dino = new Actor()
-        //const plasrennerBackground = new Actor()
-        const gansWit = new Actor()
-        dino.graphics.use(Resources.Dino.toSprite())
-        //plasrennerBackground.graphics.use(Resources.plasrennerBackground.toSprite())
-        gansWit.graphics.use(Resources.gansWit.toSprite())
-        dino.pos = new Vector(400, 300)
-        //plasrennerBackground.pos = new Vector (400, 300)
-        gansWit.pos = new Vector (100, 100)
-        //dino.vel = new Vector(-10,0)
-        /*if (
-            engine.input.keyboard.isHeld(ex.Input.Keys.W) ||
-            engine.input.keyboard.isHeld(ex.Input.Keys.Up)
-          ) {
-            dino.pos = new Vector (400, 300)
-            //dino._moveForward()
-            console.log("Het is gebeurd")
-          }*/
-        //this.add(plasrennerBackground)
-        this.add(dino)
-        this.add(gansWit)
+        this.engine = engine
 
+        const plasrennerBackground = new Actor()
+        plasrennerBackground.graphics.use(Resources.PlasrennerBackground.toSprite())
+        plasrennerBackground.pos = new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2)
+        this.add(plasrennerBackground)
 
-        const label = new Label({
-            text: 'FINISH!',
-            pos: new Vector(100, 100),
-            font: new Font({
-                family: 'impact',
-                size: 24,
-                unit: FontUnit.Px
-            })
-            
-        })
-        this.add(label)
-        
+        for (let i = 0; i < 4; i++) {
+            const gansWit = new GansWit()
+            gansWit.graphics.use(Resources.GansWit.toSprite())
+            gansWit.pos = new Vector (32, 30 + (39 * i))
+            this.ganzen.push(gansWit)
+            this.add(gansWit)
+        }
+    }
 
-
-
-        /*const otherDino = new Actor()
-        otherDino.graphics.use(Resources.Fish.toSprite())
-        otherDino.pos = new Vector(500, 600)
-        otherDino.vel = new Vector(-11,0)
-        this.add(otherDino)
-*/
+    Button0(player) {
+        console.log('kjdfgkj')
+        this.ganzen[player - 1].press()
     }
 }
 
-new Game()
+
+        // const label = new Label({
+        //     text: 'FINISH!',
+        //     pos: new Vector(100, 100),
+        //     font: new Font({
+        //         family: 'impact',
+        //         size: 24,
+        //         unit: FontUnit.Px
+        //     })
+            
+        // })
+        // this.add(label)

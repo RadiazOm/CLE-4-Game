@@ -7,6 +7,7 @@ import { UI } from "./UI.js"
 import { characterSelection } from "./characterSelection.js";
 import { ScoreBoard } from "./scoreBoard.js";
 import { GooseCatcher } from "./goosecatcher/goosecatcherMain.js";
+import { PlasRenner } from "./plasrenner.js";
 
 
 export class Game extends Engine {
@@ -21,6 +22,8 @@ export class Game extends Engine {
         // The width and height will be in a 16:9 format, this is suvject to change
         // maxFps and displaymode are for performance and sizing requirements
         super({
+            width: 360,
+            height: 180,
             width: 360,
             height: 180,
             maxFps: 144,
@@ -107,6 +110,10 @@ export class Game extends Engine {
         })
         this.add(timer)
         timer.start()
+    }
+
+    onPreUpdate() {
+        this.mainController.update()
     }
 }
 
