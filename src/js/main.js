@@ -5,6 +5,8 @@ import { HertenSleper } from "./HertenSleper/hertensleper.js";
 import { UI } from "./UI.js"
 import { characterSelection } from "./characterSelection.js";
 import { ScoreBoard } from "./scoreBoard.js";
+import { UI } from "./HertenSleper/UI.js"
+import { GooseCatcher } from "./goosecatcher/goosecatcherMain.js";
 
 
 export class Game extends Engine {
@@ -40,6 +42,7 @@ export class Game extends Engine {
         this.scenes.push('hertensleper')
         this.addScene('characterselection', new characterSelection())
         this.addScene('scoreboard', new ScoreBoard(1))
+        this.addScene('goosecatcher', new GooseCatcher())
 
         for (let i = 0; i < this.scenes.length; i++) {
             this.scenesRemaining.push(i)
@@ -96,7 +99,7 @@ export class Game extends Engine {
         const timer = new Timer({
             fcn: () => {
                 if (time <= 0) {
-                    this.goToScene('hertensleper')
+                    this.goToScene('goosecatcher')
                     timer.cancel()
                 } else {
                     time -= 1
