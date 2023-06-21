@@ -11,6 +11,8 @@ export class Game extends Engine {
     mainController;
     begin = false;
     pressed = false;
+    scenes = [];
+    scenesRemaining = [];
 
     constructor() {
         // The width and height will be in a 16:9 format, this is suvject to change
@@ -34,7 +36,13 @@ export class Game extends Engine {
         this.add(this.mainController)
 
         this.addScene('hertensleper', new HertenSleper())
+        this.scenes.push('hertensleper')
         this.addScene('characterselection', new characterSelection())
+
+        for (let i = 0; i < this.scenes.length; i++) {
+            this.scenesRemaining.push(i)
+        }
+
         this.goToScene('characterselection')
 
 //         const ui = new UI()
@@ -58,6 +66,19 @@ export class Game extends Engine {
         // }
         
         this.mainController.update()
+    }
+
+    goToGame() {
+        let gameIndex = this.scenesRemaining[Math.abs(Math.round(Math.random() * this.scenesRemaining.length - 1))]
+        let game = this.scenes[gameIndex]
+        console.log(game)
+        this.scenesRemaining.splice(this.scenesRemaining.indexOf(gameIndex))
+
+        this.goToScene(game)
+    }
+
+    endGame(player) {
+        
     }
 
     countdown() {

@@ -1,7 +1,8 @@
-import { Actor, Scene, Vector } from "excalibur";
+import { Actor, Scene, Vector, Label, Timer } from "excalibur";
 import { newText } from "./text";
 import { Resources } from "./loader";
 import { CharacterCanvas } from "./characterCanvas";
+import { UI } from "./UI";
 
 export class characterSelection extends Scene {
 
@@ -12,6 +13,8 @@ export class characterSelection extends Scene {
     player4connected = false;
     goosePortraitsSprites = []
     goosePortraits = []
+    begin = false; 
+    starting = false;
     
 
     constructor() {
@@ -19,7 +22,6 @@ export class characterSelection extends Scene {
     }
 
     onInitialize(engine) {
-        console.log('to characters')
         this.engine = engine;
         for (let x = 70; x < 370; x+= 220) {
             for (let y = 10; y < 190; y+= 160) {
@@ -33,6 +35,12 @@ export class characterSelection extends Scene {
         this.goosePortraitsSprites.push(Resources.RedPortrait.toSprite())
         this.goosePortraitsSprites.push(Resources.GreenPortrait.toSprite())
         this.goosePortraitsSprites.push(Resources.YellowPortrait.toSprite())
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key == ' '){
+                this.begin = true
+            }
+        })
     }
 
     onPreUpdate() {
@@ -52,12 +60,45 @@ export class characterSelection extends Scene {
             this.player4connected = true
             this.connectplayer(4)
         }
+
+        if (this.player1connected && this.player2connected && !this.starting && this.begin) {
+            this.countdown()
+            this.starting = true
+        }
     }
 
     connectplayer(player) {
         let characterCanvas = new CharacterCanvas(player)
         this.add(characterCanvas)
-        // this.engine.goToScene('hertensleper')
+    }
+
+    countdown() {
+        let time = 3
+
+        const ui = new UI()
+
+        let label = new Label({
+            text: time.toString(),
+            pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2 + 16),
+            font: ui.spriteFont
+        })
+        label.anchor = new Vector(0.5,0.5)
+        this.add(label)
+        const timer = new Timer({
+            fcn: () => {
+                if (time <= 0) {
+                    this.engine.goToGame()
+                    timer.cancel()
+                } else {
+                    time -= 1
+                    label.text = time.toString()
+                }
+            },
+            repeats: true,
+            interval: 1000
+        })
+        this.add(timer)
+        timer.start()
     }
 
     
