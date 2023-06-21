@@ -56,53 +56,30 @@ export class Game extends Engine {
 
     startGame() {
         console.log("start de game!")
-        const dino = new Actor()
-        //const plasrennerBackground = new Actor()
+
         const gansWit = new GansWit()
-        dino.graphics.use(Resources.Dino.toSprite())
-        //plasrennerBackground.graphics.use(Resources.plasrennerBackground.toSprite())
         gansWit.graphics.use(Resources.GansWit.toSprite())
-
-
-        dino.pos = new Vector(400, 300)
-        //plasrennerBackground.pos = new Vector (400, 300)
         gansWit.pos = new Vector (100, 100)
-        //dino.vel = new Vector(-10,0)
-        /*if (
-            engine.input.keyboard.isHeld(ex.Input.Keys.W) ||
-            engine.input.keyboard.isHeld(ex.Input.Keys.Up)
-          ) {
-            dino.pos = new Vector (400, 300)
-            //dino._moveForward()
-            console.log("Het is gebeurd")
-          }*/
-        //this.add(plasrennerBackground)
-        //this.add(dino)
         this.add(gansWit)
 
+        const plasrennerBackground = new plasrennerBackground()
+        plasrennerBackground.graphics.use(Resources.PlasrennerBackground.toSprite())
+        plasrennerBackground = new Vector (100, 100)
+        this.add(plasrennerBackground)
 
-        const label = new Label({
-            text: 'FINISH!',
-            pos: new Vector(100, 100),
-            font: new Font({
-                family: 'impact',
-                size: 24,
-                unit: FontUnit.Px
-            })
-            
-        })
-        this.add(label)
-        
-
-
-
-        /*const otherDino = new Actor()
-        otherDino.graphics.use(Resources.Fish.toSprite())
-        otherDino.pos = new Vector(500, 600)
-        otherDino.vel = new Vector(-11,0)
-        this.add(otherDino)
-*/
     }
 }
 
 new Game()
+
+        // const label = new Label({
+        //     text: 'FINISH!',
+        //     pos: new Vector(100, 100),
+        //     font: new Font({
+        //         family: 'impact',
+        //         size: 24,
+        //         unit: FontUnit.Px
+        //     })
+            
+        // })
+        // this.add(label)
