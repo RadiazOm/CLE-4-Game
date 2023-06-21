@@ -16,11 +16,11 @@ export class CharacterCanvas extends UI {
     constructor(player) {
         super()
         this.player = player
+        this.portraitSprites = [Resources.BluePortrait.toSprite(), Resources.YellowPortrait.toSprite(), Resources.GreenPortrait.toSprite(), Resources.RedPortrait.toSprite()]
     }
 
     onInitialize(engine) {
         this.engine = engine
-        this.portraitSprites = [Resources.RedPortrait.toSprite(), Resources.BluePortrait.toSprite(), Resources.GreenPortrait.toSprite(), Resources.YellowPortrait.toSprite()]
         let background = new Actor({
             pos: new Vector(0 + ((this.player === 2 || this.player === 4) * 189), 0 + ((this.player === 3 || this.player === 4) * 97))
         })
@@ -53,12 +53,12 @@ export class CharacterCanvas extends UI {
     }
 
     onPreUpdate() {
-        if (this.cooldown <= 0 && Math.round(this.engine.mainController.player1.getXAxis())) {
-            console.log(Math.round(this.engine.mainController.player1.getXAxis()))
-            this.changePortrait(Math.round(this.engine.mainController.player1.getXAxis()))
-            this.cooldown = 30
-        } else {
-            this.cooldown--
-        }
+        // if (this.cooldown <= 0 && Math.round(this.engine.mainController.player1.getXAxis())) {
+        //     console.log(Math.round(this.engine.mainController.player1.getXAxis()))
+        //     this.changePortrait(Math.round(this.engine.mainController.player1.getXAxis()))
+        //     this.cooldown = 30
+        // } else {
+        //     this.cooldown--
+        // }
     }
 }
