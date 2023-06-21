@@ -7,7 +7,7 @@ import { UI } from "./UI.js"
 import { characterSelection } from "./characterSelection.js";
 import { ScoreBoard } from "./scoreBoard.js";
 import { GooseCatcher } from "./goosecatcher/goosecatcherMain.js";
-import { PlasRenner } from "./plasrenner.js";
+import { PlasRenner } from "./PlasRenner/plasrenner.js";
 
 
 export class Game extends Engine {
@@ -44,9 +44,11 @@ export class Game extends Engine {
         this.addScene('hertensleper', new HertenSleper())
         this.addScene('goosecatcher', new GooseCatcher())
         this.addScene('afvalverwijderen', new Afvalverwijderaar())
+        this.addScene('plasrenner', new PlasRenner())
         this.scenes.push('afvalverwijderen')
         this.scenes.push('hertensleper')
         this.scenes.push('goosecatcher')
+        this.scenes.push('plasrenner')
         this.addScene('characterselection', new characterSelection())
         this.addScene('scoreboard', new ScoreBoard())
 
@@ -55,17 +57,6 @@ export class Game extends Engine {
         }
 
         this.goToScene('characterselection')
-
-//         const ui = new UI()
-
-//         const label = new Label({
-//             text: `connect your
-// controllers now!`,
-//             pos: new Vector(this.screen.drawWidth / 2, this.screen.drawHeight / 2),
-//             font: ui.spriteFont
-//         })
-//         label.anchor = new Vector(0.5,0.5)
-//         this.add(label)
     }
 
     onPreUpdate() {
@@ -110,10 +101,6 @@ export class Game extends Engine {
         })
         this.add(timer)
         timer.start()
-    }
-
-    onPreUpdate() {
-        this.mainController.update()
     }
 }
 

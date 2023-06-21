@@ -55,7 +55,7 @@ export class characterSelection extends Scene {
             this.connectplayer(4)
         }
 
-        if (this.player1connected && this.player2connected && !this.starting && this.begin) {
+        if (this.player1connected && this.player2connected && this.player3connected&& this.player4connected && !this.starting && this.begin) {
             this.countdown()
             this.starting = true
         }

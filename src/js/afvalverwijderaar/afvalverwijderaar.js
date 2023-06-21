@@ -1,4 +1,4 @@
-import { DisplayMode, Scene, Timer} from "excalibur"
+import { DisplayMode, Physics, Scene, Timer} from "excalibur"
 import { Background } from './background'
 import { Banaan } from "./banaan"
 import { ScoreTracker } from "./scoreTracker"
@@ -28,6 +28,9 @@ export class Afvalverwijderaar extends Scene {
 
   }
 
+  onActivate() {
+    Physics.useArcadePhysics()
+  }
 
 
   onInitialize(engine) {

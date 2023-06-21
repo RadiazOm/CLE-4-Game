@@ -3,6 +3,7 @@ import { Actor, Vector, Input } from "excalibur"
 export class GansWit extends Actor {
 
     player
+    engine
 
     constructor(player){
         super()
@@ -10,20 +11,12 @@ export class GansWit extends Actor {
     }
 
     onInitialize(engine) {
-        let kb = engine.input.keyboard
-
-        kb.on("press", (event) => {
-            console.log(event)
-            if (event.key == "KeyW") {
-                this.pos.x = this.pos.x + 5  
-            }
-        })
+        this.engine = engine
     }
 
     onPreUpdate() {
-        console.log(this.pos.x)
         if (this.pos.x > 325) {
-            this.engine.gameEnd()
+            this.engine.endGame(this.player)
         }
     }
 

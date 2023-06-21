@@ -33,9 +33,8 @@ if array = 3
     ga naar scoreboard
 
 */
-import '../css/style.css'
 import { Actor, Engine, Vector, Label, FontUnit, Font, DisplayMode, Scene} from "excalibur"
-import { Resources, ResourceLoader } from './loader.js'
+import { Resources, ResourceLoader } from '../loader.js'
 import { GansWit } from './control'
 
 export class PlasRenner extends Scene {
@@ -57,7 +56,7 @@ export class PlasRenner extends Scene {
         this.add(plasrennerBackground)
 
         for (let i = 0; i < 4; i++) {
-            const gansWit = new GansWit()
+            const gansWit = new GansWit(i + 1)
             gansWit.graphics.use(Resources.GansWit.toSprite())
             gansWit.pos = new Vector (32, 30 + (39 * i))
             this.ganzen.push(gansWit)
