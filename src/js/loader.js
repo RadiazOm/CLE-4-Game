@@ -15,7 +15,6 @@ import fontMap from "../images/tilemap_packed_font.png"
 import cursorFurkanImage from "../images/Cursor_Furkan.png";
 import backgroundCatcherImage from "../images/background.png";
 import floatingGooseImage from "../images/gansWitDrijven.png";
-
 import characterImage from "../images/characterCanvas.png"
 import portraitRedImage from "../images/goosePortraitRed.png"
 import portraitBlueImage from "../images/goosePortrait.png"
