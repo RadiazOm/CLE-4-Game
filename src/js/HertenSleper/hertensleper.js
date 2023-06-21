@@ -20,6 +20,9 @@ export class HertenSleper extends Scene {
 
     constructor(){
         super()
+    }
+
+    onActivate() {
         Physics.useArcadePhysics()
     }
 
@@ -108,7 +111,7 @@ export class HertenSleper extends Scene {
             cursor.vel = new Vector(0,0)
         }
         let highestScore = 0
-        let playerwon = null
+        let playerwon = 1
         for (const scoretracker of this.scoreTrackers) {
             if (highestScore < scoretracker.scoreNumber) {
                 highestScore = scoretracker.scoreNumber

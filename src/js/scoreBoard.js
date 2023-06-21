@@ -24,7 +24,10 @@ export class ScoreBoard extends Scene {
 
     onActivate(data) {
         let player = data.data
-        this.scores[player - 1]++
+        if (player !== null) {
+            this.scores[player - 1]++
+            this.labels[player - 1].changeText(`player${player}:${this.scores[player - 1]}`)
+        }
         if (this.engine.scenesRemaining.length == 0) {
             let highestScore = 0
             let playerwon = null
@@ -38,8 +41,6 @@ export class ScoreBoard extends Scene {
             this.add(label)
             this.final = true
         }
-        console.log(this.labels[player - 1])
-        this.labels[player - 1].changeText(`player${player}:${this.scores[player - 1]}`)
     }
 
     Button0(player) {
@@ -65,6 +66,8 @@ export class ScoreBoard extends Scene {
                 if (time <= 0) {
                     this.engine.goToGame()
                     timer.cancel()
+                    this.remove(timer)
+                    label.kill()
                 } else {
                     time -= 1
                     label.text = time.toString()

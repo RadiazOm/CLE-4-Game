@@ -91,6 +91,17 @@ export class GooseFloating extends Actor {
         this.engine.currentScene.goose.splice(index, 1)
         this.engine.currentScene.scoreTracker[player -1].updateScore(1)
         
+        if(this.engine.currentScene.goose.length === 0 ){
+            let highestScore = 0
+            let playerwon = null
+            for (const scoretracker of this.engine.currentScene.scoreTracker) {
+                if (highestScore < scoretracker.scoreNumber) {
+                    highestScore = scoretracker.scoreNumber
+                    playerwon = scoretracker.player
+                }
+            }
+            this.engine.endGame(playerwon)
+        }
     }
 }
 

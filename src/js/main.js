@@ -5,7 +5,6 @@ import { HertenSleper } from "./HertenSleper/hertensleper.js";
 import { UI } from "./UI.js"
 import { characterSelection } from "./characterSelection.js";
 import { ScoreBoard } from "./scoreBoard.js";
-import { UI } from "./HertenSleper/UI.js"
 import { GooseCatcher } from "./goosecatcher/goosecatcherMain.js";
 
 
@@ -39,10 +38,11 @@ export class Game extends Engine {
         this.add(this.mainController)
 
         this.addScene('hertensleper', new HertenSleper())
-        this.scenes.push('hertensleper')
-        this.addScene('characterselection', new characterSelection())
-        this.addScene('scoreboard', new ScoreBoard(1))
         this.addScene('goosecatcher', new GooseCatcher())
+        this.scenes.push('hertensleper')
+        this.scenes.push('goosecatcher')
+        this.addScene('characterselection', new characterSelection())
+        this.addScene('scoreboard', new ScoreBoard())
 
         for (let i = 0; i < this.scenes.length; i++) {
             this.scenesRemaining.push(i)
@@ -76,7 +76,7 @@ export class Game extends Engine {
     goToGame() {
         let gameIndex = this.scenesRemaining[Math.abs(Math.round(Math.random() * (this.scenesRemaining.length - 1)))]
         let game = this.scenes[gameIndex]
-        this.scenesRemaining.splice(this.scenesRemaining.indexOf(gameIndex))
+        this.scenesRemaining.splice(this.scenesRemaining.indexOf(gameIndex), 1)
 
         this.goToScene(game)
     }
