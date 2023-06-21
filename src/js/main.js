@@ -8,6 +8,7 @@ import { characterSelection } from "./characterSelection.js";
 import { ScoreBoard } from "./scoreBoard.js";
 import { GooseCatcher } from "./goosecatcher/goosecatcherMain.js";
 import { PlasRenner } from "./PlasRenner/plasrenner.js";
+import { MainMenu } from "./mainMenu.js";
 
 
 export class Game extends Engine {
@@ -49,6 +50,7 @@ export class Game extends Engine {
         this.scenes.push('hertensleper')
         this.scenes.push('goosecatcher')
         this.scenes.push('plasrenner')
+        this.addScene('mainmenu', new MainMenu())
         this.addScene('characterselection', new characterSelection())
         this.addScene('scoreboard', new ScoreBoard())
 
@@ -56,7 +58,7 @@ export class Game extends Engine {
             this.scenesRemaining.push(i)
         }
 
-        this.goToScene('characterselection')
+        this.goToScene('mainmenu')
     }
 
     onPreUpdate() {

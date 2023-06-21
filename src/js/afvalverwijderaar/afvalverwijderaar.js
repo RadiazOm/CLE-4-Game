@@ -3,6 +3,7 @@ import { Background } from './background'
 import { Banaan } from "./banaan"
 import { ScoreTracker } from "./scoreTracker"
 import { Cursor } from "./cursor"
+import { Resources } from "../loader"
 // import { Timer } from "./timer"
 
 
@@ -15,6 +16,7 @@ export class Afvalverwijderaar extends Scene {
   cursors = [];
   bananen = [];
   time = 10;
+  gameMusic = Resources.AfvalMusic;
 
 
 
@@ -30,6 +32,12 @@ export class Afvalverwijderaar extends Scene {
 
   onActivate() {
     Physics.useArcadePhysics()
+    this.gameMusic.loop = true
+    this.gameMusic.play(1.0)
+  }
+
+  onDeactivate() {
+    this.gameMusic.stop()
   }
 
 

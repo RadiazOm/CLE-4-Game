@@ -17,6 +17,7 @@ export class HertenSleper extends Scene {
     time = 25;
     engine;
     gameOver = false;
+    gameMusic = Resources.HertenMusic
 
     constructor(){
         super()
@@ -24,9 +25,16 @@ export class HertenSleper extends Scene {
 
     onActivate() {
         Physics.useArcadePhysics()
+        this.gameMusic.loop = true
+        this.gameMusic.play()
+    }
+
+    onDeactivate() {
+        this.gameMusic.stop()
     }
 
     onInitialize(engine) {
+        this.gameMusic.loop = true
         this.engine = engine
         let background = new Actor({
             anchor: new Vector(0,0)

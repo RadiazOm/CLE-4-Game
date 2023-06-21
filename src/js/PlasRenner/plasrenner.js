@@ -41,9 +41,19 @@ export class PlasRenner extends Scene {
 
     engine;
     ganzen= [];
+    gameMusic = Resources.RennerMusic
 
     constructor() {
         super()
+    }
+
+    onActivate() {
+        this.gameMusic.loop = true
+        this.gameMusic.play()
+    }
+
+    onDeactivate() {
+        this.gameMusic.stop()
     }
 
     onInitialize(engine) {

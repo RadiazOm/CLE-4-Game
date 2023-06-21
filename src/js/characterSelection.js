@@ -13,6 +13,7 @@ export class characterSelection extends Scene {
     player4connected = false;
     begin = false; 
     starting = false;
+    menuMusic = Resources.CharacterMusic
     
 
     constructor() {
@@ -20,6 +21,8 @@ export class characterSelection extends Scene {
     }
 
     onInitialize(engine) {
+        this.menuMusic.loop = true
+
         this.engine = engine;
         for (let x = 70; x < 370; x+= 220) {
             for (let y = 10; y < 190; y+= 160) {
@@ -35,6 +38,15 @@ export class characterSelection extends Scene {
                 this.begin = true
             }
         })
+    }
+
+    onActivate() {
+        this.menuMusic.loop = true 
+        this.menuMusic.play()       
+    }
+
+    onDeactivate() {
+        this.menuMusic.stop()
     }
 
     onPreUpdate() {
@@ -55,7 +67,7 @@ export class characterSelection extends Scene {
             this.connectplayer(4)
         }
 
-        if (this.player1connected && this.player2connected && this.player3connected&& this.player4connected && !this.starting && this.begin) {
+        if (this.player1connected && !this.starting && this.begin) {
             this.countdown()
             this.starting = true
         }
@@ -84,6 +96,7 @@ export class characterSelection extends Scene {
                     this.engine.goToGame()
                     timer.cancel()
                 } else {
+                    Resources.SelectSound.play()
                     time -= 1
                     label.text = time.toString()
                 }

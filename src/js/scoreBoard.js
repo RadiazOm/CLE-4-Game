@@ -1,6 +1,7 @@
 import { Scene, Vector, Timer, Label } from "excalibur";
 import { newText } from "./text";
 import { UI } from "./UI";
+import { Resources } from "./loader";
 
 export class ScoreBoard extends Scene {
 
@@ -8,6 +9,7 @@ export class ScoreBoard extends Scene {
     engine;
     scores = [0,0,0,0];
     final = false;
+    scoreMusic = Resources.EndMusic
 
     constructor() {
         super()
@@ -22,7 +24,13 @@ export class ScoreBoard extends Scene {
         }
     }
 
+    onDeactivate() {
+        this.scoreMusic.stop()
+    }
+
     onActivate(data) {
+        this.scoreMusic.loop = true
+        this.scoreMusic.play()
         let player = data.data
         if (player !== null) {
             this.scores[player - 1]++
@@ -69,6 +77,7 @@ export class ScoreBoard extends Scene {
                     this.remove(timer)
                     label.kill()
                 } else {
+                    Resources.SelectSound.play()
                     time -= 1
                     label.text = time.toString()
                 }
