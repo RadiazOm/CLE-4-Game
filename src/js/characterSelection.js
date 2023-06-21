@@ -11,8 +11,6 @@ export class characterSelection extends Scene {
     player2connected = false;
     player3connected = false;
     player4connected = false;
-    goosePortraitsSprites = []
-    goosePortraits = []
     begin = false; 
     starting = false;
     
@@ -31,10 +29,6 @@ export class characterSelection extends Scene {
 
             }
         }
-        this.goosePortraitsSprites.push(Resources.BluePortrait.toSprite())
-        this.goosePortraitsSprites.push(Resources.RedPortrait.toSprite())
-        this.goosePortraitsSprites.push(Resources.GreenPortrait.toSprite())
-        this.goosePortraitsSprites.push(Resources.YellowPortrait.toSprite())
 
         document.addEventListener('keyup', (e) => {
             if (e.key == ' '){
@@ -97,12 +91,8 @@ export class characterSelection extends Scene {
             repeats: true,
             interval: 1000
         })
-        background.anchor = new Vector(0,0)
-        background.graphics.use(Resources.CharacterCanvas.toSprite())
-        this.add(background)
-        let text = new newText(`player${player} connected`, new Vector(70 + ((player === 2 || player === 4) * 190), 10 + ((player === 3 || player === 4) * 100)))
-        this.add(text)
-        this.engine.goToScene('hertensleper')
+        this.add(timer)
+        timer.start()
     }
 
     

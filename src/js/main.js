@@ -40,6 +40,8 @@ export class Game extends Engine {
 
         this.addScene('hertensleper', new HertenSleper())
         this.addScene('goosecatcher', new GooseCatcher())
+        this.addScene('afvalverwijderen', new Afvalverwijderaar())
+        this.scenes.push('afvalverwijderen')
         this.scenes.push('hertensleper')
         this.scenes.push('goosecatcher')
         this.addScene('characterselection', new characterSelection())

@@ -14,7 +14,7 @@ export class HertenSleper extends Scene {
     deer = [];
     scoreTrackers = [];
     timer;
-    time = 5;
+    time = 25;
     engine;
     gameOver = false;
 

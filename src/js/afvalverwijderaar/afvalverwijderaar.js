@@ -14,7 +14,7 @@ export class Afvalverwijderaar extends Scene {
   scoreTracker = []
   cursors = [];
   bananen = [];
-  time = 25;
+  time = 10;
 
 
 
@@ -36,7 +36,7 @@ export class Afvalverwijderaar extends Scene {
     const afvalBackground = new Background()
     this.add(afvalBackground)
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 25; i++) {
       const banaan = new Banaan();
       this.add(banaan);
       this.bananen.push(banaan)
@@ -57,8 +57,8 @@ export class Afvalverwijderaar extends Scene {
     const timer = new Timer({
       fcn: () => {
           if (this.time <= 0) {
-              this.gameover()
               timer.cancel()
+              this.gameover()
           } else {
               this.time -= 1
               console.log(this.time);
@@ -69,9 +69,20 @@ export class Afvalverwijderaar extends Scene {
    })
   this.add(timer)
   timer.start()
-  this.engine.endGame()
   }
 
+
+  gameover() {
+    let highestScore = 0
+    let playerwon = null
+      for (const score of this.scoreTracker) {
+          if (highestScore < score.scoreNumber) {
+            highestScore = score.scoreNumber
+            playerwon = this.scoreTracker.indexOf(score)
+          }
+      }
+    this.engine.endGame(playerwon + 1)
+  }
 
 
 Button0(player) {

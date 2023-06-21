@@ -43,7 +43,7 @@ export class ScoreBoard extends Scene {
         }
     }
 
-    Button0(player) {
+    Button1(player) {
         if (player == 1 && this.final == false) {
             this.countdown()
         }
