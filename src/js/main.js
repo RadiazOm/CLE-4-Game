@@ -4,6 +4,7 @@ import { MainController } from "./controller.js";
 import { HertenSleper } from "./HertenSleper/hertensleper.js";
 import { UI } from "./UI.js"
 import { characterSelection } from "./characterSelection.js";
+import { ScoreBoard } from "./scoreBoard.js";
 
 
 export class Game extends Engine {
@@ -38,6 +39,7 @@ export class Game extends Engine {
         this.addScene('hertensleper', new HertenSleper())
         this.scenes.push('hertensleper')
         this.addScene('characterselection', new characterSelection())
+        this.addScene('scoreboard', new ScoreBoard(1))
 
         for (let i = 0; i < this.scenes.length; i++) {
             this.scenesRemaining.push(i)
@@ -69,16 +71,15 @@ export class Game extends Engine {
     }
 
     goToGame() {
-        let gameIndex = this.scenesRemaining[Math.abs(Math.round(Math.random() * this.scenesRemaining.length - 1))]
+        let gameIndex = this.scenesRemaining[Math.abs(Math.round(Math.random() * (this.scenesRemaining.length - 1)))]
         let game = this.scenes[gameIndex]
-        console.log(game)
         this.scenesRemaining.splice(this.scenesRemaining.indexOf(gameIndex))
 
         this.goToScene(game)
     }
 
     endGame(player) {
-        
+        this.goToScene('scoreboard', player)
     }
 
     countdown() {
