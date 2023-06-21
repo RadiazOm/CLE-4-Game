@@ -25,7 +25,7 @@ export class GooseCatcher extends Scene {
     this.add(backgroundCatcher);
 
 
-    for( let i = 0; i<35; i++ ){
+    for( let i = 0; i<5; i++ ){
 
         console.log("ganzen gespawned")
         let goose = new GooseFloating();

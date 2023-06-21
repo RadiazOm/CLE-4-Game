@@ -90,6 +90,10 @@ export class GooseFloating extends Actor {
         let index = this.engine.currentScene.goose.indexOf(this)
         this.engine.currentScene.goose.splice(index, 1)
         this.engine.currentScene.scoreTracker[player -1].updateScore(1)
+
+        if(this.engine.currentScene.goose.length === 0 ){
+            this.engine.gotoscene('')
+        }
         
     }
 }
