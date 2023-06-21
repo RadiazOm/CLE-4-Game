@@ -19,10 +19,9 @@ import characterImage from "../images/characterCanvas.png"
 import portraitRedImage from "../images/goosePortraitRed.png"
 import portraitBlueImage from "../images/goosePortrait.png"
 import portraitGreenImage from "../images/goosePortraitgreen.png"
-import portraitYellowImage from "../images/goosePortraityellow.png"import plasrennerBackgroundImage from "../images/plasrennerBackground.png";
+import portraitYellowImage from "../images/goosePortraityellow.png"
+import plasrennerBackgroundImage from "../images/plasrennerBackground.png";
 import gansWitImage from "../images/gansWit.png";
-
-
 
 const Resources = {
   Dino: new ImageSource(dinoImage),
@@ -41,14 +40,11 @@ const Resources = {
   CursorFurkan: new ImageSource(cursorFurkanImage),
   BackgroundCatcher: new ImageSource(backgroundCatcherImage),
   GooseFloating: new ImageSource(floatingGooseImage),
-
- 
   CharacterCanvas: new ImageSource(characterImage),
   RedPortrait: new ImageSource(portraitRedImage),
   BluePortrait: new ImageSource(portraitBlueImage),
   GreenPortrait: new ImageSource(portraitGreenImage),
   YellowPortrait: new ImageSource(portraitYellowImage),
-
   PlasrennerBackground: new ImageSource(plasrennerBackgroundImage),
   GansWit: new ImageSource(gansWitImage)
 };
@@ -74,9 +70,8 @@ const ResourceLoader = new Loader([
   Resources.BluePortrait,
   Resources.GreenPortrait,
   Resources.YellowPortrait,
-
   Resources.PlasrennerBackground,
-  Resource.GansWit
+  Resources.GansWit
 ]);
 
 // ResourceLoader.logo = titleImage
