@@ -48,7 +48,7 @@ export class characterSelection extends Scene {
     }
 
     onDeactivate() {
-        this.menuMusic.stop()
+        this.menuMusic.pause()
     }
 
     onPreUpdate() {

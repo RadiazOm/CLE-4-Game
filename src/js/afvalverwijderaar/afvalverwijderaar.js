@@ -39,7 +39,7 @@ export class Afvalverwijderaar extends Scene {
   }
 
   onDeactivate() {
-    this.gameMusic.stop()
+    this.gameMusic.pause()
   }
 
 

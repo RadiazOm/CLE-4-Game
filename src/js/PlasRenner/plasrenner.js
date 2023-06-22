@@ -55,7 +55,7 @@ export class PlasRenner extends Scene {
     }
 
     onDeactivate() {
-        this.gameMusic.stop()
+        this.gameMusic.pause()
     }
 
     onInitialize(engine) {

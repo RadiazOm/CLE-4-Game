@@ -27,7 +27,7 @@ export class ScoreBoard extends Scene {
     }
 
     onDeactivate() {
-        this.scoreMusic.stop()
+        this.scoreMusic.pause()
     }
 
     onActivate(data) {

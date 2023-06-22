@@ -23,7 +23,7 @@ export class GooseCatcher extends Scene {
     }
 
     onDeactivate() {
-        this.gameMusic.stop()
+        this.gameMusic.pause()
     }
 
     onInitialize() {

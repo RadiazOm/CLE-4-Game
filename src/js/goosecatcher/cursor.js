@@ -71,6 +71,7 @@ export class Cursor extends Actor {
         for(const goose of this.engine.currentScene.goose){
             if(this.contains(goose.pos.x,goose.pos.y)){
                 goose.gooseKill(this.player)
+                Resources.Kwak.play()
             }
         }
     }
