@@ -30,6 +30,7 @@ export class Game extends Engine {
             maxFps: 144,
             displayMode: DisplayMode.FitScreen
         });
+        this.mainController = new MainController(this)
         // Antialiasing set to false otherwise pixelart will look blurry
         this.setAntialiasing(false)
         // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
@@ -40,8 +41,6 @@ export class Game extends Engine {
     startGame() {
         // TODO: Scene manager
         console.log('yes')
-        this.mainController = new MainController(this)
-
         this.addScene('hertensleper', new HertenSleper())
         this.addScene('goosecatcher', new GooseCatcher())
         this.addScene('afvalverwijderen', new Afvalverwijderaar())
