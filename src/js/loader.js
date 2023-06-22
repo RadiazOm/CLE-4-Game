@@ -30,6 +30,7 @@ import characterMusic from "../sounds/8bit-Bossa.mp3"
 import endMusic from "../sounds/8bitvictory.ogg"
 import select from "../sounds/blipSelect.wav"
 import kwak from "../sounds/cannard.mp3"
+import honk from "../sounds/goose-honk.mp3"
 
 
 
@@ -65,6 +66,7 @@ const Resources = {
   AfvalMusic: new Sound(afvalMusic),
   SelectSound: new Sound(select),
   Kwak: new Sound(kwak),
+  Honk: new Sound(honk)
 };
 const ResourceLoader = new Loader([
   Resources.BackgroundAfval,
@@ -89,8 +91,9 @@ const ResourceLoader = new Loader([
   Resources.PlasrennerBackground,
   Resources.GansWit,
   Resources.Title,
-  Resources.Kwak,
 
+  Resources.Kwak,
+  Resources.Honk,
   Resources.CharacterMusic,
   Resources.SelectSound,
   Resources.HertenMusic,
@@ -103,6 +106,8 @@ const ResourceLoader = new Loader([
 
 ResourceLoader.suppressPlayButton = true
 ResourceLoader.logo = titleImage
+ResourceLoader.logoWidth = 90
+ResourceLoader.logoHeight = 64
 ResourceLoader.backgroundColor = Color.fromHex('#eef8fe')
 ResourceLoader.loadingBarColor = Color.Black
 

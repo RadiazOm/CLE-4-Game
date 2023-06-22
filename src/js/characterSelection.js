@@ -12,6 +12,7 @@ export class characterSelection extends Scene {
     player2connected = false;
     player3connected = false;
     player4connected = false;
+    characterCanvases = [];
     begin = false; 
     starting = false;
     menuMusic = new Audio(characterMusic)
@@ -78,6 +79,12 @@ export class characterSelection extends Scene {
     connectplayer(player) {
         let characterCanvas = new CharacterCanvas(player)
         this.add(characterCanvas)
+        this.characterCanvases.push(characterCanvas)
+    }
+
+    Button3(player) {
+        console.log('kwak')
+        this.characterCanvases[player - 1].honk()
     }
 
     countdown() {

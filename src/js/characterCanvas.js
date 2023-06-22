@@ -1,4 +1,4 @@
-import { Actor, Vector } from "excalibur"
+import { Actor, Vector, Timer } from "excalibur"
 import { UI } from "./UI";
 import { Resources } from "./loader";
 import { newText } from "./text";
@@ -60,5 +60,21 @@ export class CharacterCanvas extends UI {
         // } else {
         //     this.cooldown--
         // }
+    }
+
+    honk() {
+        Resources.Honk.play()
+        let quack = new newText('quack', new Vector(85 + ((this.player === 2 || this.player === 4) * 190), 70 + ((this.player === 3 || this.player === 4) * 100)))
+        this.addChild(quack)
+        let timer = new Timer({
+            fcn: () => {
+                this.removeChild(quack)
+                this.engine.currentScene.remove(timer)
+            },
+            interval: 100,
+            repeats: false
+        })
+        timer.start()
+        this.engine.currentScene.add(timer)
     }
 }
