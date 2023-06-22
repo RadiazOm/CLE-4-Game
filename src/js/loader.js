@@ -1,6 +1,4 @@
 import { ImageSource, Sound, Resource, Loader , Color} from "excalibur";
-import dinoImage from "../images/dino.jpg";
-import skiImage from "../images/Snowboarder.png"
 import afvalImage from "../images/backgrounds/backgroundAfval.png"
 import banaanImage from "../images/sprites/banaan.png"
 import fontmapImage from "../images/tilemap_packed_font.png"
@@ -22,18 +20,19 @@ import portraitGreenImage from "../images/goosePortraitgreen.png"
 import portraitYellowImage from "../images/goosePortraityellow.png"
 import plasrennerBackgroundImage from "../images/plasrennerBackground.png";
 import gansWitImage from "../images/gansWit.png";
+import titleImage from "../images/GanzenPartyTitle.png"
 
-import hertenMusic from "../sounds/fight.wav"
-import rennerMusic from "../sounds/8-bit_mechanical_complex.mp3"
-import afvalMusic from "../sounds/one_0.mp3"
-import gooseMusic from "../sounds/bgm_action_3.mp3"
-import characterMusic from "../sounds/8bit-Bossa.mp3"
-import endMusic from "../sounds/8bitvictory.ogg"
-import select from "../sounds/blipSelect.wav"
+// import hertenMusic from "../sounds/fight.wav"
+// import rennerMusic from "../sounds/8-bit_mechanical_complex.mp3"
+// import afvalMusic from "../sounds/one_0.mp3"
+// import gooseMusic from "../sounds/bgm_action_3.mp3"
+// import characterMusic from "../sounds/8bit-Bossa.mp3"
+// import endMusic from "../sounds/8bitvictory.ogg"
+// import select from "../sounds/blipSelect.wav"
+
+
 
 const Resources = {
-  Dino: new ImageSource(dinoImage),
-  Snowboard: new ImageSource(skiImage),
   BackgroundAfval: new ImageSource(afvalImage),
   Banaan: new ImageSource(banaanImage),
   Fontmap: new ImageSource(fontmapImage),
@@ -55,17 +54,17 @@ const Resources = {
   YellowPortrait: new ImageSource(portraitYellowImage),
   PlasrennerBackground: new ImageSource(plasrennerBackgroundImage),
   GansWit: new ImageSource(gansWitImage),
-  CharacterMusic: new Sound(characterMusic),
-  EndMusic: new Sound(endMusic),
-  HertenMusic: new Sound(hertenMusic),
-  RennerMusic: new Sound(rennerMusic),
-  GooseMusic: new Sound(gooseMusic),
-  AfvalMusic: new Sound(afvalMusic),
-  SelectSound: new Sound(select),
+  Title: new ImageSource(titleImage),
+
+  // CharacterMusic: new Sound(characterMusic),
+  // EndMusic: new Sound(endMusic),
+  // HertenMusic: new Sound(hertenMusic),
+  // RennerMusic: new Sound(rennerMusic),
+  // GooseMusic: new Sound(gooseMusic),
+  // AfvalMusic: new Sound(afvalMusic),
+  // SelectSound: new Sound(select),
 };
 const ResourceLoader = new Loader([
-  Resources.Dino,
-  Resources.Snowboard,
   Resources.BackgroundAfval,
   Resources.Banaan,
   Resources.Fontmap,
@@ -79,7 +78,7 @@ const ResourceLoader = new Loader([
   Resources.Fontmap,
   Resources.CursorFurkan,
   Resources.BackgroundCatcher,
-  Resources.GooseFloating,,
+  Resources.GooseFloating,
   Resources.CharacterCanvas,
   Resources.RedPortrait,
   Resources.BluePortrait,
@@ -87,20 +86,21 @@ const ResourceLoader = new Loader([
   Resources.YellowPortrait,
   Resources.PlasrennerBackground,
   Resources.GansWit,
-  Resources.CharacterMusic,
-  Resources.SelectSound,
-  Resources.HertenMusic,
-  Resources.RennerMusic,
-  Resources.AfvalMusic,
-  Resources.GooseMusic,
-  Resources.EndMusic,
+  Resources.Title,
+
+  // Resources.CharacterMusic,
+  // Resources.SelectSound,
+  // Resources.HertenMusic,
+  // Resources.RennerMusic,
+  // Resources.AfvalMusic,
+  // Resources.GooseMusic,
+  // Resources.EndMusic,
 ]);
 
-// ResourceLoader.logo = titleImage
-// ResourceLoader.logoWidth = 256
-// ResourceLoader.logoHeight = 256
-// ResourceLoader.backgroundColor = Color.fromHex('#eef8fe')
-// ResourceLoader.loadingBarColor = Color.Black
+
 ResourceLoader.suppressPlayButton = true
+ResourceLoader.logo = titleImage
+ResourceLoader.backgroundColor = Color.fromHex('#eef8fe')
+ResourceLoader.loadingBarColor = Color.Black
 
 export { Resources, ResourceLoader };

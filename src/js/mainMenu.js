@@ -1,4 +1,5 @@
 import { Actor, Scene, Vector } from "excalibur";
+import { Resources } from "./loader";
 
 export class MainMenu extends Scene {
     constructor() {
@@ -6,6 +7,12 @@ export class MainMenu extends Scene {
     }
 
     onInitialize(engine) {
+
+        let title = new Actor({
+            pos: new Vector(engine.screen.drawWidth / 2, 50),
+        })
+        title.graphics.use(Resources.Title.toSprite())
+        this.add(title)
 
         let button = new Actor({
             anchor: new Vector(0,0),
