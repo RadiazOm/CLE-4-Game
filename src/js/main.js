@@ -18,6 +18,7 @@ export class Game extends Engine {
     pressed = false;
     scenes = [];
     scenesRemaining = [];
+    colours;
 
     constructor() {
         // The width and height will be in a 16:9 format, this is suvject to change
@@ -74,6 +75,24 @@ export class Game extends Engine {
 
     endGame(player) {
         this.goToScene('scoreboard', player)
+    }
+
+    addColours(array) {
+        this.colours = array
+    }
+
+    getColour(player) {
+        let coloursindex = this.colours[player - 1]
+        switch (coloursindex) {
+            case 0: 
+                return Resources.Cursor1.toSprite()
+            case 1:
+                return Resources.Cursor2.toSprite()
+            case 2: 
+                return Resources.Cursor3.toSprite()
+            case 3:
+                return Resources.Cursor4.toSprite()
+        }
     }
 
     countdown() {

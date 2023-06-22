@@ -16,6 +16,7 @@ export class characterSelection extends Scene {
     begin = false; 
     starting = false;
     menuMusic = new Audio(characterMusic)
+    selectedColours = [null,null,null,null];
     
 
     constructor() {
@@ -74,6 +75,13 @@ export class characterSelection extends Scene {
             this.countdown()
             this.starting = true
         }
+
+        for (const colour of this.selectedColours) {
+            this.begin = true
+            if (colour === null) {
+                this.begin = false
+            }
+        }
     }
 
     connectplayer(player) {
@@ -85,6 +93,14 @@ export class characterSelection extends Scene {
     Button3(player) {
         console.log('kwak')
         this.characterCanvases[player - 1].honk()
+    }
+
+    Button0(player) {
+        this.characterCanvases[player - 1].select()
+    }
+
+    Button1(player) {
+        this.characterCanvases[player - 1].deselect()
     }
 
     countdown() {
@@ -102,6 +118,7 @@ export class characterSelection extends Scene {
         const timer = new Timer({
             fcn: () => {
                 if (time <= 0) {
+                    this.engine.addColours(this.selectedColours)
                     this.engine.goToGame()
                     timer.cancel()
                 } else {

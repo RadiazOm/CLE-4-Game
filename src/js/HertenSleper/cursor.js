@@ -27,21 +27,22 @@ export class Cursor extends Actor {
         switch (this.player) {
             case 1:
                 this.pos = new Vector(Resources.Cage.width * 1.2 / 2, Resources.Cage.height * 1.2 / 2)
-                this.graphics.use(Resources.Cursor1.toSprite())
+                // this.graphics.use(Resources.Cursor1.toSprite())
                 break;
             case 2:
                 this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 / 2, Resources.Cage.height * 1.2 / 2)
-                this.graphics.use(Resources.Cursor2.toSprite())
+                // this.graphics.use(Resources.Cursor2.toSprite())
                 break;
             case 3:
                 this.pos = new Vector(Resources.Cage.width * 1.2 / 2, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
-                this.graphics.use(Resources.Cursor3.toSprite())
+                // this.graphics.use(Resources.Cursor3.toSprite())
                 break;
             case 4:
                 this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 / 2, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
-                this.graphics.use(Resources.Cursor4.toSprite())
+                // this.graphics.use(Resources.Cursor4.toSprite())
                 break;
         }
+        this.graphics.use(this.engine.getColour(this.player))
     }
 
     onPreUpdate() {

@@ -1,4 +1,4 @@
-import { Actor, Vector, Timer } from "excalibur"
+import { Actor, Vector, Timer, Axis } from "excalibur"
 import { UI } from "./UI";
 import { Resources } from "./loader";
 import { newText } from "./text";
@@ -7,10 +7,13 @@ export class CharacterCanvas extends UI {
 
     engine;
     player;
+    axis;
     portraitSprites;
     portrait;
     currentSpriteIndex;
     cooldown = 0;
+    ready = false;
+    readyLabel;
 
 
     constructor(player) {
@@ -39,6 +42,9 @@ export class CharacterCanvas extends UI {
 
         let text = new newText(`player${this.player} connected`, new Vector(70 + ((this.player === 2 || this.player === 4) * 190), 10 + ((this.player === 3 || this.player === 4) * 100)))
         this.addChild(text)
+
+        this.readyLabel = new newText('', new Vector(85, 70))
+        background.addChild(this.readyLabel)
     }
 
     changePortrait(changeIndex) {
@@ -52,14 +58,33 @@ export class CharacterCanvas extends UI {
         this.portrait.graphics.use(this.portraitSprites[this.currentSpriteIndex])
     }
 
+    onPostUpdate() {
+        if (this.player === 1 && typeof this.engine.mainController.player2 !== 'undefined') {
+            this.axis = Math.round(this.engine.mainController.player1.getXAxis())
+        }
+        if (this.player === 2 && typeof this.engine.mainController.player2 !== 'undefined') {
+            this.axis = Math.round(this.engine.mainController.player2.getXAxis())
+
+        }
+        if (this.player === 3 && typeof this.engine.mainController.player3 !== 'undefined') {
+            this.axis = Math.round(this.engine.mainController.player3.getXAxis())
+
+        }
+        if (this.player === 4 && typeof this.engine.mainController.player4 !== 'undefined') {
+            this.axis = Math.round(this.engine.mainController.player4.getXAxis())
+        }
+    }
+
     onPreUpdate() {
-        // if (this.cooldown <= 0 && Math.round(this.engine.mainController.player1.getXAxis())) {
-        //     console.log(Math.round(this.engine.mainController.player1.getXAxis()))
-        //     this.changePortrait(Math.round(this.engine.mainController.player1.getXAxis()))
-        //     this.cooldown = 30
-        // } else {
-        //     this.cooldown--
-        // }
+        if (this.ready) {
+            return;
+        }
+        if (this.cooldown <= 0 && this.axis) {
+            this.changePortrait(this.axis)
+            this.cooldown = 30
+        } else {
+            this.cooldown--
+        }
     }
 
     honk() {
@@ -76,5 +101,24 @@ export class CharacterCanvas extends UI {
         })
         timer.start()
         this.engine.currentScene.add(timer)
+    }
+
+    select() {
+        for (const colour of this.engine.currentScene.selectedColours) {
+            console.log(colour + ' ' + this.currentSpriteIndex)
+            if (colour === this.currentSpriteIndex) {
+                return;
+            }
+        }
+        this.engine.currentScene.selectedColours[this.player - 1] = this.currentSpriteIndex
+        this.ready = true
+        this.readyLabel.changeText('Ready!')
+        console.log('colour selected!')
+    }
+
+    deselect() {
+        this.ready = false
+        this.readyLabel.changeText('')
+        this.engine.currentScene.selectedColours[this.player - 1] = null
     }
 }
