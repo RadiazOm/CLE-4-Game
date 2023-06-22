@@ -3,6 +3,7 @@ import { newText } from "./text";
 import { Resources } from "./loader";
 import { CharacterCanvas } from "./characterCanvas";
 import { UI } from "./UI";
+import characterMusic from "../sounds/8bit-Bossa.mp3"
 
 export class characterSelection extends Scene {
 
@@ -13,7 +14,7 @@ export class characterSelection extends Scene {
     player4connected = false;
     begin = false; 
     starting = false;
-    menuMusic = Resources.CharacterMusic
+    menuMusic = new Audio(characterMusic)
     
 
     constructor() {
@@ -22,6 +23,7 @@ export class characterSelection extends Scene {
 
     onInitialize(engine) {
         this.menuMusic.loop = true
+        
 
         this.engine = engine;
         for (let x = 70; x < 370; x+= 220) {

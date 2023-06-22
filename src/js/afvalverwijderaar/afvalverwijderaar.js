@@ -4,6 +4,8 @@ import { Banaan } from "./banaan"
 import { ScoreTracker } from "./scoreTracker"
 import { Cursor } from "./cursor"
 import { Resources } from "../loader"
+import afvalMusic from "../../sounds/one_0.mp3"
+
 // import { Timer } from "./timer"
 
 
@@ -16,7 +18,7 @@ export class Afvalverwijderaar extends Scene {
   cursors = [];
   bananen = [];
   time = 10;
-  gameMusic = Resources.AfvalMusic;
+  gameMusic = new Audio(afvalMusic)
 
 
 

@@ -36,12 +36,14 @@ if array = 3
 import { Actor, Engine, Vector, Label, FontUnit, Font, DisplayMode, Scene} from "excalibur"
 import { Resources, ResourceLoader } from '../loader.js'
 import { GansWit } from './control'
+import rennerMusic from "../../sounds/8-bit_mechanical_complex.mp3"
+
 
 export class PlasRenner extends Scene {
 
     engine;
     ganzen= [];
-    gameMusic = Resources.RennerMusic
+    gameMusic = new Audio(rennerMusic)
 
     constructor() {
         super()

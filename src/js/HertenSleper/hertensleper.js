@@ -7,6 +7,8 @@ import { CageZone } from "./cageZone";
 import { ScoreTracker } from "./scoreTracker";
 import { GameTimer } from "./timer";
 import { UI } from "../UI";
+import hertenMusic from "../../sounds/fight.wav"
+
 
 export class HertenSleper extends Scene {
 
@@ -17,7 +19,7 @@ export class HertenSleper extends Scene {
     time = 25;
     engine;
     gameOver = false;
-    gameMusic = Resources.HertenMusic
+    gameMusic = new Audio(hertenMusic)
 
     constructor(){
         super()

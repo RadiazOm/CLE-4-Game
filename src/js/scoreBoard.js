@@ -2,6 +2,8 @@ import { Scene, Vector, Timer, Label } from "excalibur";
 import { newText } from "./text";
 import { UI } from "./UI";
 import { Resources } from "./loader";
+import endMusic from "../sounds/8bitvictory.ogg"
+
 
 export class ScoreBoard extends Scene {
 
@@ -9,7 +11,7 @@ export class ScoreBoard extends Scene {
     engine;
     scores = [0,0,0,0];
     final = false;
-    scoreMusic = Resources.EndMusic
+    scoreMusic = new Audio(endMusic)
 
     constructor() {
         super()

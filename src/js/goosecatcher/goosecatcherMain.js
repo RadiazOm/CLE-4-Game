@@ -4,13 +4,14 @@ import { Cursor} from "./cursor.js";
 import { BackgroundCatcher } from "./background.js";
 import { GooseFloating } from "./floatinggoose.js";
 import { ScoreTracker } from "./UIgoosecatcher.js";
+import gooseMusic from "../../sounds/bgm_action_3.mp3"
 
 export class GooseCatcher extends Scene {
 
     cursors = [];
     scoreTracker = [];
     goose = [];
-    gameMusic = Resources.GooseMusic
+    gameMusic = new Audio(gooseMusic)
     
     constructor() {
         super();
