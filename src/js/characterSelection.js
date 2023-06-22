@@ -38,8 +38,9 @@ export class characterSelection extends Scene {
         }
 
         document.addEventListener('keyup', (e) => {
-            if (e.key == ' '){
+            if (e.key == 'w'){
                 this.begin = true
+                console.log('spatie')
             }
         })
     }
@@ -100,6 +101,9 @@ export class characterSelection extends Scene {
     }
 
     Button1(player) {
+        if (this.begin === true) {
+            return;
+        }
         this.characterCanvases[player - 1].deselect()
     }
 
