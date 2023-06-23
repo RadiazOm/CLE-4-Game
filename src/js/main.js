@@ -26,8 +26,7 @@ export class Game extends Engine {
         super({
             width: 360,
             height: 180,
-            width: 360,
-            height: 180,
+            canvasElementId: 'game',
             maxFps: 144,
             displayMode: DisplayMode.FitScreen
         });
@@ -35,7 +34,7 @@ export class Game extends Engine {
         // Antialiasing set to false otherwise pixelart will look blurry
         this.setAntialiasing(false)
         // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
-        this.showDebug(false)
+        this.showDebug(true)
         this.start(ResourceLoader).then(() => this.startGame());
     }
 
