@@ -10,6 +10,7 @@ export class ScoreBoard extends Scene {
     labels = [];
     engine;
     scores = [0,0,0,0];
+    playerFont;
     final = false;
     scoreMusic = new Audio(endMusic)
 
@@ -20,7 +21,7 @@ export class ScoreBoard extends Scene {
     onInitialize(engine) {
         this.engine = engine
         for (let i = 0; i < 4; i++) {
-            let label = new newText(`player${i + 1}:0`, new Vector(this.engine.screen.drawWidth / 2, 50 + i * 20))
+            let label = new newText(`${this.getPlayerText(i + 1)}player${i + 1}:0`, new Vector(this.engine.screen.drawWidth / 2, 50 + i * 20))
             this.labels.push(label)
             this.add(label)
         }
@@ -36,7 +37,7 @@ export class ScoreBoard extends Scene {
         let player = data.data
         if (player !== null) {
             this.scores[player - 1]++
-            this.labels[player - 1].changeText(`player${player}:${this.scores[player - 1]}`)
+            this.labels[player - 1].changeText(`${this.getPlayerText(player)}player${player}:${this.scores[player - 1]}`)
         }
         if (this.engine.scenesRemaining.length == 0) {
             let highestScore = 0
@@ -47,7 +48,7 @@ export class ScoreBoard extends Scene {
                     playerwon = this.scores.indexOf(score)
                 }
             }
-            let label = new newText(`player${playerwon + 1} won!`, new Vector(this.engine.screen.drawWidth / 2, 130))
+            let label = new newText(`${this.getPlayerText(playerwon + 1)}player${playerwon + 1} won!`, new Vector(this.engine.screen.drawWidth / 2, 130))
             this.add(label)
             this.final = true
         }
@@ -57,6 +58,26 @@ export class ScoreBoard extends Scene {
         if (player == 1 && this.final == false) {
             this.countdown()
         }
+    }
+
+    
+    getPlayerText(player) {
+        let playerFont
+        switch (this.engine.getColour(player)) {
+            case 0:
+                playerFont = '[' 
+                break;
+            case 1:
+                playerFont = ']' 
+                break;
+            case 2:
+                playerFont = '{'
+                break; 
+            case 3:
+                playerFont = '}'  
+                break;   
+        }
+        return playerFont;
     }
 
     countdown() {
