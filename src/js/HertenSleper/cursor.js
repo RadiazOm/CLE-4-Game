@@ -14,6 +14,7 @@ export class Cursor extends Actor {
             width: Resources.Cursor1.width,
             height: Resources.Cursor1.height
         })
+        this.z = 1
         this.player = player;
         this.deer = deer;
         console.log(this.deer)
