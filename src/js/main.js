@@ -34,7 +34,7 @@ export class Game extends Engine {
         // Antialiasing set to false otherwise pixelart will look blurry
         this.setAntialiasing(false)
         // If something isnt going so well you can turn this to true and you will be able to see all sorts of cool information
-        this.showDebug(true)
+        this.showDebug(false)
         this.start(ResourceLoader).then(() => this.startGame());
     }
 

@@ -9,6 +9,7 @@ export class CharacterCanvas extends UI {
     player;
     axis;
     portraitSprites;
+    honkSprites;
     portrait;
     currentSpriteIndex;
     cooldown = 0;
@@ -20,6 +21,7 @@ export class CharacterCanvas extends UI {
         super()
         this.player = player
         this.portraitSprites = [Resources.BluePortrait.toSprite(), Resources.YellowPortrait.toSprite(), Resources.GreenPortrait.toSprite(), Resources.RedPortrait.toSprite()]
+        this.honkSprites = [Resources.BlueHonk.toSprite(), Resources.YellowHonk.toSprite(), Resources.GreenHonk.toSprite(),Resources.RedHonk.toSprite(),]
     }
 
     onInitialize(engine) {
@@ -88,14 +90,16 @@ export class CharacterCanvas extends UI {
 
     honk() {
         Resources.Honk.play()
-        let quack = new newText('quack', new Vector(85 + ((this.player === 2 || this.player === 4) * 190), 70 + ((this.player === 3 || this.player === 4) * 100)))
+        let quack = new newText('quack', new Vector(50 + ((this.player === 2 || this.player === 4) * 190), 30 + ((this.player === 3 || this.player === 4) * 100)))
+        this.portrait.graphics.use(this.honkSprites[this.currentSpriteIndex])
         this.addChild(quack)
         let timer = new Timer({
             fcn: () => {
+                this.portrait.graphics.use(this.portraitSprites[this.currentSpriteIndex])
                 this.removeChild(quack)
                 this.engine.currentScene.remove(timer)
             },
-            interval: 100,
+            interval: 200,
             repeats: false
         })
         timer.start()

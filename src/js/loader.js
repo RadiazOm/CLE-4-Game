@@ -18,6 +18,10 @@ import portraitRedImage from "../images/goosePortraitRed.png"
 import portraitBlueImage from "../images/goosePortrait.png"
 import portraitGreenImage from "../images/goosePortraitgreen.png"
 import portraitYellowImage from "../images/goosePortraityellow.png"
+import portraitRedHonkImage from "../images/PortraitRedHonk.png"
+import portraitBlueHonkImage from "../images/PortraitBlueHonk.png"
+import portraitGreenHonkImage from "../images/PortraitGreenHonk.png"
+import portraitYellowHonkImage from "../images/PortraitYellowHonk.png"
 import plasrennerBackgroundImage from "../images/plasrennerBackground.png";
 import gansWitImage from "../images/gansWit.png";
 import titleImage from "../images/GanzenPartyTitle.png"
@@ -54,6 +58,10 @@ const Resources = {
   BluePortrait: new ImageSource(portraitBlueImage),
   GreenPortrait: new ImageSource(portraitGreenImage),
   YellowPortrait: new ImageSource(portraitYellowImage),
+  RedHonk: new ImageSource(portraitRedHonkImage),
+  BlueHonk: new ImageSource(portraitBlueHonkImage),
+  GreenHonk: new ImageSource(portraitGreenHonkImage),
+  YellowHonk: new ImageSource(portraitYellowHonkImage),
   PlasrennerBackground: new ImageSource(plasrennerBackgroundImage),
   GansWit: new ImageSource(gansWitImage),
   Title: new ImageSource(titleImage),
@@ -88,6 +96,10 @@ const ResourceLoader = new Loader([
   Resources.BluePortrait,
   Resources.GreenPortrait,
   Resources.YellowPortrait,
+  Resources.RedHonk,
+  Resources.BlueHonk,
+  Resources.GreenHonk,
+  Resources.YellowHonk,
   Resources.PlasrennerBackground,
   Resources.GansWit,
   Resources.Title,
