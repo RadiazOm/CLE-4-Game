@@ -101,9 +101,6 @@ export class characterSelection extends Scene {
     }
 
     Button1(player) {
-        if (this.begin === true) {
-            return;
-        }
         this.characterCanvases[player - 1].deselect()
     }
 

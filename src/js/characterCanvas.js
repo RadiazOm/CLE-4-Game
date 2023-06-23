@@ -59,12 +59,11 @@ export class CharacterCanvas extends UI {
     }
 
     onPostUpdate() {
-        if (this.player === 1 && typeof this.engine.mainController.player2 !== 'undefined') {
+        if (this.player === 1 && typeof this.engine.mainController.player1 !== 'undefined') {
             this.axis = Math.round(this.engine.mainController.player1.getXAxis())
         }
         if (this.player === 2 && typeof this.engine.mainController.player2 !== 'undefined') {
             this.axis = Math.round(this.engine.mainController.player2.getXAxis())
-
         }
         if (this.player === 3 && typeof this.engine.mainController.player3 !== 'undefined') {
             this.axis = Math.round(this.engine.mainController.player3.getXAxis())

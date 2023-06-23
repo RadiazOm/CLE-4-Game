@@ -82,6 +82,13 @@ export class Game extends Engine {
     }
 
     getColour(player) {
+        if (this.colours[player - 1] === null) {
+            return 0
+        }
+        return this.colours[player - 1]
+    }
+
+    getCursorSprite(player) {
         let coloursindex = this.colours[player - 1]
         switch (coloursindex) {
             case 0: 

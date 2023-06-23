@@ -42,7 +42,7 @@ export class Cursor extends Actor {
                 // this.graphics.use(Resources.Cursor4.toSprite())
                 break;
         }
-        this.graphics.use(this.engine.getColour(this.player))
+        this.graphics.use(this.engine.getCursorSprite(this.player))
     }
 
     onPreUpdate() {
