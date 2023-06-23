@@ -6,6 +6,7 @@ import { UI } from "../UI";
 export class ScoreTracker extends UI {
 
     player;
+    playerFont;
     engine;
     score;
     scoreNumber = 0;
@@ -33,8 +34,9 @@ export class ScoreTracker extends UI {
                 this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2, this.engine.screen.drawHeight - 16)
                 break;
         }
+        this.setPlayerText(this.player)
         this.score = new Label({
-            text: `P${this.player}:0`,
+            text: `${this.playerFont}:0`,
             pos: new Vector(0,0),
             font: this.spriteFont
         })
@@ -45,8 +47,25 @@ export class ScoreTracker extends UI {
         this.addChild(this.score)
     }
 
+    setPlayerText(player) {
+        switch (this.engine.getColour(player)) {
+            case 0:
+                this.playerFont = '[' 
+                break;
+            case 1:
+                this.playerFont = ']' 
+                break;
+            case 2:
+                this.playerFont = '{'
+                break; 
+            case 3:
+                this.playerFont = '}'  
+                break;   
+        }
+    }
+
     updateScore(score) {
-        this.score.text = `P${this.player}:${score.toString()}`
+        this.score.text = `${this.playerFont}:${score.toString()}`
         this.scoreNumber = score
     }
 }
