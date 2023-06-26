@@ -32,6 +32,7 @@ import afvalMusic from "../sounds/one_0.mp3"
 import gooseMusic from "../sounds/bgm_action_3.mp3"
 import characterMusic from "../sounds/8bit-Bossa.mp3"
 import endMusic from "../sounds/8bitvictory.ogg"
+import explanationMusic from "../sounds/happy.mp3"
 import select from "../sounds/blipSelect.wav"
 import kwak from "../sounds/cannard.mp3"
 import honk from "../sounds/goose-honk.mp3"
@@ -72,6 +73,7 @@ const Resources = {
   RennerMusic: new Sound(rennerMusic),
   GooseMusic: new Sound(gooseMusic),
   AfvalMusic: new Sound(afvalMusic),
+  ExplanationMusic: new Sound(explanationMusic),
   SelectSound: new Sound(select),
   Kwak: new Sound(kwak),
   Honk: new Sound(honk)
@@ -113,6 +115,7 @@ const ResourceLoader = new Loader([
   Resources.AfvalMusic,
   Resources.GooseMusic,
   Resources.EndMusic,
+  Resources.ExplanationMusic,
 ]);
 
 

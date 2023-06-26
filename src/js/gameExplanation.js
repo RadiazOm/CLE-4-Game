@@ -1,3 +1,4 @@
+import ExplanationMusic from "../sounds/happy.mp3"
 import { UI } from "./UI";
 import { Scene, Vector, Timer, Label } from "excalibur"
 import { Resources } from "./loader";
@@ -8,6 +9,7 @@ export class Explanation extends Scene {
     checkmarks = []
     scene;
     engine;
+    explanationMusic = new Audio(ExplanationMusic)
 
     constructor() {
         super()
@@ -34,6 +36,7 @@ export class Explanation extends Scene {
     }
 
     onActivate(data) {
+        this.explanationMusic.play()
         this.playersready = [null, null, null, null];
         for (const label of this.checkmarks) {
             label.kill()
@@ -41,6 +44,10 @@ export class Explanation extends Scene {
         this.checkmarks = []
         this.scene = data.data
         console.log(data)
+    }
+
+    onDeactivate() {
+        this.explanationMusic.pause()
     }
 
     onPreUpdate() {
