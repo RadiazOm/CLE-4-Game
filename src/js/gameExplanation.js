@@ -9,6 +9,7 @@ export class Explanation extends Scene {
     checkmarks = []
     scene;
     engine;
+    starting = false;
     explanationMusic = new Audio(ExplanationMusic)
 
     constructor() {
@@ -36,6 +37,7 @@ export class Explanation extends Scene {
     }
 
     onActivate(data) {
+        this.starting = false
         this.explanationMusic.play()
         this.playersready = [null, null, null, null];
         for (const label of this.checkmarks) {
@@ -57,8 +59,9 @@ export class Explanation extends Scene {
                 begin = false
             }
         }
-        if(begin) {
+        if(begin && this.starting == false) {
             this.countdown()
+            this.starting = true
         }
     }
 
