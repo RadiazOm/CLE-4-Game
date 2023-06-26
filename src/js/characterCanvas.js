@@ -65,6 +65,7 @@ export class CharacterCanvas extends UI {
             return;
         }
         if (this.cooldown <= 0 && this.axis) {
+            Resources.MenuSelect.play()
             this.changePortrait(this.axis)
             this.cooldown = 30
         } else {
@@ -114,6 +115,7 @@ export class CharacterCanvas extends UI {
                 return;
             }
         }
+        Resources.Ready.play()
         this.engine.currentScene.selectedColours[this.player - 1] = this.currentSpriteIndex
         this.ready = true
         this.readyLabel.changeText('Ready!')
@@ -121,6 +123,7 @@ export class CharacterCanvas extends UI {
     }
 
     deselect() {
+        Resources.HertDrop.play()
         this.ready = false
         this.readyLabel.changeText('')
         this.engine.currentScene.selectedColours[this.player - 1] = null

@@ -77,6 +77,7 @@ export class Cursor extends Actor {
             return;
         }
         if (this.holdingDeer === true) {
+            Resources.HertDrop.play()
             this.holdedDeer.release();
             this.holdingDeer = false;
             this.holdedDeer.grabbable = true
@@ -84,6 +85,7 @@ export class Cursor extends Actor {
         } else {
             for (const deer of this.deer) {
                 if (this.contains(deer.pos.x, deer.pos.y) && this.holdingDeer === false && deer.grabbable === true) {
+                    Resources.HertPickup.play()
                     deer.grabbable = false
                     this.holdingDeer = true
                     this.holdedDeer = deer

@@ -70,6 +70,7 @@ export class Explanation extends Scene {
         if (this.playersready[player - 1]) {
             return;
         }
+        Resources.Ready.play()
         this.playersready[player - 1] = true
         console.log('ready!')
         let ui = new UI()

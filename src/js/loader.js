@@ -34,6 +34,10 @@ import characterMusic from "../sounds/8bit-Bossa.mp3"
 import endMusic from "../sounds/8bitvictory.ogg"
 import explanationMusic from "../sounds/happy.mp3"
 import select from "../sounds/blipSelect.wav"
+import menuSelect from "../sounds/menuSelect.wav"
+import hertPickup from "../sounds/hertPickup.wav"
+import hertDrop from "../sounds/hertDrop.wav"
+import readyUp from "../sounds/Ready.wav"
 import kwak from "../sounds/cannard.mp3"
 import honk from "../sounds/goose-honk.mp3"
 
@@ -74,6 +78,10 @@ const Resources = {
   GooseMusic: new Sound(gooseMusic),
   AfvalMusic: new Sound(afvalMusic),
   ExplanationMusic: new Sound(explanationMusic),
+  MenuSelect: new Sound(menuSelect),
+  HertPickup: new Sound(hertPickup),
+  HertDrop: new Sound(hertDrop),
+  Ready: new Sound(readyUp),
   SelectSound: new Sound(select),
   Kwak: new Sound(kwak),
   Honk: new Sound(honk)
@@ -110,6 +118,10 @@ const ResourceLoader = new Loader([
   Resources.Honk,
   Resources.CharacterMusic,
   Resources.SelectSound,
+  Resources.MenuSelect,
+  Resources.HertPickup,
+  Resources.HertDrop,
+  Resources.Ready,
   Resources.HertenMusic,
   Resources.RennerMusic,
   Resources.AfvalMusic,
