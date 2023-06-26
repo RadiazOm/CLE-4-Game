@@ -21,16 +21,16 @@ export class CageZone extends Actor {
         this.engine = engine
         switch (this.player + 1) {
             case 1:
-                this.pos = new Vector(Resources.Cage.width * 1.2 / 2, Resources.Cage.height * 1.2 / 2)
+                this.pos = new Vector(Resources.Cage.width * 1.2 / 2 + 50, Resources.Cage.height * 1.2 / 2)
                 break;
             case 2:
-                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 / 2, Resources.Cage.height * 1.2 / 2)
+                this.pos = new Vector(this.engine.screen.drawWidth - (Resources.Cage.width * 1.2 / 2 + 60), Resources.Cage.height * 1.2 / 2)
                 break;
             case 3:
-                this.pos = new Vector(Resources.Cage.width * 1.2 / 2, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
+                this.pos = new Vector(Resources.Cage.width * 1.2 / 2 + 50, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
                 break;
             case 4:
-                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 / 2, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
+                this.pos = new Vector(this.engine.screen.drawWidth - (Resources.Cage.width * 1.2 / 2 + 60), this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
                 break;
         }
 
