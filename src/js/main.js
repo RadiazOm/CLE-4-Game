@@ -9,6 +9,7 @@ import { ScoreBoard } from "./scoreBoard.js";
 import { GooseCatcher } from "./goosecatcher/goosecatcherMain.js";
 import { PlasRenner } from "./PlasRenner/plasrenner.js";
 import { MainMenu } from "./mainMenu.js";
+import { Explanation } from "./gameExplanation.js";
 
 
 export class Game extends Engine {
@@ -52,6 +53,7 @@ export class Game extends Engine {
         this.addScene('mainmenu', new MainMenu())
         this.addScene('characterselection', new characterSelection())
         this.addScene('scoreboard', new ScoreBoard())
+        this.addScene('explanation', new Explanation())
 
         for (let i = 0; i < this.scenes.length; i++) {
             this.scenesRemaining.push(i)
@@ -69,7 +71,7 @@ export class Game extends Engine {
         let game = this.scenes[gameIndex]
         this.scenesRemaining.splice(this.scenesRemaining.indexOf(gameIndex), 1)
 
-        this.goToScene(game)
+        this.goToScene('explanation', game)
     }
 
     endGame(player) {

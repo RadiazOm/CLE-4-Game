@@ -23,7 +23,7 @@ export class UI extends ScreenElement {
         })
 
         this.spriteFont = new SpriteFont({
-            alphabet: '0123456789: ABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%+-*/=.[]{}',
+            alphabet: '0123456789: ABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%+-*/=.[]{}^',
             caseInsensitive: true,
             spriteSheet: spriteFontSheet,
             spacing: 0,
