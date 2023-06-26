@@ -76,7 +76,7 @@ export class characterSelection extends Scene {
             this.countdown()
             this.starting = true
         }
-        
+
         this.begin = true
         for (const colour of this.selectedColours) {
             if (colour === null) {
@@ -101,6 +101,9 @@ export class characterSelection extends Scene {
     }
 
     Button1(player) {
+        if (this.begin) {
+            return;
+        }
         this.characterCanvases[player - 1].deselect()
     }
 
