@@ -76,9 +76,9 @@ export class characterSelection extends Scene {
             this.countdown()
             this.starting = true
         }
-
+        
+        this.begin = true
         for (const colour of this.selectedColours) {
-            this.begin = true
             if (colour === null) {
                 this.begin = false
             }
