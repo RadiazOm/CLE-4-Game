@@ -25,6 +25,7 @@ import portraitYellowHonkImage from "../images/PortraitYellowHonk.png"
 import plasrennerBackgroundImage from "../images/plasrennerBackground.png";
 import gansWitImage from "../images/gansWit.png";
 import titleImage from "../images/GanzenPartyTitle.png"
+import animatingGooseImage from "../images/gooseDance.png"
 
 import hertenMusic from "../sounds/fight.wav"
 import rennerMusic from "../sounds/8-bit_mechanical_complex.mp3"
@@ -70,6 +71,7 @@ const Resources = {
   PlasrennerBackground: new ImageSource(plasrennerBackgroundImage),
   GansWit: new ImageSource(gansWitImage),
   Title: new ImageSource(titleImage),
+  AnimatingGoose: new ImageSource(animatingGooseImage),
 
   CharacterMusic: new Sound(characterMusic),
   EndMusic: new Sound(endMusic),
@@ -113,6 +115,7 @@ const ResourceLoader = new Loader([
   Resources.PlasrennerBackground,
   Resources.GansWit,
   Resources.Title,
+  Resources.AnimatingGoose,
 
   Resources.Kwak,
   Resources.Honk,

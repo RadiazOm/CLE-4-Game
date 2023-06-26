@@ -120,7 +120,7 @@ export class Explanation extends Scene {
         const timer = new Timer({
             fcn: () => {
                 if (time <= 0) {
-                    this.engine.goToScene(this.scene)
+                    this.engine.goToScene('loading', this.scene)
                     timer.cancel()
                     this.remove(timer)
                     label.kill()

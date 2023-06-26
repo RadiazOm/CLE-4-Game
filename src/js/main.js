@@ -10,6 +10,7 @@ import { GooseCatcher } from "./goosecatcher/goosecatcherMain.js";
 import { PlasRenner } from "./PlasRenner/plasrenner.js";
 import { MainMenu } from "./mainMenu.js";
 import { Explanation } from "./gameExplanation.js";
+import { Loading } from "./loading.js";
 
 
 export class Game extends Engine {
@@ -54,6 +55,7 @@ export class Game extends Engine {
         this.addScene('characterselection', new characterSelection())
         this.addScene('scoreboard', new ScoreBoard())
         this.addScene('explanation', new Explanation())
+        this.addScene('loading', new Loading)
 
         for (let i = 0; i < this.scenes.length; i++) {
             this.scenesRemaining.push(i)
