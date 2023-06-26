@@ -15,7 +15,7 @@ export class MainMenu extends Scene {
         this.add(title)
 
         let button = new Actor({
-            anchor: new Vector(0,0),
+            anchor: new Vector(0.5,0.5),
             pos: new Vector(0,0),
             width: engine.screen.drawWidth,
             height: engine.screen.drawHeight

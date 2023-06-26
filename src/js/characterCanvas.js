@@ -60,6 +60,18 @@ export class CharacterCanvas extends UI {
         this.portrait.graphics.use(this.portraitSprites[this.currentSpriteIndex])
     }
 
+    onPreUpdate() {
+        if (this.ready) {
+            return;
+        }
+        if (this.cooldown <= 0 && this.axis) {
+            this.changePortrait(this.axis)
+            this.cooldown = 30
+        } else {
+            this.cooldown--
+        }
+    }
+
     onPostUpdate() {
         if (this.player === 1 && typeof this.engine.mainController.player1 !== 'undefined') {
             this.axis = Math.round(this.engine.mainController.player1.getXAxis())
@@ -76,17 +88,6 @@ export class CharacterCanvas extends UI {
         }
     }
 
-    onPreUpdate() {
-        if (this.ready) {
-            return;
-        }
-        if (this.cooldown <= 0 && this.axis) {
-            this.changePortrait(this.axis)
-            this.cooldown = 30
-        } else {
-            this.cooldown--
-        }
-    }
 
     honk() {
         Resources.Honk.play()
