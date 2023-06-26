@@ -27,19 +27,19 @@ export class Cursor extends Actor {
 
         switch (this.player) {
             case 1:
-                this.pos = new Vector(Resources.Cage.width * 1.2 / 2, Resources.Cage.height * 1.2 / 2)
+                this.pos = new Vector(Resources.Cage.width * 1.2 / 2 + 50, Resources.Cage.height * 1.2 / 2)
                 // this.graphics.use(Resources.Cursor1.toSprite())
                 break;
             case 2:
-                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 / 2, Resources.Cage.height * 1.2 / 2)
+                this.pos = new Vector(this.engine.screen.drawWidth - (Resources.Cage.width * 1.2 / 2 + 50), Resources.Cage.height * 1.2 / 2)
                 // this.graphics.use(Resources.Cursor2.toSprite())
                 break;
             case 3:
-                this.pos = new Vector(Resources.Cage.width * 1.2 / 2, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
+                this.pos = new Vector(Resources.Cage.width * 1.2 / 2 + 50, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
                 // this.graphics.use(Resources.Cursor3.toSprite())
                 break;
             case 4:
-                this.pos = new Vector(this.engine.screen.drawWidth - Resources.Cage.width * 1.2 / 2, this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
+                this.pos = new Vector(this.engine.screen.drawWidth - (Resources.Cage.width * 1.2 / 2 + 50), this.engine.screen.drawHeight - Resources.Cage.height * 1.2 / 2)
                 // this.graphics.use(Resources.Cursor4.toSprite())
                 break;
         }
@@ -50,6 +50,7 @@ export class Cursor extends Actor {
         if (this.engine.currentScene.gameOver === true) {
             return;
         }
+        console.log(this.pos.x + '+' + this.pos.y)
         if (this.player === 1) {
             this.vel.x = this.engine.mainController.player1.getXAxis() * 100
             this.vel.y = this.engine.mainController.player1.getYAxis() * 100

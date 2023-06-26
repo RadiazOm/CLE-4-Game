@@ -44,13 +44,12 @@ export class HertenSleper extends Scene {
         background.graphics.use(Resources.hertMap.toSprite())
         this.add(background)
 
-        for (let x = 0; x < 370; x+= 360 - Resources.Cage.width * 1.2) {
+        for (let x = 50; x < 250; x+= 250 - Resources.Cage.width * 1.2) {
             for (let y = 0; y < 190; y+= 180 - Resources.Cage.height * 1.2) {
                 let cage = new Cage()
                 cage.pos.x = x
                 cage.pos.y = y
                 this.add(cage)
-                console.log(cage.pos.x + ' ' + cage.pos.y)
             }
         }
 
