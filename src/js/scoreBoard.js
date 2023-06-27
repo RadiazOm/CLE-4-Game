@@ -34,12 +34,14 @@ export class ScoreBoard extends Scene {
     onActivate(data) {
         this.scoreMusic.loop = true
         this.scoreMusic.play()
-        let player = data.data
-        if (player !== null) {
-            this.scores[player - 1]++
-            this.labels[player - 1].changeText(`${this.getPlayerText(player)}player${player}:${this.scores[player - 1]}`)
+        let positions = data.data
+        if (positions !== null) {
+            this.givePoints(positions)
+            for (let i = 0; i < 4; i++) {
+                this.labels[i].changeText(`${this.getPlayerText(i + 1)}player${i + 1}:${this.scores[i]}`)
+            }
         }
-        if (this.engine.scenesRemaining.length == 3) {
+        if (this.engine.scenesRemaining.length == 0) {
             this.engine.goToScene('endscene', this.scores)
         }
     }
@@ -47,6 +49,25 @@ export class ScoreBoard extends Scene {
     Button1(player) {
         if (player == 1 && this.final == false) {
             this.countdown()
+        }
+    }
+
+    givePoints(positions) {
+        for (let i = 0; i < 4; i++) {
+            switch (positions[i]) {
+                case 1:
+                    this.scores[i] += 7
+                    break;
+                case 2:
+                    this.scores[i] += 5
+                    break;
+                case 3:
+                    this.scores[i] += 3
+                    break;
+                case 4:
+                    this.scores[i] += 1
+                    break;
+            }
         }
     }
 

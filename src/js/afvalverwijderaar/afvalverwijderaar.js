@@ -98,16 +98,42 @@ export class Afvalverwijderaar extends Scene {
 
 
   gameover() {
-    let highestScore = 0
-    let playerwon = null
-      for (const score of this.scoreTracker) {
-          if (highestScore < score.scoreNumber) {
-            highestScore = score.scoreNumber
-            playerwon = this.scoreTracker.indexOf(score)
-          }
-      }
-    this.engine.endGame(playerwon + 1)
+    // let highestScore = 0
+    // let playerwon = null
+    //   for (const score of this.scoreTracker) {
+    //       if (highestScore < score.scoreNumber) {
+    //         highestScore = score.scoreNumber
+    //         playerwon = this.scoreTracker.indexOf(score)
+    //       }
+    //   }
+    let array = []
+    for (const score of this.scoreTracker) {
+        array.push(score.scoreNumber)
+    }
+    let positions = this.calculateScores(array)
+    this.engine.endGame(positions)
   }
+
+  calculateScores(scores) {
+    let positions = [];
+    let scoreChecker = []
+    for (const score of scores) {
+        scoreChecker.push(score)
+    }
+    for (let i = 0; i < 4; i++) {
+        let playerwon = null
+        let highestScore = -Infinity;
+        for (let i = 0; i < 4; i++) {
+            if (scoreChecker[i] > highestScore) {
+                highestScore = scoreChecker[i]
+                playerwon = i + 1
+            }
+        }
+        positions.push(playerwon)
+        scoreChecker[scoreChecker.indexOf(highestScore)] = -1
+    }
+    return positions
+}
 
 
 Button0(player) {

@@ -119,26 +119,52 @@ export class HertenSleper extends Scene {
         for (const cursor of this.cursors) {
             cursor.vel = new Vector(0,0)
         }
-        let highestScore = 0
-        let playerwon = 1
-        for (const scoretracker of this.scoreTrackers) {
-            if (highestScore < scoretracker.scoreNumber) {
-                highestScore = scoretracker.scoreNumber
-                playerwon = scoretracker.player
+        // let highestScore = 0
+        // let playerwon = 1
+        // for (const scoretracker of this.scoreTrackers) {
+        //     if (highestScore < scoretracker.scoreNumber) {
+        //         highestScore = scoretracker.scoreNumber
+        //         playerwon = scoretracker.player
+        //     }
+        // }
+        // const ui = new UI()
+        // let label = new Label({
+        //     pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2),
+        //     font: ui.spriteFont
+        //     })
+        //     label.anchor = new Vector(0.5,0.5)
+        // if (playerwon == null) {
+        //     label.text = 'no one won boo'
+        // } else {
+        //     label.text = `player${playerwon} won!`
+        // }
+        // this.add(label)
+        let array = []
+        for (const score of this.scoreTrackers) {
+            array.push(score.scoreNumber)
+        }
+        let positions = this.calculateScores(array)
+        this.engine.endGame(positions)
+    }
+
+    calculateScores(scores) {
+        let positions = [];
+        let scoreChecker = []
+        for (const score of scores) {
+            scoreChecker.push(score)
+        }
+        for (let i = 0; i < 4; i++) {
+            let playerwon = null
+            let highestScore = -Infinity;
+            for (let i = 0; i < 4; i++) {
+                if (scoreChecker[i] > highestScore) {
+                    highestScore = scoreChecker[i]
+                    playerwon = i + 1
+                }
             }
+            positions.push(playerwon)
+            scoreChecker[scoreChecker.indexOf(highestScore)] = -1
         }
-        const ui = new UI()
-        let label = new Label({
-            pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2),
-            font: ui.spriteFont
-            })
-            label.anchor = new Vector(0.5,0.5)
-        if (playerwon == null) {
-            label.text = 'no one won boo'
-        } else {
-            label.text = `player${playerwon} won!`
-        }
-        this.add(label)
-        this.engine.endGame(playerwon)
+        return positions
     }
 }

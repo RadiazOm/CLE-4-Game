@@ -42,8 +42,9 @@ import rennerMusic from "../../sounds/8-bit_mechanical_complex.mp3"
 export class PlasRenner extends Scene {
 
     engine;
-    ganzen= [];
+    ganzen = [];
     gameMusic = new Audio(rennerMusic)
+    positions = [];
 
     constructor() {
         super()
@@ -79,6 +80,17 @@ export class PlasRenner extends Scene {
     Button0(player) {
         console.log('kjdfgkj')
         this.ganzen[player - 1].press()
+    }
+
+    finishedPlayer(player) {
+        this.positions.push(player)
+    }
+
+    onPostUpdate() {
+        if(this.positions.length == 4) {
+            this.engine.endGame(this.positions)
+        }
+
     }
 }
 

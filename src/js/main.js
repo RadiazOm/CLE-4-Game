@@ -78,8 +78,8 @@ export class Game extends Engine {
         this.goToScene('explanation', game)
     }
 
-    endGame(player) {
-        this.goToScene('scoreboard', player)
+    endGame(positions) {
+        this.goToScene('scoreboard', positions)
     }
 
     addColours(array) {

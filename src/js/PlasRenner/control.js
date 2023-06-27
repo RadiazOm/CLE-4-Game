@@ -2,12 +2,15 @@ import { Actor, Vector, Input } from "excalibur"
 
 export class GansWit extends Actor {
 
+    finished = false;
     player
     engine
 
     constructor(player){
         super()
         this.player = player
+
+        document.addEventListener('click', () => {this.press()})
     }
 
     onInitialize(engine) {
@@ -15,12 +18,16 @@ export class GansWit extends Actor {
     }
 
     onPreUpdate() {
-        if (this.pos.x > 325) {
-            this.engine.endGame(this.player)
+        if (this.pos.x > 325 && this.finished == false) {
+            this.finished = true
+            this.engine.currentScene.finishedPlayer(this.player)
         }
     }
 
     press() {
+        if (this.finished == true) {
+            return;
+        }
         this.pos.x += 5
     }
 
