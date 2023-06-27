@@ -15,6 +15,8 @@ import cursorFurkanImage from "../images/Cursor_Furkan.png";
 import backgroundCatcherImage from "../images/background.png";
 import floatingGooseImage from "../images/gansWitDrijven.png";
 import topdownGooseImage from "../images/topdownGoose.png"
+import balloonImage from "../images/balloon.png"
+import islandImage from "../images/island.png"
 import characterImage from "../images/characterCanvas.png"
 import portraitRedImage from "../images/goosePortraitRed.png"
 import portraitBlueImage from "../images/goosePortrait.png"
@@ -70,6 +72,8 @@ const Resources = {
   BackgroundCatcher: new ImageSource(backgroundCatcherImage),
   GooseFloating: new ImageSource(floatingGooseImage),
   TopdownGoose: new ImageSource(topdownGooseImage),
+  Balloon: new ImageSource(balloonImage),
+  Island: new ImageSource(islandImage),
   CharacterCanvas: new ImageSource(characterImage),
   RedPortrait: new ImageSource(portraitRedImage),
   BluePortrait: new ImageSource(portraitBlueImage),
@@ -123,6 +127,8 @@ const ResourceLoader = new Loader([
   Resources.BackgroundCatcher,
   Resources.GooseFloating,
   Resources.TopdownGoose,
+  Resources.Balloon,
+  Resources.Island,
   Resources.CharacterCanvas,
   Resources.RedPortrait,
   Resources.BluePortrait,
