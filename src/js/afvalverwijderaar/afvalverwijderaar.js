@@ -1,10 +1,11 @@
-import { DisplayMode, Physics, Scene, Timer} from "excalibur"
+import { DisplayMode, Label, Physics, Scene, Timer, Vector} from "excalibur"
 import { Background } from './background'
 import { Banaan } from "./banaan"
 import { ScoreTracker } from "./scoreTracker"
 import { Cursor } from "./cursor"
 import { Resources } from "../loader"
 import afvalMusic from "../../sounds/one_0.mp3"
+import { UI } from "../UI"
 
 // import { Timer } from "./timer"
 
@@ -67,6 +68,16 @@ export class Afvalverwijderaar extends Scene {
       this.cursors.push(cursor)
     }
 
+    let ui = new UI()
+
+    let label = new Label({
+      pos: new Vector(engine.screen.drawWidth / 2, 10),
+      text: `${this.time}s`,
+      font: ui.spriteFont
+    })
+    label.anchor = new Vector(0.5,0.5)
+    this.add(label)
+
     const timer = new Timer({
       fcn: () => {
           if (this.time <= 0) {
@@ -74,6 +85,7 @@ export class Afvalverwijderaar extends Scene {
               this.gameover()
           } else {
               this.time -= 1
+              label.text = `${this.time}s`
               console.log(this.time);
           }
       },
