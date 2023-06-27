@@ -17,12 +17,10 @@ export class Cursor extends Actor {
         this.z = 1
         this.player = player;
         this.deer = deer;
-        console.log(this.deer)
     }
 
     onInitialize(engine) {
         this.engine = engine
-        console.log(this.graphics)
         this.pos = new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2)
 
         switch (this.player) {
@@ -50,7 +48,6 @@ export class Cursor extends Actor {
         if (this.engine.currentScene.gameOver === true) {
             return;
         }
-        console.log(this.pos.x + '+' + this.pos.y)
         if (this.player === 1) {
             this.vel.x = this.engine.mainController.player1.getXAxis() * 100
             this.vel.y = this.engine.mainController.player1.getYAxis() * 100
