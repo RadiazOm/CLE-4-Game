@@ -17,8 +17,7 @@ export class newText extends UI {
         this.label = new Label({
             text: this.text,
             pos: this.pos,
-            font: this.spriteFont,
-            scale: new Vector(0.5,0.5)
+            font: this.tinyFont,
         })
         this.label.anchor = new Vector(0.5,0.5)
         this.addChild(this.label)

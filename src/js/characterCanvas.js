@@ -92,7 +92,7 @@ export class CharacterCanvas extends UI {
 
     honk() {
         Resources.Honk.play()
-        let quack = new newText('quack', new Vector(50 + ((this.player === 2 || this.player === 4) * 190), 30 + ((this.player === 3 || this.player === 4) * 100)))
+        let quack = new newText('honk', new Vector(50 + ((this.player === 2 || this.player === 4) * 190), 30 + ((this.player === 3 || this.player === 4) * 100)))
         this.portrait.graphics.use(this.honkSprites[this.currentSpriteIndex])
         this.addChild(quack)
         let timer = new Timer({

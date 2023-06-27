@@ -39,10 +39,9 @@ export class Explanation extends Scene {
 
         let readyLabel = new Label({
             pos: new Vector(200, 160),
-            text: 'Press x to ready up!',
-            font: ui.spriteFont
+            text: 'Press ( to ready up!',
+            font: ui.tinyFont
         })
-        readyLabel.scale = new Vector(0.5,0.5)
         this.add(readyLabel)
 
         document.addEventListener('keyup', (e) => {
@@ -110,17 +109,15 @@ export class Explanation extends Scene {
             case 'afvalverwijderen':
                 explanation = new Label({
                     pos: new Vector(210, 10),
-                    text: 'Gebruik de\njoystick om de\ncursus boven de\nbananen op te\nruimen met X.',
-                    font: ui.spriteFont
+                    text: 'Gebruik de\njoystick om de\ncursus boven de\nbananen op te\nruimen met (.',
+                    font: ui.tinyFont
                 })
-                explanation.scale = new Vector(0.5,0.5)
                 this.add(explanation)
                 controls = new Label({
                     pos: new Vector(10, 150),
-                    text: 'beweeg      pak op',
-                    font: ui.spriteFont
+                    text: 'beweeg         pak op',
+                    font: ui.tinyFont
                 })
-                controls.scale = new Vector(0.5,0.5)
                 this.add(controls)
                 this.labels.push(controls)
                 this.labels.push(explanation)
@@ -128,17 +125,15 @@ export class Explanation extends Scene {
             case 'hertensleper':
                 explanation = new Label({
                     pos: new Vector(210, 10),
-                    text: 'Beweeg met de\njoystick de\ncursus zodat je\nboven herten X\nkan drukken om\nze vast te\npakken. Sleep\nze daarna terug\nnaar jouw hok om\nmet X het\nlos te laten\nin jouw hok.',
-                    font: ui.spriteFont
+                    text: 'Beweeg met de\njoystick de\ncursus zodat je\nboven herten (\nkan drukken om\nze vast te\npakken. Sleep\nze daarna terug\nnaar jouw hok om\nmet ( het\nlos te laten\nin jouw hok.',
+                    font: ui.tinyFont
                 })
-                explanation.scale = new Vector(0.5,0.5)
                 this.add(explanation)
                 controls = new Label({
                     pos: new Vector(10, 150),
-                    text: 'beweeg      pak op',
-                    font: ui.spriteFont
+                    text: 'beweeg         pak op',
+                    font: ui.tinyFont
                 })
-                controls.scale = new Vector(0.5,0.5)
                 this.add(controls)
                 this.labels.push(controls)
                 this.labels.push(explanation)
@@ -146,17 +141,15 @@ export class Explanation extends Scene {
             case 'goosecatcher':
                 explanation = new Label({
                     pos: new Vector(210, 10),
-                    text: 'Beweeg je cursor\nmet de joystick\nom zoveel mogelijk\nganzen te vangen\nmet X voordat je\ntegenstanders het\ndoen.',
-                    font: ui.spriteFont
+                    text: 'Beweeg je cursor\nmet de joystick\nom zoveel mogelijk\nganzen te vangen\nmet ( voordat je\ntegenstanders het\ndoen.',
+                    font: ui.tinyFont
                 })
-                explanation.scale = new Vector(0.5,0.5)
                 this.add(explanation)
                 controls = new Label({
                     pos: new Vector(10, 150),
-                    text: 'beweeg      vang',
-                    font: ui.spriteFont
+                    text: 'beweeg         vang',
+                    font: ui.tinyFont
                 })
-                controls.scale = new Vector(0.5,0.5)
                 this.add(controls)
                 this.labels.push(controls)
                 this.labels.push(explanation)
@@ -164,17 +157,15 @@ export class Explanation extends Scene {
             case 'plasrenner':
                 explanation = new Label({
                     pos: new Vector(210, 10),
-                    text: 'Druk zo snel\nmogelijk achter\nelkaar op X\nom te rennen\nmet jouw gans\nen als eerste\nover de finish\nte krijgen.',
-                    font: ui.spriteFont
+                    text: 'Druk zo snel\nmogelijk achter\nelkaar op (\nom te rennen\nmet jouw gans\nen als eerste\nover de finish\nte krijgen.',
+                    font: ui.tinyFont
                 })
-                explanation.scale = new Vector(0.5,0.5)
                 this.add(explanation)
                 controls = new Label({
                     pos: new Vector(10, 150),
-                    text: '    ren',
-                    font: ui.spriteFont
+                    text: '     ren',
+                    font: ui.tinyFont
                 })
-                controls.scale = new Vector(0.5,0.5)
                 this.add(controls)
                 this.labels.push(controls)
                 this.labels.push(explanation)

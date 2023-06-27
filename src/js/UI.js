@@ -5,6 +5,7 @@ import { Resources, ResourceLoader } from "./loader.js";
 export class UI extends ScreenElement { 
 
     spriteFont;
+    tinyFont;
 
     constructor() {
         super({
@@ -23,10 +24,27 @@ export class UI extends ScreenElement {
         })
 
         this.spriteFont = new SpriteFont({
-            alphabet: '0123456789: ABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%+-*/=.[]{}^',
+            alphabet: '0123456789: ABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%+-*/=.[]{}^()',
             caseInsensitive: true,
             spriteSheet: spriteFontSheet,
-            spacing: 0,
+            spacing: 0
+        })
+
+        const SpriteTinySheet = SpriteSheet.fromImageSource({
+            image: Resources.TinyFontMap,
+            grid: {
+                rows: 4,
+                columns: 13,
+                spriteWidth: 7,
+                spriteHeight: 9
+            }
+        })
+
+        this.tinyFont = new SpriteFont({
+            alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ., :!()1234567890[]{}',
+            caseInsensitive: true,
+            spriteSheet: SpriteTinySheet,
+            spacing: 0
         })
     }
 }

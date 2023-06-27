@@ -8,6 +8,7 @@ import endMusic from "../sounds/8bitvictory.ogg"
 export class ScoreBoard extends Scene {
 
     labels = [];
+    starting = false;
     engine;
     scores = [0,0,0,0];
     playerFont;
@@ -21,10 +22,17 @@ export class ScoreBoard extends Scene {
     onInitialize(engine) {
         this.engine = engine
         for (let i = 0; i < 4; i++) {
-            let label = new newText(`${this.getPlayerText(i + 1)}player${i + 1}:0`, new Vector(this.engine.screen.drawWidth / 2, 50 + i * 20))
+            let label = new newText(`${this.getPlayerText(i + 1)}player${i + 1}:0`, new Vector(this.engine.screen.drawWidth / 2, 20 + i * 20))
             this.labels.push(label)
             this.add(label)
         }
+        let ui = new UI()
+        let label = new Label({
+            pos: new Vector(this.engine.screen.drawWidth / 2 - 85, 160),
+            text: 'P1: press ) to continue',
+            font: ui.tinyFont
+        })
+        this.add(label)
     }
 
     onDeactivate() {
@@ -34,6 +42,7 @@ export class ScoreBoard extends Scene {
     onActivate(data) {
         this.scoreMusic.loop = true
         this.scoreMusic.play()
+        this.starting = false
         let positions = data.data
         if (positions !== null) {
             this.givePoints(positions)
@@ -47,8 +56,9 @@ export class ScoreBoard extends Scene {
     }
 
     Button1(player) {
-        if (player == 1 && this.final == false) {
+        if (player == 1 && this.starting == false) {
             this.countdown()
+            this.starting = true
         }
     }
 
@@ -98,7 +108,7 @@ export class ScoreBoard extends Scene {
 
         let label = new Label({
             text: time.toString(),
-            pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2 + 16),
+            pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2 + 40),
             font: ui.spriteFont
         })
         label.anchor = new Vector(0.5,0.5)

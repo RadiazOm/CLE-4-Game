@@ -10,6 +10,7 @@ import cursor4Image from "../images/cursor4.png"
 import deerImage from "../images/deer.png"
 import cageImage from "../images/cage.png"
 import fontMap from "../images/tilemap_packed_font.png"
+import tinyFontMap from "../images/tinyfont.png"
 import cursorFurkanImage from "../images/Cursor_Furkan.png";
 import backgroundCatcherImage from "../images/background.png";
 import floatingGooseImage from "../images/gansWitDrijven.png";
@@ -63,6 +64,7 @@ const Resources = {
   Deer: new ImageSource(deerImage),
   Cage: new ImageSource(cageImage),
   Fontmap: new ImageSource(fontMap),
+  TinyFontMap: new ImageSource(tinyFontMap),
   CursorFurkan: new ImageSource(cursorFurkanImage),
   BackgroundCatcher: new ImageSource(backgroundCatcherImage),
   GooseFloating: new ImageSource(floatingGooseImage),
@@ -114,6 +116,7 @@ const ResourceLoader = new Loader([
   Resources.Deer,
   Resources.Cage,
   Resources.Fontmap,
+  Resources.TinyFontMap,
   Resources.CursorFurkan,
   Resources.BackgroundCatcher,
   Resources.GooseFloating,
