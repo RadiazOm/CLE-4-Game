@@ -10,7 +10,7 @@ And then you should be ready to go
 
 # How to get controller support
 
-Ffter you finished setting up your IDE execute this line of code in your terminal
+After you finished setting up your IDE execute this line of code in your terminal
 
 --
 npm install git@github.com:HR-CMGT/arcade-game.git

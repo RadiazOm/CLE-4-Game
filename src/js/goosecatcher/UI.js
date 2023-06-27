@@ -15,7 +15,7 @@ export class UI extends ScreenElement {
         const spriteFontSheet = SpriteSheet.fromImageSource({
             image: Resources.Fontmap,
             grid: {
-                rows: 4,
+                rows: 5,
                 columns: 12,
                 spriteWidth: 16,
                 spriteHeight: 16,
@@ -23,7 +23,7 @@ export class UI extends ScreenElement {
         })
 
         this.spriteFont = new SpriteFont({
-            alphabet: '0123456789: ABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%+-*/=.',
+            alphabet: '0123456789: ABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%+-*/=.[]{}',
             caseInsensitive: true,
             spriteSheet: spriteFontSheet,
             spacing: 0,

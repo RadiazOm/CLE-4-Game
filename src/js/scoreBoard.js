@@ -1,13 +1,18 @@
 import { Scene, Vector, Timer, Label } from "excalibur";
 import { newText } from "./text";
 import { UI } from "./UI";
+import { Resources } from "./loader";
+import endMusic from "../sounds/8bitvictory.ogg"
+
 
 export class ScoreBoard extends Scene {
 
     labels = [];
     engine;
     scores = [0,0,0,0];
+    playerFont;
     final = false;
+    scoreMusic = new Audio(endMusic)
 
     constructor() {
         super()
@@ -16,30 +21,26 @@ export class ScoreBoard extends Scene {
     onInitialize(engine) {
         this.engine = engine
         for (let i = 0; i < 4; i++) {
-            let label = new newText(`player${i + 1}:0`, new Vector(this.engine.screen.drawWidth / 2, 50 + i * 20))
+            let label = new newText(`${this.getPlayerText(i + 1)}player${i + 1}:0`, new Vector(this.engine.screen.drawWidth / 2, 50 + i * 20))
             this.labels.push(label)
             this.add(label)
         }
     }
 
+    onDeactivate() {
+        this.scoreMusic.pause()
+    }
+
     onActivate(data) {
+        this.scoreMusic.loop = true
+        this.scoreMusic.play()
         let player = data.data
         if (player !== null) {
             this.scores[player - 1]++
-            this.labels[player - 1].changeText(`player${player}:${this.scores[player - 1]}`)
+            this.labels[player - 1].changeText(`${this.getPlayerText(player)}player${player}:${this.scores[player - 1]}`)
         }
-        if (this.engine.scenesRemaining.length == 0) {
-            let highestScore = 0
-            let playerwon = null
-            for (const score of this.scores) {
-                if (highestScore < score) {
-                    highestScore = score
-                    playerwon = this.scores.indexOf(score)
-                }
-            }
-            let label = new newText(`player${playerwon + 1} won!`, new Vector(this.engine.screen.drawWidth / 2, 130))
-            this.add(label)
-            this.final = true
+        if (this.engine.scenesRemaining.length == 3) {
+            this.engine.goToScene('endscene', this.scores)
         }
     }
 
@@ -47,6 +48,26 @@ export class ScoreBoard extends Scene {
         if (player == 1 && this.final == false) {
             this.countdown()
         }
+    }
+
+    
+    getPlayerText(player) {
+        let playerFont
+        switch (this.engine.getColour(player)) {
+            case 0:
+                playerFont = '[' 
+                break;
+            case 1:
+                playerFont = ']' 
+                break;
+            case 2:
+                playerFont = '{'
+                break; 
+            case 3:
+                playerFont = '}'  
+                break;   
+        }
+        return playerFont;
     }
 
     countdown() {
@@ -69,6 +90,7 @@ export class ScoreBoard extends Scene {
                     this.remove(timer)
                     label.kill()
                 } else {
+                    Resources.SelectSound.play()
                     time -= 1
                     label.text = time.toString()
                 }

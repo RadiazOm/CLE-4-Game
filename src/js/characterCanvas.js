@@ -1,4 +1,4 @@
-import { Actor, Vector } from "excalibur"
+import { Actor, Vector, Timer, Axis } from "excalibur"
 import { UI } from "./UI";
 import { Resources } from "./loader";
 import { newText } from "./text";
@@ -7,16 +7,21 @@ export class CharacterCanvas extends UI {
 
     engine;
     player;
+    axis;
     portraitSprites;
+    honkSprites;
     portrait;
     currentSpriteIndex;
     cooldown = 0;
+    ready = false;
+    readyLabel;
 
 
     constructor(player) {
         super()
         this.player = player
         this.portraitSprites = [Resources.BluePortrait.toSprite(), Resources.YellowPortrait.toSprite(), Resources.GreenPortrait.toSprite(), Resources.RedPortrait.toSprite()]
+        this.honkSprites = [Resources.BlueHonk.toSprite(), Resources.YellowHonk.toSprite(), Resources.GreenHonk.toSprite(),Resources.RedHonk.toSprite(),]
     }
 
     onInitialize(engine) {
@@ -39,6 +44,9 @@ export class CharacterCanvas extends UI {
 
         let text = new newText(`player${this.player} connected`, new Vector(70 + ((this.player === 2 || this.player === 4) * 190), 10 + ((this.player === 3 || this.player === 4) * 100)))
         this.addChild(text)
+
+        this.readyLabel = new newText('', new Vector(85, 70))
+        background.addChild(this.readyLabel)
     }
 
     changePortrait(changeIndex) {
@@ -53,12 +61,71 @@ export class CharacterCanvas extends UI {
     }
 
     onPreUpdate() {
-        // if (this.cooldown <= 0 && Math.round(this.engine.mainController.player1.getXAxis())) {
-        //     console.log(Math.round(this.engine.mainController.player1.getXAxis()))
-        //     this.changePortrait(Math.round(this.engine.mainController.player1.getXAxis()))
-        //     this.cooldown = 30
-        // } else {
-        //     this.cooldown--
-        // }
+        if (this.ready) {
+            return;
+        }
+        if (this.cooldown <= 0 && this.axis) {
+            Resources.MenuSelect.play()
+            this.changePortrait(this.axis)
+            this.cooldown = 30
+        } else {
+            this.cooldown--
+        }
+    }
+
+    onPostUpdate() {
+        if (this.player === 1 && typeof this.engine.mainController.player1 !== 'undefined') {
+            this.axis = Math.round(this.engine.mainController.player1.getXAxis())
+        }
+        if (this.player === 2 && typeof this.engine.mainController.player2 !== 'undefined') {
+            this.axis = Math.round(this.engine.mainController.player2.getXAxis())
+        }
+        if (this.player === 3 && typeof this.engine.mainController.player3 !== 'undefined') {
+            this.axis = Math.round(this.engine.mainController.player3.getXAxis())
+
+        }
+        if (this.player === 4 && typeof this.engine.mainController.player4 !== 'undefined') {
+            this.axis = Math.round(this.engine.mainController.player4.getXAxis())
+        }
+    }
+
+
+    honk() {
+        Resources.Honk.play()
+        let quack = new newText('quack', new Vector(50 + ((this.player === 2 || this.player === 4) * 190), 30 + ((this.player === 3 || this.player === 4) * 100)))
+        this.portrait.graphics.use(this.honkSprites[this.currentSpriteIndex])
+        this.addChild(quack)
+        let timer = new Timer({
+            fcn: () => {
+                this.portrait.graphics.use(this.portraitSprites[this.currentSpriteIndex])
+                this.removeChild(quack)
+                this.engine.currentScene.remove(timer)
+            },
+            interval: 200,
+            repeats: false
+        })
+        timer.start()
+        this.engine.currentScene.add(timer)
+    }
+
+    select() {
+        for (const colour of this.engine.currentScene.selectedColours) {
+            console.log(colour + ' ' + this.currentSpriteIndex)
+            if (colour === this.currentSpriteIndex) {
+                return;
+            }
+        }
+        Resources.Ready.play()
+        this.engine.currentScene.selectedColours[this.player - 1] = this.currentSpriteIndex
+        this.ready = true
+        this.readyLabel.changeText('Ready!')
+        console.log('colour selected!')
+    }
+
+    deselect() {
+        Resources.HertDrop.play()
+        this.ready = false
+        this.readyLabel.changeText('')
+        this.engine.currentScene.selectedColours[this.player - 1] = null
     }
 }

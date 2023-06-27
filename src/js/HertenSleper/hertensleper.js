@@ -7,6 +7,8 @@ import { CageZone } from "./cageZone";
 import { ScoreTracker } from "./scoreTracker";
 import { GameTimer } from "./timer";
 import { UI } from "../UI";
+import hertenMusic from "../../sounds/fight.wav"
+
 
 export class HertenSleper extends Scene {
 
@@ -17,6 +19,7 @@ export class HertenSleper extends Scene {
     time = 25;
     engine;
     gameOver = false;
+    gameMusic = new Audio(hertenMusic)
 
     constructor(){
         super()
@@ -24,9 +27,16 @@ export class HertenSleper extends Scene {
 
     onActivate() {
         Physics.useArcadePhysics()
+        this.gameMusic.loop = true
+        this.gameMusic.play()
+    }
+
+    onDeactivate() {
+        this.gameMusic.pause()
     }
 
     onInitialize(engine) {
+        this.gameMusic.loop = true
         this.engine = engine
         let background = new Actor({
             anchor: new Vector(0,0)
@@ -34,13 +44,12 @@ export class HertenSleper extends Scene {
         background.graphics.use(Resources.hertMap.toSprite())
         this.add(background)
 
-        for (let x = 0; x < 370; x+= 360 - Resources.Cage.width * 1.2) {
+        for (let x = 50; x < 250; x+= 250 - Resources.Cage.width * 1.2) {
             for (let y = 0; y < 190; y+= 180 - Resources.Cage.height * 1.2) {
                 let cage = new Cage()
                 cage.pos.x = x
                 cage.pos.y = y
                 this.add(cage)
-                console.log(cage.pos.x + ' ' + cage.pos.y)
             }
         }
 

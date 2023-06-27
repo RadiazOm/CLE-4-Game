@@ -3,6 +3,7 @@ import { newText } from "./text";
 import { Resources } from "./loader";
 import { CharacterCanvas } from "./characterCanvas";
 import { UI } from "./UI";
+import characterMusic from "../sounds/8bit-Bossa.mp3"
 
 export class characterSelection extends Scene {
 
@@ -11,8 +12,11 @@ export class characterSelection extends Scene {
     player2connected = false;
     player3connected = false;
     player4connected = false;
+    characterCanvases = [];
     begin = false; 
     starting = false;
+    menuMusic = new Audio(characterMusic)
+    selectedColours = [null,null,null,null];
     
 
     constructor() {
@@ -20,6 +24,9 @@ export class characterSelection extends Scene {
     }
 
     onInitialize(engine) {
+        this.menuMusic.loop = true
+        
+
         this.engine = engine;
         for (let x = 70; x < 370; x+= 220) {
             for (let y = 10; y < 190; y+= 160) {
@@ -31,10 +38,20 @@ export class characterSelection extends Scene {
         }
 
         document.addEventListener('keyup', (e) => {
-            if (e.key == ' '){
+            if (e.key == 'w'){
                 this.begin = true
+                console.log('spatie')
             }
         })
+    }
+
+    onActivate() {
+        this.menuMusic.loop = true 
+        this.menuMusic.play()       
+    }
+
+    onDeactivate() {
+        this.menuMusic.pause()
     }
 
     onPreUpdate() {
@@ -55,15 +72,39 @@ export class characterSelection extends Scene {
             this.connectplayer(4)
         }
 
-        if (this.player1connected && this.player2connected && this.player3connected&& this.player4connected && !this.starting && this.begin) {
+        if (this.player1connected && !this.starting && this.begin) {
             this.countdown()
             this.starting = true
+        }
+
+        this.begin = true
+        for (const colour of this.selectedColours) {
+            if (colour === null) {
+                this.begin = false
+            }
         }
     }
 
     connectplayer(player) {
         let characterCanvas = new CharacterCanvas(player)
         this.add(characterCanvas)
+        this.characterCanvases.push(characterCanvas)
+    }
+
+    Button3(player) {
+        console.log('kwak')
+        this.characterCanvases[player - 1].honk()
+    }
+
+    Button0(player) {
+        this.characterCanvases[player - 1].select()
+    }
+
+    Button1(player) {
+        if (this.begin) {
+            return;
+        }
+        this.characterCanvases[player - 1].deselect()
     }
 
     countdown() {
@@ -81,9 +122,11 @@ export class characterSelection extends Scene {
         const timer = new Timer({
             fcn: () => {
                 if (time <= 0) {
+                    this.engine.addColours(this.selectedColours)
                     this.engine.goToGame()
                     timer.cancel()
                 } else {
+                    Resources.SelectSound.play()
                     time -= 1
                     label.text = time.toString()
                 }

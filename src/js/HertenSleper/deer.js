@@ -17,8 +17,8 @@ export class Deer extends Actor {
         this.engine = engine
         this.graphics.use(Resources.Deer.toSprite())
         this.body.collisionType = CollisionType.Active
-        this.pos.x = Math.random() * this.engine.screen.drawWidth
-        if (this.pos.x < 225 && this.pos.x > 135) {
+        this.pos.x = Math.random() * (this.engine.screen.drawWidth - 100) + 50
+        if (this.pos.x < 200 && this.pos.x > 140) {
             this.pos.y = Math.random() * this.engine.screen.drawHeight
         } else {
             this.pos.y = (Math.random() * 10) + (this.engine.screen.drawHeight - 5) / 2
