@@ -54,6 +54,8 @@ export class Loading extends Scene {
 
     onDeactivate() {
         this.timer.stop()
+        this.engine.backgroundColor = Color.fromHex('#2185D0')
+
     }
 
     finishLoading() {

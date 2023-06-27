@@ -11,6 +11,7 @@ import { PlasRenner } from "./PlasRenner/plasrenner.js";
 import { MainMenu } from "./mainMenu.js";
 import { Explanation } from "./gameExplanation.js";
 import { Loading } from "./loading.js";
+import { FinalScore } from "./finalScore.js";
 
 
 export class Game extends Engine {
@@ -54,6 +55,7 @@ export class Game extends Engine {
         this.addScene('mainmenu', new MainMenu())
         this.addScene('characterselection', new characterSelection())
         this.addScene('scoreboard', new ScoreBoard())
+        this.addScene('endscene', new FinalScore())
         this.addScene('explanation', new Explanation())
         this.addScene('loading', new Loading)
 

@@ -23,8 +23,13 @@ import portraitBlueHonkImage from "../images/PortraitBlueHonk.png"
 import portraitGreenHonkImage from "../images/PortraitGreenHonk.png"
 import portraitYellowHonkImage from "../images/PortraitYellowHonk.png"
 import plasrennerBackgroundImage from "../images/plasrennerBackground.png";
+import afvalExplanationImage from "../images/betweenscene- afval.png"
+import catcherExplanationImage from "../images/betweenscene-goosecatcher.png"
+import raceExplanationImage from "../images/betweenscene-gooserace.png"
+import hertExplanationImage from "../images/betweenscene-hertensleper.png"
 import gansWitImage from "../images/gansWit.png";
 import titleImage from "../images/GanzenPartyTitle.png"
+import endBackgroundImage from "../images/Eindscene.png"
 import animatingGooseImage from "../images/gooseDance.png"
 
 import hertenMusic from "../sounds/fight.wav"
@@ -34,6 +39,7 @@ import gooseMusic from "../sounds/bgm_action_3.mp3"
 import characterMusic from "../sounds/8bit-Bossa.mp3"
 import endMusic from "../sounds/8bitvictory.ogg"
 import explanationMusic from "../sounds/happy.mp3"
+import victoryMusic from "../sounds/victory.mp3"
 import select from "../sounds/blipSelect.wav"
 import menuSelect from "../sounds/menuSelect.wav"
 import hertPickup from "../sounds/hertPickup.wav"
@@ -69,9 +75,14 @@ const Resources = {
   GreenHonk: new ImageSource(portraitGreenHonkImage),
   YellowHonk: new ImageSource(portraitYellowHonkImage),
   PlasrennerBackground: new ImageSource(plasrennerBackgroundImage),
+  EndBackground: new ImageSource(endBackgroundImage),
   GansWit: new ImageSource(gansWitImage),
   Title: new ImageSource(titleImage),
   AnimatingGoose: new ImageSource(animatingGooseImage),
+  AfvalExplanation: new ImageSource(afvalExplanationImage),
+  CatchExplanation: new ImageSource(catcherExplanationImage),
+  RaceExplanation: new ImageSource(raceExplanationImage),
+  HertExplanation: new ImageSource(hertExplanationImage),
 
   CharacterMusic: new Sound(characterMusic),
   EndMusic: new Sound(endMusic),
@@ -80,6 +91,7 @@ const Resources = {
   GooseMusic: new Sound(gooseMusic),
   AfvalMusic: new Sound(afvalMusic),
   ExplanationMusic: new Sound(explanationMusic),
+  VictoryMusic: new Sound(victoryMusic),
   MenuSelect: new Sound(menuSelect),
   HertPickup: new Sound(hertPickup),
   HertDrop: new Sound(hertDrop),
@@ -113,9 +125,14 @@ const ResourceLoader = new Loader([
   Resources.GreenHonk,
   Resources.YellowHonk,
   Resources.PlasrennerBackground,
+  Resources.EndBackground,
   Resources.GansWit,
   Resources.Title,
   Resources.AnimatingGoose,
+  Resources.AfvalExplanation,
+  Resources.CatchExplanation,
+  Resources.RaceExplanation,
+  Resources.HertExplanation,
 
   Resources.Kwak,
   Resources.Honk,
@@ -131,6 +148,7 @@ const ResourceLoader = new Loader([
   Resources.GooseMusic,
   Resources.EndMusic,
   Resources.ExplanationMusic,
+  Resources.VictoryMusic,
 ]);
 
 

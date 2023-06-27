@@ -1,16 +1,18 @@
 import ExplanationMusic from "../sounds/happy.mp3"
 import { UI } from "./UI";
-import { Scene, Vector, Timer, Label } from "excalibur"
+import { Scene, Vector, Timer, Label, Actor } from "excalibur"
 import { Resources } from "./loader";
 
 export class Explanation extends Scene {
 
     playersready = [null, null, null, null];
-    checkmarks = []
+    checkmarks = [];
+    labels = [];
     scene;
     engine;
     starting = false;
     explanationMusic = new Audio(ExplanationMusic)
+    background;
 
     constructor() {
         super()
@@ -20,6 +22,12 @@ export class Explanation extends Scene {
         this.engine = engine
         let ui = new UI()
 
+        this.background = new Actor({
+            pos: new Vector(0,0),
+            anchor: new Vector(0,0)
+        })
+        this.add(this.background)
+
         for(let i = 0; i < 4; i++) {
             let label = new Label({
                 pos: new Vector(250 + i * 20, 140),
@@ -28,6 +36,14 @@ export class Explanation extends Scene {
             })
             this.add(label)
         }
+
+        let readyLabel = new Label({
+            pos: new Vector(200, 160),
+            text: 'Press x to ready up!',
+            font: ui.spriteFont
+        })
+        readyLabel.scale = new Vector(0.5,0.5)
+        this.add(readyLabel)
 
         document.addEventListener('keyup', (e) => {
             if (e.key == 'w'){
@@ -45,14 +61,18 @@ export class Explanation extends Scene {
         }
         this.checkmarks = []
         this.scene = data.data
-        console.log(data)
+        this.background.graphics.use(this.getExplanationImage(this.scene))
+        this.createExplanationText(this.scene)
     }
 
     onDeactivate() {
         this.explanationMusic.pause()
+        for (const label of this.labels) {
+            label.kill()
+        }
     }
 
-    onPreUpdate() {
+    onPostUpdate() {
         let begin = true
         for(const ready of this.playersready) {
             if (ready == null) {
@@ -67,6 +87,99 @@ export class Explanation extends Scene {
 
     Button0(player) {
         this.readyPlayer(player)
+    }
+
+    getExplanationImage(scene) {
+        switch (scene) {
+            case 'afvalverwijderen':
+                return Resources.AfvalExplanation.toSprite()
+            case 'hertensleper':
+                return Resources.HertExplanation.toSprite()
+            case 'goosecatcher':
+                return Resources.CatchExplanation.toSprite()
+            case 'plasrenner':
+                return Resources.RaceExplanation.toSprite()
+        }
+    }
+
+    createExplanationText(scene) {
+        let ui = new UI()
+        let explanation
+        let controls
+        switch (scene) {
+            case 'afvalverwijderen':
+                explanation = new Label({
+                    pos: new Vector(210, 10),
+                    text: 'Gebruik de\njoystick om de\ncursus boven de\nbananen op te\nruimen met X.',
+                    font: ui.spriteFont
+                })
+                explanation.scale = new Vector(0.5,0.5)
+                this.add(explanation)
+                controls = new Label({
+                    pos: new Vector(10, 150),
+                    text: 'beweeg      pak op',
+                    font: ui.spriteFont
+                })
+                controls.scale = new Vector(0.5,0.5)
+                this.add(controls)
+                this.labels.push(controls)
+                this.labels.push(explanation)
+                break;
+            case 'hertensleper':
+                explanation = new Label({
+                    pos: new Vector(210, 10),
+                    text: 'Beweeg met de\njoystick de\ncursus zodat je\nboven herten X\nkan drukken om\nze vast te\npakken. Sleep\nze daarna terug\nnaar jouw hok om\nmet X het\nlos te laten\nin jouw hok.',
+                    font: ui.spriteFont
+                })
+                explanation.scale = new Vector(0.5,0.5)
+                this.add(explanation)
+                controls = new Label({
+                    pos: new Vector(10, 150),
+                    text: 'beweeg      pak op',
+                    font: ui.spriteFont
+                })
+                controls.scale = new Vector(0.5,0.5)
+                this.add(controls)
+                this.labels.push(controls)
+                this.labels.push(explanation)
+                break;
+            case 'goosecatcher':
+                explanation = new Label({
+                    pos: new Vector(210, 10),
+                    text: 'Beweeg je cursor\nmet de joystick\nom zoveel mogelijk\nganzen te vangen\nmet X voordat je\ntegenstanders het\ndoen.',
+                    font: ui.spriteFont
+                })
+                explanation.scale = new Vector(0.5,0.5)
+                this.add(explanation)
+                controls = new Label({
+                    pos: new Vector(10, 150),
+                    text: 'beweeg      vang',
+                    font: ui.spriteFont
+                })
+                controls.scale = new Vector(0.5,0.5)
+                this.add(controls)
+                this.labels.push(controls)
+                this.labels.push(explanation)
+                break;
+            case 'plasrenner':
+                explanation = new Label({
+                    pos: new Vector(210, 10),
+                    text: 'Druk zo snel\nmogelijk achter\nelkaar op X\nom te rennen\nmet jouw gans\nen als eerste\nover de finish\nte krijgen.',
+                    font: ui.spriteFont
+                })
+                explanation.scale = new Vector(0.5,0.5)
+                this.add(explanation)
+                controls = new Label({
+                    pos: new Vector(10, 150),
+                    text: '    ren',
+                    font: ui.spriteFont
+                })
+                controls.scale = new Vector(0.5,0.5)
+                this.add(controls)
+                this.labels.push(controls)
+                this.labels.push(explanation)
+                break;
+        }
     }
 
     readyPlayer(player) {

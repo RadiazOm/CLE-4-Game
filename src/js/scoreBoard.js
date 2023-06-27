@@ -40,17 +40,7 @@ export class ScoreBoard extends Scene {
             this.labels[player - 1].changeText(`${this.getPlayerText(player)}player${player}:${this.scores[player - 1]}`)
         }
         if (this.engine.scenesRemaining.length == 0) {
-            let highestScore = 0
-            let playerwon = null
-            for (const score of this.scores) {
-                if (highestScore < score) {
-                    highestScore = score
-                    playerwon = this.scores.indexOf(score)
-                }
-            }
-            let label = new newText(`${this.getPlayerText(playerwon + 1)}player${playerwon + 1} won!`, new Vector(this.engine.screen.drawWidth / 2, 130))
-            this.add(label)
-            this.final = true
+            this.engine.goToScene('endscene', this.scores)
         }
     }
 
