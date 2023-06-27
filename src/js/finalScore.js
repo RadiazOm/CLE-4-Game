@@ -1,4 +1,4 @@
-import { Actor, Label, Scene, Vector } from "excalibur";
+import { Actor, Label, Scene, Vector, SpriteSheet, Animation, range } from "excalibur";
 import { Resources } from "./loader";
 import { UI } from "./UI";
 import victoryMusic from "../sounds/victory.mp3"
@@ -10,6 +10,7 @@ export class FinalScore extends Scene {
     ui = new UI();
     goose = [Resources.BluePortrait.toSprite(), Resources.YellowPortrait.toSprite(), Resources.GreenPortrait.toSprite(), Resources.RedPortrait.toSprite()];
     victoryMusic = new Audio(victoryMusic)
+    crown;
 
     constructor() {
         super()
@@ -26,6 +27,7 @@ export class FinalScore extends Scene {
         this.createsecondgoose(this.positions[1])
         this.createthirdgoose(this.positions[2])
         this.createfourthgoose(this.positions[3])
+        this.add(this.crown)
     }
 
     onInitialize(engine) {
@@ -37,6 +39,22 @@ export class FinalScore extends Scene {
         })
         bg.graphics.use(Resources.EndBackground.toSprite())
         this.add(bg)
+        this.crown = new Actor({
+            pos: new Vector(175, -10)
+        })
+        let crownSpriteSheet = SpriteSheet.fromImageSource({
+            image: Resources.AnimatingCrown,
+            grid: { rows: 1, columns: 8, spriteWidth: 48, spriteHeight: 36}
+        })
+
+        const sparking = Animation.fromSpriteSheet(crownSpriteSheet, range(0, 8), 80)
+        this.crown.graphics.use(sparking)
+    }
+
+    onPostUpdate() {
+        if (this.crown.pos.y < 48) {
+            this.crown.pos.y += 0.1
+        }
     }
 
     getPlayerGoose(player) {

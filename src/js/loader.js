@@ -31,6 +31,7 @@ import gansWitImage from "../images/gansWit.png";
 import titleImage from "../images/GanzenPartyTitle.png"
 import endBackgroundImage from "../images/Eindscene.png"
 import animatingGooseImage from "../images/gooseDance.png"
+import animatingCrownImage from "../images/Sparklycrown.png"
 
 import hertenMusic from "../sounds/fight.wav"
 import rennerMusic from "../sounds/8-bit_mechanical_complex.mp3"
@@ -79,6 +80,7 @@ const Resources = {
   GansWit: new ImageSource(gansWitImage),
   Title: new ImageSource(titleImage),
   AnimatingGoose: new ImageSource(animatingGooseImage),
+  AnimatingCrown: new ImageSource(animatingCrownImage),
   AfvalExplanation: new ImageSource(afvalExplanationImage),
   CatchExplanation: new ImageSource(catcherExplanationImage),
   RaceExplanation: new ImageSource(raceExplanationImage),
@@ -129,6 +131,7 @@ const ResourceLoader = new Loader([
   Resources.GansWit,
   Resources.Title,
   Resources.AnimatingGoose,
+  Resources.AnimatingCrown,
   Resources.AfvalExplanation,
   Resources.CatchExplanation,
   Resources.RaceExplanation,

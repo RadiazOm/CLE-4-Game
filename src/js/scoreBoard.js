@@ -39,7 +39,7 @@ export class ScoreBoard extends Scene {
             this.scores[player - 1]++
             this.labels[player - 1].changeText(`${this.getPlayerText(player)}player${player}:${this.scores[player - 1]}`)
         }
-        if (this.engine.scenesRemaining.length == 0) {
+        if (this.engine.scenesRemaining.length == 3) {
             this.engine.goToScene('endscene', this.scores)
         }
     }
