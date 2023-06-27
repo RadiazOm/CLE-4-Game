@@ -56,7 +56,7 @@ export class Game extends Engine {
             this.scenesRemaining.push(i)
         }
 
-        this.goToScene('characterselection')
+        this.goToScene('afvalverwijderen')
     }
 
     onPreUpdate() {
