@@ -14,6 +14,7 @@ import tinyFontMap from "../images/tinyfont.png"
 import cursorFurkanImage from "../images/Cursor_Furkan.png";
 import backgroundCatcherImage from "../images/background.png";
 import floatingGooseImage from "../images/gansWitDrijven.png";
+import topdownGooseImage from "../images/topdownGoose.png"
 import characterImage from "../images/characterCanvas.png"
 import portraitRedImage from "../images/goosePortraitRed.png"
 import portraitBlueImage from "../images/goosePortrait.png"
@@ -68,6 +69,7 @@ const Resources = {
   CursorFurkan: new ImageSource(cursorFurkanImage),
   BackgroundCatcher: new ImageSource(backgroundCatcherImage),
   GooseFloating: new ImageSource(floatingGooseImage),
+  TopdownGoose: new ImageSource(topdownGooseImage),
   CharacterCanvas: new ImageSource(characterImage),
   RedPortrait: new ImageSource(portraitRedImage),
   BluePortrait: new ImageSource(portraitBlueImage),
@@ -120,6 +122,7 @@ const ResourceLoader = new Loader([
   Resources.CursorFurkan,
   Resources.BackgroundCatcher,
   Resources.GooseFloating,
+  Resources.TopdownGoose,
   Resources.CharacterCanvas,
   Resources.RedPortrait,
   Resources.BluePortrait,

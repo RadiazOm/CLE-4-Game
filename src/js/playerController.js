@@ -60,6 +60,14 @@ export class PlayerController{
         }
     }
 
+    getXAxis2() {
+        return navigator.getGamepads()[this.playerIndex - 1].axes[2].toFixed(1)
+    }
+    
+    getYAxis2() {
+        return navigator.getGamepads()[this.playerIndex - 1].axes[3].toFixed(1)
+    }
+
     getXAxis() {
         return navigator.getGamepads()[this.playerIndex - 1].axes[0].toFixed(1)
     }

@@ -12,6 +12,7 @@ import { MainMenu } from "./mainMenu.js";
 import { Explanation } from "./gameExplanation.js";
 import { Loading } from "./loading.js";
 import { FinalScore } from "./finalScore.js";
+import { IslandSlapper } from "./IslandSlapper/IslandSlapper.js";
 
 
 export class Game extends Engine {
@@ -48,6 +49,7 @@ export class Game extends Engine {
         this.addScene('goosecatcher', new GooseCatcher())
         this.addScene('afvalverwijderen', new Afvalverwijderaar())
         this.addScene('plasrenner', new PlasRenner())
+        this.addScene('islandslapper', new IslandSlapper())
         this.scenes.push('afvalverwijderen')
         this.scenes.push('hertensleper')
         this.scenes.push('goosecatcher')
@@ -75,7 +77,7 @@ export class Game extends Engine {
         let game = this.scenes[gameIndex]
         this.scenesRemaining.splice(this.scenesRemaining.indexOf(gameIndex), 1)
 
-        this.goToScene('explanation', game)
+        this.goToScene('islandslapper')
     }
 
     endGame(positions) {
