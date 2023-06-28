@@ -1,4 +1,4 @@
-import { Actor, Scene, Vector } from "excalibur";
+import { Actor, Scene, Vector, Animation, SpriteSheet, range} from "excalibur";
 import { Resources } from "./loader";
 
 export class MainMenu extends Scene {
@@ -7,6 +7,20 @@ export class MainMenu extends Scene {
     }
 
     onInitialize(engine) {
+
+        let mainMenuSpriteSheet = SpriteSheet.fromImageSource({
+            image: Resources.MainMenu,
+            grid: { rows: 1, columns: 4, spriteWidth: 360, spriteHeight: 180}
+        })
+
+        let mainMenuBackground = new Actor({
+            pos: new Vector(0, 0),
+            anchor: new Vector(0, 0)
+        })
+        const mainMenuAnimation = Animation.fromSpriteSheet(mainMenuSpriteSheet, range(0, 4), 500)
+        mainMenuBackground.graphics.use(mainMenuAnimation)
+
+        this.add(mainMenuBackground)
 
         let title = new Actor({
             pos: new Vector(engine.screen.drawWidth / 2, 50),
