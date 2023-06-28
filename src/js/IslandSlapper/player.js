@@ -71,26 +71,34 @@ export class Player extends Actor {
             // this.vel = new Vector(vector.x * 100, vector.y * 100)
             this.vel.x = this.engine.mainController.player1.getXAxis() * 100
             this.vel.y = this.engine.mainController.player1.getYAxis() * 100
-            let vector2 = new Vector(this.engine.mainController.player1.getXAxis2(), this.engine.mainController.player1.getYAxis2())
-            this.rotation = vector2.toAngle() + Math.PI / 2
+            let vector = new Vector(this.engine.mainController.player1.getXAxis2(), this.engine.mainController.player1.getYAxis2())
+            if (Math.abs(vector.x) > 0.1 && Math.abs(vector.y) > 0.1) {
+                this.rotation = vector.toAngle() + Math.PI / 2
+            }
         }
         if (this.player === 2 && typeof this.engine.mainController.player2 !== 'undefined') {
             this.vel.x = this.engine.mainController.player2.getXAxis() * 100
             this.vel.y = this.engine.mainController.player2.getYAxis() * 100
             let vector = new Vector(this.engine.mainController.player2.getXAxis2(), this.engine.mainController.player2.getYAxis2())
-            this.rotation = vector.toAngle() + Math.PI / 2
+            if (Math.abs(vector.x) > 0.1 && Math.abs(vector.y) > 0.1) {
+                this.rotation = vector.toAngle() + Math.PI / 2
+            }
         }
         if (this.player === 3 && typeof this.engine.mainController.player3 !== 'undefined') {
             this.vel.x = this.engine.mainController.player3.getXAxis() * 100
             this.vel.y = this.engine.mainController.player3.getYAxis() * 100
             let vector = new Vector(this.engine.mainController.player3.getXAxis2(), this.engine.mainController.player3.getYAxis2())
-            this.rotation = vector.toAngle() + Math.PI / 2
+            if (Math.abs(vector.x) > 0.1 && Math.abs(vector.y) > 0.1) {
+                this.rotation = vector.toAngle() + Math.PI / 2
+            }
         }
         if (this.player === 4 && typeof this.engine.mainController.player4 !== 'undefined') {
             this.vel.x = this.engine.mainController.player4.getXAxis() * 100
             this.vel.y = this.engine.mainController.player4.getYAxis() * 100
             let vector = new Vector(this.engine.mainController.player4.getXAxis2(), this.engine.mainController.player4.getYAxis2())
-            this.rotation = vector.toAngle() + Math.PI / 2
+            if (Math.abs(vector.x) > 0.1 && Math.abs(vector.y) > 0.1) {
+                this.rotation = vector.toAngle() + Math.PI / 2
+            }
         }
     }
 
