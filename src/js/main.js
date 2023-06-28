@@ -78,7 +78,7 @@ export class Game extends Engine {
         let game = this.scenes[gameIndex]
         this.scenesRemaining.splice(this.scenesRemaining.indexOf(gameIndex), 1)
 
-        this.goToScene('explanation', 'afvalverwijderen')
+        this.goToScene('explanation', game)
     }
 
     endGame(positions) {
