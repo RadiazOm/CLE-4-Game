@@ -1,4 +1,7 @@
 import { ImageSource, Sound, Resource, Loader , Color} from "excalibur";
+
+import mainMenu from "../images/mainMenuBackground.png"
+
 import afvalImage from "../images/backgrounds/backgroundAfval.png"
 import banaanImage from "../images/sprites/banaan.png"
 import fontmapImage from "../images/tilemap_packed_font.png"
@@ -62,6 +65,9 @@ import fall from "../sounds/random.wav"
 
 
 const Resources = {
+
+  MainMenu: new ImageSource(mainMenu),
+
   BackgroundAfval: new ImageSource(afvalImage),
   Banaan: new ImageSource(banaanImage),
   Fontmap: new ImageSource(fontmapImage),
@@ -123,6 +129,9 @@ const Resources = {
   Fall: new Sound(fall)
 };
 const ResourceLoader = new Loader([
+
+  Resources.MainMenu,
+
   Resources.BackgroundAfval,
   Resources.Banaan,
   Resources.Fontmap,
