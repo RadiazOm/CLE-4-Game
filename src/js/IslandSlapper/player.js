@@ -20,11 +20,30 @@ export class Player extends Actor {
 
     onInitialize(engine) {
         this.engine = engine
-        this.graphics.use(Resources.TopdownGoose.toSprite())
+        this.graphics.use(this.getSprite(this.player))
         this.setPosition(this.player)
 
         this.on('collisionstart', (event) => this.collisionEvent(event))
         this.on('exitviewport', (event) => this.lose(event))
+    }
+
+    getSprite(player) {
+        let playerSprite
+        switch (this.engine.getColour(player)) {
+            case 0:
+                playerSprite = Resources.TopdownBlueGoose.toSprite()
+                break;
+            case 1:
+                playerSprite = Resources.TopdownYellowGoose.toSprite()
+                break;
+            case 2:
+                playerSprite = Resources.TopdownGreenGoose.toSprite()
+                break; 
+            case 3:
+                playerSprite = Resources.TopdownRedGoose.toSprite() 
+                break;   
+        }
+        return playerSprite;
     }
 
     lose() {
