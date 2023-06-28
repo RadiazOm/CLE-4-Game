@@ -52,7 +52,7 @@ export class Afvalverwijderaar extends Scene {
     const afvalBackground = new Background()
     this.add(afvalBackground)
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 30; i++) {
       const banaan = new Banaan();
       this.add(banaan);
       this.bananen.push(banaan)

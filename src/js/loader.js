@@ -58,6 +58,7 @@ import readyUp from "../sounds/Ready.wav"
 import kwak from "../sounds/cannard.mp3"
 import honk from "../sounds/goose-honk.mp3"
 import fall from "../sounds/random.wav"
+import pickupTrash from "../sounds/pickupTrash.wav"
 
 
 
@@ -120,7 +121,8 @@ const Resources = {
   SelectSound: new Sound(select),
   Kwak: new Sound(kwak),
   Honk: new Sound(honk),
-  Fall: new Sound(fall)
+  Fall: new Sound(fall),
+  PickupTrash: new Sound(pickupTrash)
 };
 const ResourceLoader = new Loader([
   Resources.BackgroundAfval,
@@ -168,6 +170,7 @@ const ResourceLoader = new Loader([
   Resources.Kwak,
   Resources.Honk,
   Resources.Fall,
+  Resources.PickupTrash,
   Resources.CharacterMusic,
   Resources.IslandMusic,
   Resources.SelectSound,

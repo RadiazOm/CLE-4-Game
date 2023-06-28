@@ -70,6 +70,7 @@ export class Cursor extends Actor {
     press() {
         for (const banaan of this.engine.currentScene.bananen) {
             if (this.contains(banaan.pos.x, banaan.pos.y)) {
+                Resources.PickupTrash.play()
                 banaan.pickUp(this.player)
             }
         }
