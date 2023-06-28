@@ -55,7 +55,7 @@ import explanationMusic from "../sounds/happy.mp3"
 import victoryMusic from "../sounds/victory.mp3"
 import select from "../sounds/blipSelect.wav"
 import menuSelect from "../sounds/menuSelect.wav"
-// import hertPickup from "../sounds/hertPickup.wav"
+import hertPickup from "../sounds/hertPickup.mp3"
 import hertDrop from "../sounds/hertDrop.wav"
 import readyUp from "../sounds/Ready.wav"
 import kwak from "../sounds/cannard.mp3"
@@ -121,7 +121,7 @@ const Resources = {
   ExplanationMusic: new Sound(explanationMusic),
   VictoryMusic: new Sound(victoryMusic),
   MenuSelect: new Sound(menuSelect),
-  // HertPickup: new Sound(hertPickup),
+  HertPickup: new Sound(hertPickup),
   HertDrop: new Sound(hertDrop),
   Ready: new Sound(readyUp),
   SelectSound: new Sound(select),
@@ -184,7 +184,7 @@ const ResourceLoader = new Loader([
   Resources.IslandMusic,
   Resources.SelectSound,
   Resources.MenuSelect,
-  // Resources.HertPickup,
+  Resources.HertPickup,
   Resources.HertDrop,
   Resources.Ready,
   Resources.HertenMusic,
