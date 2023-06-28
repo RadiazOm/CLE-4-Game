@@ -102,34 +102,35 @@ export class ScoreBoard extends Scene {
     }
 
     countdown() {
-        let time = 3
+        this.engine.goToGame()
+        // let time = 3
 
-        const ui = new UI()
+        // const ui = new UI()
 
-        let label = new Label({
-            text: time.toString(),
-            pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2 + 40),
-            font: ui.spriteFont
-        })
-        label.anchor = new Vector(0.5,0.5)
-        this.add(label)
-        const timer = new Timer({
-            fcn: () => {
-                if (time <= 0) {
-                    this.engine.goToGame()
-                    timer.cancel()
-                    this.remove(timer)
-                    label.kill()
-                } else {
-                    Resources.SelectSound.play()
-                    time -= 1
-                    label.text = time.toString()
-                }
-            },
-            repeats: true,
-            interval: 1000
-        })
-        this.add(timer)
-        timer.start()
+        // let label = new Label({
+        //     text: time.toString(),
+        //     pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2 + 40),
+        //     font: ui.spriteFont
+        // })
+        // label.anchor = new Vector(0.5,0.5)
+        // this.add(label)
+        // const timer = new Timer({
+        //     fcn: () => {
+        //         if (time <= 0) {
+        //             this.engine.goToGame()
+        //             timer.cancel()
+        //             this.remove(timer)
+        //             label.kill()
+        //         } else {
+        //             Resources.SelectSound.play()
+        //             time -= 1
+        //             label.text = time.toString()
+        //         }
+        //     },
+        //     repeats: true,
+        //     interval: 1000
+        // })
+        // this.add(timer)
+        // timer.start()
     }
 }

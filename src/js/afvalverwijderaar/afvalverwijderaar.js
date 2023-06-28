@@ -20,6 +20,7 @@ export class Afvalverwijderaar extends Scene {
   bananen = [];
   time = 10;
   gameMusic = new Audio(afvalMusic)
+  gameOver = true;
 
 
 
@@ -37,6 +38,7 @@ export class Afvalverwijderaar extends Scene {
     Physics.useArcadePhysics()
     this.gameMusic.loop = true
     this.gameMusic.play(1.0)
+    this.countdown()
   }
 
   onDeactivate() {
@@ -68,10 +70,14 @@ export class Afvalverwijderaar extends Scene {
       this.cursors.push(cursor)
     }
 
+  }
+
+  beginGame() {
+    this.gameOver = false
     let ui = new UI()
 
     let label = new Label({
-      pos: new Vector(engine.screen.drawWidth / 2, 10),
+      pos: new Vector(this.engine.screen.drawWidth / 2, 10),
       text: `${this.time}s`,
       font: ui.spriteFont
     })
@@ -95,6 +101,35 @@ export class Afvalverwijderaar extends Scene {
   this.add(timer)
   timer.start()
   }
+
+  countdown() {
+    let time = 3
+
+    const ui = new UI()
+
+    let label = new Label({
+        text: time.toString(),
+        pos: new Vector(this.engine.screen.drawWidth / 2 - 16, this.engine.screen.drawHeight / 2 - 16),
+        font: ui.spriteFont
+    })
+    this.add(label)
+    const timer = new Timer({
+        fcn: () => {
+            if (time <= 1) {
+                this.beginGame()
+                timer.cancel()
+                label.kill()
+            } else {
+                time -= 1
+                label.text = time.toString()
+            }
+        },
+        repeats: true,
+        interval: 1000
+    })
+    this.add(timer)
+    timer.start()
+}
 
 
   gameover() {

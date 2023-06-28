@@ -25,7 +25,7 @@ export class GansWit extends Actor {
     }
 
     press() {
-        if (this.finished == true) {
+        if (this.finished == true || this.engine.currentScene.freeze) {
             return;
         }
         this.pos.x += 5

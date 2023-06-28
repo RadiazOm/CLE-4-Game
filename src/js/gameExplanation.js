@@ -98,6 +98,8 @@ export class Explanation extends Scene {
                 return Resources.CatchExplanation.toSprite()
             case 'plasrenner':
                 return Resources.RaceExplanation.toSprite()
+            case 'islandslapper':
+                return Resources.IslandExplanation.toSprite()
         }
     }
 
@@ -170,6 +172,22 @@ export class Explanation extends Scene {
                 this.labels.push(controls)
                 this.labels.push(explanation)
                 break;
+            case 'islandslapper':
+                explanation = new Label({
+                    pos: new Vector(210, 10),
+                    text: 'Beweeg je gans\nen sla elkaar\nvan het eiland\nof om te winnen',
+                    font: ui.tinyFont
+                })
+                this.add(explanation)
+                controls = new Label({
+                    pos: new Vector(10, 150),
+                    text: 'beweeg   kijk   sla',
+                    font: ui.tinyFont
+                })
+                this.add(controls)
+                this.labels.push(controls)
+                this.labels.push(explanation)
+                break;
         }
     }
 
@@ -210,34 +228,35 @@ export class Explanation extends Scene {
     }
 
     countdown() {
-        let time = 3
+        this.engine.goToScene('loading', this.scene)
+        // let time = 3
 
-        const ui = new UI()
+        // const ui = new UI()
 
-        let label = new Label({
-            text: time.toString(),
-            pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2 + 16),
-            font: ui.spriteFont
-        })
-        label.anchor = new Vector(0.5,0.5)
-        this.add(label)
-        const timer = new Timer({
-            fcn: () => {
-                if (time <= 0) {
-                    this.engine.goToScene('loading', this.scene)
-                    timer.cancel()
-                    this.remove(timer)
-                    label.kill()
-                } else {
-                    Resources.SelectSound.play()
-                    time -= 1
-                    label.text = time.toString()
-                }
-            },
-            repeats: true,
-            interval: 1000
-        })
-        this.add(timer)
-        timer.start()
+        // let label = new Label({
+        //     text: time.toString(),
+        //     pos: new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2 + 16),
+        //     font: ui.spriteFont
+        // })
+        // label.anchor = new Vector(0.5,0.5)
+        // this.add(label)
+        // const timer = new Timer({
+        //     fcn: () => {
+        //         if (time <= 0) {
+        //             this.engine.goToScene('loading', this.scene)
+        //             timer.cancel()
+        //             this.remove(timer)
+        //             label.kill()
+        //         } else {
+        //             Resources.SelectSound.play()
+        //             time -= 1
+        //             label.text = time.toString()
+        //         }
+        //     },
+        //     repeats: true,
+        //     interval: 1000
+        // })
+        // this.add(timer)
+        // timer.start()
     }
 }

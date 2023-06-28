@@ -31,12 +31,14 @@ import afvalExplanationImage from "../images/betweenscene- afval.png"
 import catcherExplanationImage from "../images/betweenscene-goosecatcher.png"
 import raceExplanationImage from "../images/betweenscene-gooserace.png"
 import hertExplanationImage from "../images/betweenscene-hertensleper.png"
+import islandExplanationImage from "../images/betweenscene-islandslapper.png"
 import gansWitImage from "../images/gansWit.png";
 import titleImage from "../images/GanzenPartyTitle.png"
 import endBackgroundImage from "../images/Eindscene.png"
 import animatingGooseImage from "../images/gooseDance.png"
 import animatingCrownImage from "../images/Sparklycrown.png"
 
+import islandMusic from "../sounds/bgm_action_4.mp3"
 import hertenMusic from "../sounds/fight.wav"
 import rennerMusic from "../sounds/8-bit_mechanical_complex.mp3"
 import afvalMusic from "../sounds/one_0.mp3"
@@ -52,6 +54,7 @@ import hertDrop from "../sounds/hertDrop.wav"
 import readyUp from "../sounds/Ready.wav"
 import kwak from "../sounds/cannard.mp3"
 import honk from "../sounds/goose-honk.mp3"
+import fall from "../sounds/random.wav"
 
 
 
@@ -93,8 +96,10 @@ const Resources = {
   CatchExplanation: new ImageSource(catcherExplanationImage),
   RaceExplanation: new ImageSource(raceExplanationImage),
   HertExplanation: new ImageSource(hertExplanationImage),
+  IslandExplanation: new ImageSource(islandExplanationImage),
 
   CharacterMusic: new Sound(characterMusic),
+  IslandMusic: new Sound(islandMusic),
   EndMusic: new Sound(endMusic),
   HertenMusic: new Sound(hertenMusic),
   RennerMusic: new Sound(rennerMusic),
@@ -108,7 +113,8 @@ const Resources = {
   Ready: new Sound(readyUp),
   SelectSound: new Sound(select),
   Kwak: new Sound(kwak),
-  Honk: new Sound(honk)
+  Honk: new Sound(honk),
+  Fall: new Sound(fall)
 };
 const ResourceLoader = new Loader([
   Resources.BackgroundAfval,
@@ -148,10 +154,13 @@ const ResourceLoader = new Loader([
   Resources.CatchExplanation,
   Resources.RaceExplanation,
   Resources.HertExplanation,
+  Resources.IslandExplanation,
 
   Resources.Kwak,
   Resources.Honk,
+  Resources.Fall,
   Resources.CharacterMusic,
+  Resources.IslandMusic,
   Resources.SelectSound,
   Resources.MenuSelect,
   Resources.HertPickup,

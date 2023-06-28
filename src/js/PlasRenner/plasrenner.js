@@ -33,10 +33,11 @@ if array = 3
     ga naar scoreboard
 
 */
-import { Actor, Engine, Vector, Label, FontUnit, Font, DisplayMode, Scene} from "excalibur"
+import { Actor, Engine, Vector, Label, FontUnit, Font, DisplayMode, Scene, Timer} from "excalibur"
 import { Resources, ResourceLoader } from '../loader.js'
 import { GansWit } from './control'
 import rennerMusic from "../../sounds/8-bit_mechanical_complex.mp3"
+import { UI } from "../UI.js";
 
 
 export class PlasRenner extends Scene {
@@ -45,6 +46,7 @@ export class PlasRenner extends Scene {
     ganzen = [];
     gameMusic = new Audio(rennerMusic)
     positions = [];
+    freeze = true;
 
     constructor() {
         super()
@@ -53,6 +55,7 @@ export class PlasRenner extends Scene {
     onActivate() {
         this.gameMusic.loop = true
         this.gameMusic.play()
+        this.countdown()
     }
 
     onDeactivate() {
@@ -84,6 +87,35 @@ export class PlasRenner extends Scene {
 
     finishedPlayer(player) {
         this.positions.push(player)
+    }
+
+    countdown() {
+        let time = 3
+    
+        const ui = new UI()
+    
+        let label = new Label({
+            text: time.toString(),
+            pos: new Vector(this.engine.screen.drawWidth / 2 - 16, this.engine.screen.drawHeight / 2 - 16),
+            font: ui.spriteFont
+        })
+        this.add(label)
+        const timer = new Timer({
+            fcn: () => {
+                if (time <= 1) {
+                    this.freeze = false
+                    timer.cancel()
+                    label.kill()
+                } else {
+                    time -= 1
+                    label.text = time.toString()
+                }
+            },
+            repeats: true,
+            interval: 1000
+        })
+        this.add(timer)
+        timer.start()
     }
 
     onPostUpdate() {

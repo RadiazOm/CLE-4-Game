@@ -18,7 +18,7 @@ export class Cursor extends Actor {
     onInitialize(engine) {
         this.engine = engine
         console.log(this.graphics)
-        this.pos = new Vector(this.engine.screen.drawWidth / 2, this.engine.screen.drawHeight / 2)
+        this.pos = new Vector(this.engine.screen.drawWidth / 2 - 8, this.engine.screen.drawHeight / 2 - 8)
 
         switch (this.player) {
             case 1:

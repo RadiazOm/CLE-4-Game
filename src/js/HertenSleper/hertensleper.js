@@ -18,7 +18,7 @@ export class HertenSleper extends Scene {
     timer;
     time = 25;
     engine;
-    gameOver = false;
+    gameOver = true;
     gameMusic = new Audio(hertenMusic)
 
     constructor(){
@@ -29,6 +29,7 @@ export class HertenSleper extends Scene {
         Physics.useArcadePhysics()
         this.gameMusic.loop = true
         this.gameMusic.play()
+        this.countdown()
     }
 
     onDeactivate() {
@@ -79,7 +80,25 @@ export class HertenSleper extends Scene {
         this.timer = new GameTimer(this.time)
         this.add(this.timer)
 
+        
+    }
 
+
+
+    Button0(player) {
+        this.cursors[player - 1].grab()
+        // switch (player) {
+        //     case 1:
+        //         this.cursors[0].grab()
+        //         break;
+        //     case 1:
+        //         this.cursors[1].grab()
+        //         break;
+        // }
+    }
+
+    beginGame() {
+        this.gameOver = false
         const timer = new Timer({
             fcn: () => {
                 if (this.time <= 0) {
@@ -97,18 +116,33 @@ export class HertenSleper extends Scene {
         timer.start()
     }
 
+    countdown() {
+        let time = 3
 
+        const ui = new UI()
 
-    Button0(player) {
-        this.cursors[player - 1].grab()
-        // switch (player) {
-        //     case 1:
-        //         this.cursors[0].grab()
-        //         break;
-        //     case 1:
-        //         this.cursors[1].grab()
-        //         break;
-        // }
+        let label = new Label({
+            text: time.toString(),
+            pos: new Vector(this.engine.screen.drawWidth / 2 - 16, this.engine.screen.drawHeight / 2 - 16),
+            font: ui.spriteFont
+        })
+        this.add(label)
+        const timer = new Timer({
+            fcn: () => {
+                if (time <= 1) {
+                    this.beginGame()
+                    timer.cancel()
+                    label.kill()
+                } else {
+                    time -= 1
+                    label.text = time.toString()
+                }
+            },
+            repeats: true,
+            interval: 1000
+        })
+        this.add(timer)
+        timer.start()
     }
 
     gameover() {

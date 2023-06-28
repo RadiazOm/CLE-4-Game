@@ -54,6 +54,7 @@ export class Game extends Engine {
         this.scenes.push('hertensleper')
         this.scenes.push('goosecatcher')
         this.scenes.push('plasrenner')
+        this.scenes.push('islandslapper')
         this.addScene('mainmenu', new MainMenu())
         this.addScene('characterselection', new characterSelection())
         this.addScene('scoreboard', new ScoreBoard())
@@ -77,7 +78,7 @@ export class Game extends Engine {
         let game = this.scenes[gameIndex]
         this.scenesRemaining.splice(this.scenesRemaining.indexOf(gameIndex), 1)
 
-        this.goToScene('islandslapper')
+        this.goToScene('explanation', 'afvalverwijderen')
     }
 
     endGame(positions) {

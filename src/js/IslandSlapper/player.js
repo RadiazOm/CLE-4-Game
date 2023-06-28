@@ -6,7 +6,7 @@ export class Player extends Actor {
 
     player;
     engine;
-    lock = false;
+    lock = true;
     launched = false;
     lost = false;
 
@@ -28,6 +28,7 @@ export class Player extends Actor {
     }
 
     lose() {
+        Resources.Fall.play()
         this.lost = true
         this.engine.currentScene.positions.push(this.player)
         this.kill()
@@ -106,6 +107,7 @@ export class Player extends Actor {
         if (this.lock === true) {
             return;
         }
+        Resources.HertPickup.play()
         this.lock = true
         this.vel = new Vector(0,0)
         let balloon = new Actor({
